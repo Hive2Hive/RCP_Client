@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.hive2hive.rcp.client.bundleresourceloader">
+   <implementation class="org.hive2hive.rcp.client.bundleresourceloader.internal.BundleResourceLoaderImpl"/>
+   <service>
+      <provide interface="org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader"/>
+   </service>
+</scr:component>
