@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.hive2hive.rcp.client</groupId>
   <artifactId>org.hive2hive.rcp.client.parent</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   
   	<!-- common settings for all modules -->
@@ -30,4 +30,16 @@
 			</plugin>
 		</plugins>
 	</build>
+	<modules>
+		<module>../org.hive2hive.rcp.client.product</module>
+		<module>../org.hive2hive.rcp.client.feature</module>
+		<module>../org.hive2hive.rcp.client</module>
+		<module>
+			../org.hive2hive.rcp.client.bundleresourceloader
+		</module>
+		<module>../org.hive2hive.rcp.client.model</module>
+		
+		<module>../org.hive2hive.rcp.client.services</module>
+		<module>../org.hive2hive.rcp.client.libs</module>
+	</modules>
 </project>
