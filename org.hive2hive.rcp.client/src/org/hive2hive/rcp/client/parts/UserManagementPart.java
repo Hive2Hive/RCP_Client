@@ -53,6 +53,7 @@ public class UserManagementPart {
 
 		createLoginGroup(parent);
 
+		// TODO Nendor: replace by logger framework
 		System.out.println("Testing the network connection service: "
 				+ connectionService.getServiceTestMessage());
 
