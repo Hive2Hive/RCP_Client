@@ -14,13 +14,16 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.hive2hive.core.processes.framework.RollbackReason;
-import org.hive2hive.core.processes.framework.interfaces.IProcessComponentListener;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
 import org.hive2hive.rcp.client.services.INetworkConnectionService;
 import org.hive2hive.rcp.client.services.IUserService;
+import org.hive2hive.rcp.client.services.ServiceAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserManagementPart {
+
+	private static final Logger logger = LoggerFactory.getLogger(UserManagementPart.class);
 
 	@Inject
 	private IBundleResourceLoader resourceLoader;
@@ -44,7 +47,7 @@ public class UserManagementPart {
 
 	@PostConstruct
 	public void createControls(final Composite parent) {
-		System.out.println(this.getClass().getSimpleName() + " @PostConstruct method called.");
+		logger.debug(this.getClass().getSimpleName() + " @PostConstruct method called.");
 
 		MigLayout layout = new MigLayout("", "[][]", "[top]");
 		parent.setLayout(layout);
@@ -54,8 +57,7 @@ public class UserManagementPart {
 		createLoginGroup(parent);
 
 		// TODO Nendor: replace by logger framework
-		System.out.println("Testing the network connection service: "
-				+ connectionService.getServiceTestMessage());
+		logger.debug("Testing the network connection service: " + connectionService.getServiceTestMessage());
 
 	}
 
@@ -125,8 +127,8 @@ public class UserManagementPart {
 				System.out.println("registration loader visible = " + registrationLoader.isVisible());
 				toggleRegistrationLoader();
 				if (!userRegistered) {
-					userService.registerUser(connectionService, txtUserId_reg.getText(), txtPassord_reg
-							.getText(), txtPin_reg.getText(), new ProgressListener(registrationLoader));
+					userService.registerUser(connectionService, txtUserId_reg.getText(),
+							txtPassord_reg.getText(), txtPin_reg.getText(), new RegisterUserListener());
 				}
 			}
 		});
@@ -136,29 +138,20 @@ public class UserManagementPart {
 		registrationLoader.setVisible(!registrationLoader.getVisible());
 	}
 
-	private class ProgressListener implements IProcessComponentListener {
+	private class RegisterUserListener extends ServiceAdapter {
 
-		private final ImageViewerCached viewer;
-
-		public ProgressListener(ImageViewerCached viewer) {
-			this.viewer = viewer;
+		@Override
+		public void serviceFinished() {
+			logger.debug("User creation finished.");
+			toggleRegistrationLoader();
 		}
 
 		@Override
-		public void onSucceeded() {
-			System.out.println("User creation sucessful.");
+		public void serviceSucceeded() {
+			logger.debug("User creation sucessful.");
 			userRegistered = true;
 		}
 
-		@Override
-		public void onFinished() {
-			System.out.println("User creation finished.");
-			viewer.setVisible(false);
-		}
-
-		@Override
-		public void onFailed(RollbackReason reason) {
-			System.err.println("User creation failed for the following reason: " + reason);
-		}
 	}
+
 }

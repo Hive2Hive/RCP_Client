@@ -29,8 +29,8 @@ public class H2HNetworkConnectionService implements INetworkConnectionService {
 		node.connect();
 
 		// TODO Nendor remove this once we solved the async issue...
-		node.getUserManager().configureAutostart(false);
-		node.getFileManager().configureAutostart(false);
+		// node.getUserManager().configureAutostart(false);
+		// node.getFileManager().configureAutostart(false);
 
 		return true;
 	}
@@ -46,8 +46,8 @@ public class H2HNetworkConnectionService implements INetworkConnectionService {
 			node = H2HNode.createNode(nodeConfig, defaultFileConfig);
 			node.connect();
 			// TODO Nendor remove this once we solved the async issue...
-			node.getUserManager().configureAutostart(false);
-			node.getFileManager().configureAutostart(false);
+			// node.getUserManager().configureAutostart(false);
+			// node.getFileManager().configureAutostart(false);
 
 			return true;
 		} catch (UnknownHostException e) {
