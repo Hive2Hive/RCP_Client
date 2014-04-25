@@ -1,5 +1,8 @@
 package org.hive2hive.rcp.client.services.internal;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.eclipse.swt.widgets.Display;
 import org.hive2hive.core.api.interfaces.IH2HNode;
 import org.hive2hive.core.api.interfaces.IUserManager;
@@ -22,6 +25,24 @@ public class H2HUserServiceImpl implements IUserService {
 		UserCredentials credentials = new UserCredentials(userId, password, pin);
 		try {
 			IProcessComponent pc = userManager.register(credentials);
+			pc.attachListener(new ProcessComponentListenerWrapper(listener));
+		} catch (NoPeerConnectionException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean loginUser(INetworkConnectionService connectionService, String userId, String password,
+			String pin, IServiceListener listener) {
+		IH2HNode node = connectionService.getCurrentNode();
+		IUserManager userManager = node.getUserManager();
+
+		UserCredentials credentials = new UserCredentials(userId, password, pin);
+		Path rootPath = Paths.get(System.getProperty("user.home"));
+
+		try {
+			IProcessComponent pc = userManager.login(credentials, rootPath);
 			pc.attachListener(new ProcessComponentListenerWrapper(listener));
 		} catch (NoPeerConnectionException e) {
 			e.printStackTrace();

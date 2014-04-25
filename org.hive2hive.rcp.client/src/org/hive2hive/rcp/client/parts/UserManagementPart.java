@@ -40,6 +40,7 @@ public class UserManagementPart {
 
 	private Text txtUserId_login;
 	private Text txtPassord_login;
+	private Text txtPin_login;
 
 	private ImageViewerCached registrationLoader;
 	private ImageViewerCached loader;
@@ -70,17 +71,24 @@ public class UserManagementPart {
 		Label lblUserID = new Label(loginGroup, SWT.NONE);
 		lblUserID.setText("User ID:");
 		txtUserId_login = new Text(loginGroup, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
+		txtUserId_login.setText("Mr. X");
 
 		Label lblPassword = new Label(loginGroup, SWT.NONE);
 		lblPassword.setText("Password:");
 		txtPassord_login = new Text(loginGroup, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
+		txtPassord_login.setText("secret");
+
+		Label lblPin = new Label(loginGroup, SWT.NONE);
+		lblPin.setText("Pin:");
+		txtPin_login = new Text(loginGroup, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
+		txtPin_login.setText("1234");
 
 		final ImageData[] imageData = resourceLoader.loadImageData(this.getClass(), "images/loader.gif");
 
 		loader = new ImageViewerCached(loginGroup);
 		loader.setImage(imageData[0]);
 		loader.setImages(imageData, 0);
-		loader.setVisible(true);
+		loader.setVisible(false);
 
 		Button btnLoginUser = new Button(loginGroup, SWT.PUSH);
 		btnLoginUser.setText("Login user");
@@ -88,8 +96,9 @@ public class UserManagementPart {
 		btnLoginUser.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				// TODO nendor: call login of service.
-				loader.setVisible(!loader.getVisible());
+				loader.setVisible(true);
+				userService.loginUser(connectionService, txtUserId_login.getText(),
+						txtPassord_login.getText(), txtPin_login.getText(), new LoginUserListener());
 			}
 		});
 	}
@@ -103,14 +112,17 @@ public class UserManagementPart {
 		Label lblUserID = new Label(userRegistrationGroup, SWT.NONE);
 		lblUserID.setText("User ID:");
 		txtUserId_reg = new Text(userRegistrationGroup, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
+		txtUserId_reg.setText("Mr. X");
 
 		Label lblPassword = new Label(userRegistrationGroup, SWT.NONE);
 		lblPassword.setText("Password:");
 		txtPassord_reg = new Text(userRegistrationGroup, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
+		txtPassord_reg.setText("secret");
 
 		Label lblPin = new Label(userRegistrationGroup, SWT.NONE);
 		lblPin.setText("Pin:");
 		txtPin_reg = new Text(userRegistrationGroup, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
+		txtPin_reg.setText("1234");
 
 		final ImageData[] imageData = resourceLoader.loadImageData(this.getClass(), "images/loader.gif");
 
@@ -124,7 +136,6 @@ public class UserManagementPart {
 		btnRegisterUser.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("registration loader visible = " + registrationLoader.isVisible());
 				toggleRegistrationLoader();
 				if (!userRegistered) {
 					userService.registerUser(connectionService, txtUserId_reg.getText(),
@@ -152,6 +163,24 @@ public class UserManagementPart {
 			userRegistered = true;
 		}
 
+	}
+
+	private class LoginUserListener extends ServiceAdapter {
+		@Override
+		public void serviceFinished() {
+			logger.debug("User login service finished");
+			loader.setVisible(!loader.isVisible());
+		}
+
+		@Override
+		public void serviceSucceeded() {
+			logger.debug("User login was successful.");
+		}
+
+		@Override
+		public void serviceFailed() {
+			logger.debug("Service failed!");
+		}
 	}
 
 }

@@ -28,16 +28,12 @@ public class H2HNetworkConnectionService implements INetworkConnectionService {
 		node = H2HNode.createNode(initialNodeConfig, defaultFileConfig);
 		node.connect();
 
-		// TODO Nendor remove this once we solved the async issue...
-		// node.getUserManager().configureAutostart(false);
-		// node.getFileManager().configureAutostart(false);
-
 		return true;
 	}
 
 	@Override
 	public boolean bootstrapToNetwork(String ipAddress, String port) {
-		System.out.println("Connecting to node with address " + ipAddress + ":" + port);
+		logger.debug("Connecting to node with address " + ipAddress + ":" + port);
 		INetworkConfiguration nodeConfig;
 		try {
 			nodeConfig = NetworkConfiguration.create("nodeID", InetAddress.getByName(ipAddress));
@@ -45,9 +41,6 @@ public class H2HNetworkConnectionService implements INetworkConnectionService {
 
 			node = H2HNode.createNode(nodeConfig, defaultFileConfig);
 			node.connect();
-			// TODO Nendor remove this once we solved the async issue...
-			// node.getUserManager().configureAutostart(false);
-			// node.getFileManager().configureAutostart(false);
 
 			return true;
 		} catch (UnknownHostException e) {
