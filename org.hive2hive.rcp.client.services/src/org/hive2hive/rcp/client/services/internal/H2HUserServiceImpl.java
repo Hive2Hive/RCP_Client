@@ -18,8 +18,8 @@ import org.hive2hive.rcp.client.services.IUserService;
 public class H2HUserServiceImpl implements IUserService {
 
 	@Override
-	public boolean registerUser(INetworkConnectionService connectionService, String userId, String password,
-			String pin, IServiceListener listener) {
+	public boolean registerUser(INetworkConnectionService connectionService, String userId, String password, String pin,
+			IServiceListener listener) {
 		IH2HNode node = connectionService.getCurrentNode();
 		IUserManager userManager = node.getUserManager();
 		UserCredentials credentials = new UserCredentials(userId, password, pin);
@@ -33,13 +33,13 @@ public class H2HUserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public boolean loginUser(INetworkConnectionService connectionService, String userId, String password,
-			String pin, IServiceListener listener) {
+	public boolean loginUser(INetworkConnectionService connectionService, String userId, String password, String pin,
+			IServiceListener listener) {
 		IH2HNode node = connectionService.getCurrentNode();
 		IUserManager userManager = node.getUserManager();
 
 		UserCredentials credentials = new UserCredentials(userId, password, pin);
-		Path rootPath = Paths.get(System.getProperty("user.home"));
+		Path rootPath = Paths.get(System.getProperty("user.home"), "Hive2Hive", userId);
 
 		try {
 			IProcessComponent pc = userManager.login(credentials, rootPath);
