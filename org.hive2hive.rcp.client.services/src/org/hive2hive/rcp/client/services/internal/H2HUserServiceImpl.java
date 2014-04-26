@@ -39,7 +39,7 @@ public class H2HUserServiceImpl implements IUserService {
 		IUserManager userManager = node.getUserManager();
 
 		UserCredentials credentials = new UserCredentials(userId, password, pin);
-		Path rootPath = Paths.get(System.getProperty("user.home"));
+		Path rootPath = Paths.get(System.getProperty("user.home"), "Hive2Hive", userId);
 
 		try {
 			IProcessComponent pc = userManager.login(credentials, rootPath);
@@ -63,6 +63,7 @@ public class H2HUserServiceImpl implements IUserService {
 
 				@Override
 				public void run() {
+					listener.serviceFinished();
 					listener.serviceSucceeded();
 				}
 			};
@@ -75,24 +76,11 @@ public class H2HUserServiceImpl implements IUserService {
 
 				@Override
 				public void run() {
+					listener.serviceFinished();
 					listener.serviceFailed();
 				}
 			};
 			executeAsync(runnable);
-		}
-
-		@Override
-		public void onFinished() {
-			Runnable runnable = new Runnable() {
-
-				@Override
-				public void run() {
-					listener.serviceFinished();
-				}
-			};
-
-			executeAsync(runnable);
-
 		}
 
 		private void executeAsync(Runnable runnable) {

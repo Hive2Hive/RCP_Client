@@ -1,0 +1,7 @@
+slf4j-api(1.7.6) - OK - installed
+logback-classic(1.1.1) - OK - installed
+logback-core(1.1.1) - OK - installed
+tomp2p-core(5.0-Alpha4) - OK - installed
+commons-io(2.4) - OK - installed
+bcprov-jdk16(1.46) - OK - installed
+junit(4.11) - test - OK - not needed
