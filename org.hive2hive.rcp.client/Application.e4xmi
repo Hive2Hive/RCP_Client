@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_1D_P0MQBEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.application">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_IlF38MQCEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.trimmedwindow.0" label="Hive2Hive - Client" x="300" y="100" width="700" height="550">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_IlF38MQCEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.trimmedwindow.0" label="Hive2Hive - Client" x="300" y="100" width="750" height="650">
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_kajwsMQHEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.perspectivestack.0">
       <children xsi:type="advanced:Perspective" xmi:id="_nGi10MQHEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.perspective" label="Hive2Hive">
         <children xsi:type="basic:PartSashContainer" xmi:id="_qbm3sMQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.partsashcontainer.main" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_xCUF8MQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.partstack.0" containerData="3000">
-            <children xsi:type="basic:Part" xmi:id="_7FAS4MQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.part.chat" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.ChatPart" label="Chat"/>
+            <children xsi:type="basic:Part" xmi:id="_6ye7AN3cEeOaT_0n-Y-tPw" elementId="org.hive2hive.rcp.client.part.test" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.TestPart" label="Test"/>
+            <children xsi:type="basic:Part" xmi:id="_7FAS4MQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.part.filetree" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.FileTreePart" label="FileTree"/>
           </children>
           <children xsi:type="basic:PartSashContainer" xmi:id="_zvRbcMQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.partsashcontainer.0" containerData="7000">
             <children xsi:type="basic:PartStack" xmi:id="_4ULxEMQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.partstack.1">
-              <children xsi:type="basic:Part" xmi:id="_-CXb4MQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.part.connect" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.ConnectionPart" label="Connection"/>
+              <children xsi:type="basic:Part" xmi:id="_-CXb4MQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.part.connect" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.ConnectionPart" label="Connection" iconURI="platform:/plugin/org.hive2hive.rcp.client/images/Logo_16x16_disconnected.png"/>
             </children>
             <children xsi:type="basic:PartStack" xmi:id="_456UUMQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.partstack.2">
               <children xsi:type="basic:Part" xmi:id="__MBLkMQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.part.login" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.UserManagementPart" label="User Management"/>
@@ -19,7 +20,10 @@
       </children>
     </children>
     <trimBars xmi:id="_SvS_sMvlEeO2_LhLCJbbfQ" elementId="org.hive2hive.rcp.client.trimbar.top">
-      <children xsi:type="menu:ToolControl" xmi:id="_YLfioMvlEeO2_LhLCJbbfQ" elementId="org.hive2hive.rcp.client.toolcontrol.0" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.TopBar"/>
+      <children xsi:type="menu:ToolControl" xmi:id="_YLfioMvlEeO2_LhLCJbbfQ" elementId="org.hive2hive.rcp.client.topbar.toolcontrol" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.TopBar"/>
+    </trimBars>
+    <trimBars xmi:id="_hIClENrGEeO8I8Kgex2XVA" elementId="org.hive2hive.rcp.client.trimbar.bottom" side="Bottom">
+      <children xsi:type="menu:ToolControl" xmi:id="_kUprANrGEeO8I8Kgex2XVA" elementId="org.hive2hive.rcp.client.bottombar.toolcontrol" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.BottomBar"/>
     </trimBars>
   </children>
   <addons xmi:id="_1D_P0cQBEeO5us8__qBFNQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>

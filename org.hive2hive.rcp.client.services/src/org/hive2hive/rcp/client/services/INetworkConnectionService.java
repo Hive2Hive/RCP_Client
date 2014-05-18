@@ -3,9 +3,11 @@ package org.hive2hive.rcp.client.services;
 import org.hive2hive.core.api.interfaces.IH2HNode;
 
 public interface INetworkConnectionService {
-	boolean createInitialNode();
+	void createInitialNode(IServiceListener serviceListener);
 
-	boolean bootstrapToNetwork(String ipAddress, String port);
+	void bootstrapToNetwork(String ipAddress, String port, IServiceListener serviceListener);
+
+	void disconnect(IServiceListener serviceListener);
 
 	String getServiceTestMessage();
 

@@ -1,5 +1,8 @@
 package org.hive2hive.rcp.client.parts;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -11,11 +14,11 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
-import org.hive2hive.rcp.client.services.INetworkConnectionService;
 import org.hive2hive.rcp.client.services.IUserService;
 import org.hive2hive.rcp.client.services.ServiceAdapter;
 import org.slf4j.Logger;
@@ -29,9 +32,6 @@ public class UserManagementPart {
 	private IBundleResourceLoader resourceLoader;
 
 	@Inject
-	private INetworkConnectionService connectionService;
-
-	@Inject
 	private IUserService userService;
 
 	private Text txtUserId_reg;
@@ -41,6 +41,7 @@ public class UserManagementPart {
 	private Text txtUserId_login;
 	private Text txtPassord_login;
 	private Text txtPin_login;
+	private Text txtFileRoot;
 
 	private ImageViewerCached registrationLoader;
 	private ImageViewerCached loader;
@@ -57,14 +58,11 @@ public class UserManagementPart {
 
 		createLoginGroup(parent);
 
-		// TODO Nendor: replace by logger framework
-		logger.debug("Testing the network connection service: " + connectionService.getServiceTestMessage());
-
 	}
 
 	private void createLoginGroup(Composite parent) {
-		Group loginGroup = new Group(parent, SWT.SHADOW_NONE);
-		MigLayout loginLayout = new MigLayout("wrap", "[right]5[]", "");
+		final Group loginGroup = new Group(parent, SWT.SHADOW_NONE);
+		MigLayout loginLayout = new MigLayout("wrap", "[right]5[left, 80!]5[40!, grow]", "");
 		loginGroup.setLayout(loginLayout);
 		loginGroup.setText("Login User");
 
@@ -72,16 +70,42 @@ public class UserManagementPart {
 		lblUserID.setText("User ID:");
 		txtUserId_login = new Text(loginGroup, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
 		txtUserId_login.setText("Mr. X");
+		txtUserId_login.setLayoutData("grow, wrap");
 
 		Label lblPassword = new Label(loginGroup, SWT.NONE);
 		lblPassword.setText("Password:");
 		txtPassord_login = new Text(loginGroup, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
 		txtPassord_login.setText("secret");
+		txtPassord_login.setLayoutData("grow, wrap");
 
 		Label lblPin = new Label(loginGroup, SWT.NONE);
 		lblPin.setText("Pin:");
 		txtPin_login = new Text(loginGroup, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
 		txtPin_login.setText("1234");
+		txtPin_login.setLayoutData("grow, wrap");
+
+		Label lblFileRoot = new Label(loginGroup, SWT.NONE);
+		lblFileRoot.setText("File root:");
+
+		Button btnFileRoot = new Button(loginGroup, SWT.PUSH);
+		btnFileRoot.setText("Select");
+		btnFileRoot.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+
+				DirectoryDialog directoryDialog = new DirectoryDialog(loginGroup.getShell(), SWT.OPEN);
+				directoryDialog.setText("Open");
+				String selected = directoryDialog.open();
+				logger.debug(selected);
+				if (selected != null) {
+					txtFileRoot.setText(selected);
+				}
+			}
+		});
+		btnFileRoot.setLayoutData("right, wrap");
+
+		txtFileRoot = new Text(loginGroup, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
+		txtFileRoot.setLayoutData("grow, span");
 
 		final ImageData[] imageData = resourceLoader.loadImageData(this.getClass(), "images/loader.gif");
 
@@ -97,8 +121,9 @@ public class UserManagementPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				loader.setVisible(true);
-				userService.loginUser(connectionService, txtUserId_login.getText(),
-						txtPassord_login.getText(), txtPin_login.getText(), new LoginUserListener());
+				Path userDirectoryPath = Paths.get(txtFileRoot.getText());
+				userService.loginUser(txtUserId_login.getText(), txtPassord_login.getText(), txtPin_login.getText(),
+						userDirectoryPath, new LoginUserListener());
 			}
 		});
 	}
@@ -138,8 +163,8 @@ public class UserManagementPart {
 			public void widgetSelected(SelectionEvent e) {
 				toggleRegistrationLoader();
 				if (!userRegistered) {
-					userService.registerUser(connectionService, txtUserId_reg.getText(),
-							txtPassord_reg.getText(), txtPin_reg.getText(), new RegisterUserListener());
+					userService.registerUser(txtUserId_reg.getText(), txtPassord_reg.getText(), txtPin_reg.getText(),
+							new RegisterUserListener());
 				}
 			}
 		});

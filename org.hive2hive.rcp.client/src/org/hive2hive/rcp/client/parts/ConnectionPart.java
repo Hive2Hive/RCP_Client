@@ -5,6 +5,8 @@ import javax.inject.Inject;
 
 import net.miginfocom.swt.MigLayout;
 
+import org.eclipse.e4.core.services.events.IEventBroker;
+import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -15,13 +17,17 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.hive2hive.core.network.Connection;
+import org.hive2hive.rcp.client.events.ConnectionStatus;
+import org.hive2hive.rcp.client.events.EventConstatns;
 import org.hive2hive.rcp.client.services.INetworkConnectionService;
+import org.hive2hive.rcp.client.services.ServiceAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ConnectionPart {
 	private static final String INITIAL_NODE_CREATION_LABEL = "Create initial node";
 	private static final String CONNECT_TO_NODE_LABEL = "Connect";
+	private static final String DISCONNECT_LABEL = "Disconnect";
 
 	private static final Logger logger = LoggerFactory.getLogger(Connection.class);
 
@@ -34,8 +40,16 @@ public class ConnectionPart {
 	private Button btnConnectToNode;
 	private Button btnConnect;
 
+	private boolean isConnected = false;
+
 	@Inject
 	private INetworkConnectionService networkConnectionService;
+
+	@Inject
+	private MPart part;
+
+	@Inject
+	private IEventBroker eventBroker;
 
 	@PostConstruct
 	public void createControls(final Composite parent) {
@@ -77,6 +91,7 @@ public class ConnectionPart {
 
 		txtIpAddress = new Text(connectionAddressComposite, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
 		txtIpAddress.setLayoutData("width 120!");
+		txtIpAddress.setText("127.000.000.001");
 		txtIpAddress.addVerifyListener(new VerifyListener() {
 
 			@Override
@@ -106,6 +121,7 @@ public class ConnectionPart {
 
 		txtPort = new Text(connectionAddressComposite, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
 		txtPort.setLayoutData("width 40!");
+		txtPort.setText("4622");
 		txtPort.addVerifyListener(new VerifyListener() {
 
 			@Override
@@ -131,11 +147,16 @@ public class ConnectionPart {
 		btnConnect.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if (btnCreateInitialNode.getSelection()) {
-					networkConnectionService.createInitialNode();
+				if (isConnected) {
+					networkConnectionService.disconnect(new ConnectionListener());
 				} else {
-					if (connectionDataCorrect(txtIpAddress.getText(), txtPort.getText())) {
-						networkConnectionService.bootstrapToNetwork(txtIpAddress.getText(), txtPort.getText());
+					if (btnCreateInitialNode.getSelection()) {
+						networkConnectionService.createInitialNode(new ConnectionListener());
+					} else {
+						if (connectionDataCorrect(txtIpAddress.getText(), txtPort.getText())) {
+							networkConnectionService.bootstrapToNetwork(txtIpAddress.getText(), txtPort.getText(),
+									new ConnectionListener());
+						}
 					}
 				}
 			}
@@ -174,6 +195,28 @@ public class ConnectionPart {
 
 	private boolean isBackspaceOrDelete(char c) {
 		return c == '\u0008' || c == '\u007F';
+	}
+
+	private class ConnectionListener extends ServiceAdapter {
+		@Override
+		public void serviceSucceeded() {
+			if (isConnected) {
+				part.setIconURI("platform:/plugin/org.hive2hive.rcp.client/images/Logo_16x16_disconnected.png");
+				isConnected = false;
+				if (btnCreateInitialNode.getSelection()) {
+					updateConnectionButton(INITIAL_NODE_CREATION_LABEL);
+				} else {
+					updateConnectionButton(CONNECT_TO_NODE_LABEL);
+				}
+				eventBroker.send(EventConstatns.CONNECTION_STATUS, ConnectionStatus.DISCONNECTED);
+			} else {
+				part.setIconURI("platform:/plugin/org.hive2hive.rcp.client/images/Logo_16x16.png");
+				isConnected = true;
+				updateConnectionButton(DISCONNECT_LABEL);
+				eventBroker.send(EventConstatns.CONNECTION_STATUS, ConnectionStatus.CONNECTED);
+			}
+
+		}
 	}
 
 }
