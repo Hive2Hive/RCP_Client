@@ -6,7 +6,7 @@
         <children xsi:type="basic:PartSashContainer" xmi:id="_qbm3sMQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.partsashcontainer.main" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_xCUF8MQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.partstack.0" containerData="3000">
             <children xsi:type="basic:Part" xmi:id="_6ye7AN3cEeOaT_0n-Y-tPw" elementId="org.hive2hive.rcp.client.part.test" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.TestPart" label="Test"/>
-            <children xsi:type="basic:Part" xmi:id="_7FAS4MQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.part.filetree" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.FileTreePart" label="FileTree"/>
+            <children xsi:type="basic:Part" xmi:id="_7FAS4MQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.part.filetree" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.filetree.FileTreePart" label="FileTree"/>
           </children>
           <children xsi:type="basic:PartSashContainer" xmi:id="_zvRbcMQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.partsashcontainer.0" containerData="7000">
             <children xsi:type="basic:PartStack" xmi:id="_4ULxEMQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.partstack.1">

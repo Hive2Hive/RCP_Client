@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import net.miginfocom.swt.MigLayout;
 
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -19,6 +20,8 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
+import org.hive2hive.rcp.client.events.ConnectionStatus;
+import org.hive2hive.rcp.client.events.EventConstatns;
 import org.hive2hive.rcp.client.services.IUserService;
 import org.hive2hive.rcp.client.services.ServiceAdapter;
 import org.slf4j.Logger;
@@ -33,6 +36,9 @@ public class UserManagementPart {
 
 	@Inject
 	private IUserService userService;
+
+	@Inject
+	private IEventBroker eventBroker;
 
 	private Text txtUserId_reg;
 	private Text txtPassord_reg;
@@ -53,9 +59,7 @@ public class UserManagementPart {
 
 		MigLayout layout = new MigLayout("", "[][]", "[top]");
 		parent.setLayout(layout);
-
 		createUserRegistrationGroup(parent);
-
 		createLoginGroup(parent);
 
 	}
@@ -106,6 +110,7 @@ public class UserManagementPart {
 
 		txtFileRoot = new Text(loginGroup, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
 		txtFileRoot.setLayoutData("grow, span");
+		txtFileRoot.setText("/Users/Nendor/H2H/MrX");
 
 		final ImageData[] imageData = resourceLoader.loadImageData(this.getClass(), "images/loader.gif");
 
@@ -120,14 +125,29 @@ public class UserManagementPart {
 		btnLoginUser.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				logger.debug("Login user started.");
+				boolean isUserRegistered = userService.isUserRegistered(txtUserId_login.getText());
+				if (!isUserRegistered) {
+					registerUser();
+				}
+
 				loader.setVisible(true);
 				Path userDirectoryPath = Paths.get(txtFileRoot.getText());
 				userService.loginUser(txtUserId_login.getText(), txtPassord_login.getText(), txtPin_login.getText(),
 						userDirectoryPath, new LoginUserListener());
 			}
+
+			private void registerUser() {
+				logger.debug("Registering user '{}'", txtUserId_login.getText());
+				eventBroker.post(EventConstatns.PROGRESS_INFORMATION,
+						String.format("Registering user %s", txtUserId_login.getText()));
+				userService.registerUser(txtUserId_login.getText(), txtPassord_login.getText(), txtPin_login.getText(),
+						new RegisterUserListener());
+			}
 		});
 	}
 
+	@Deprecated
 	private void createUserRegistrationGroup(final Composite parent) {
 		Group userRegistrationGroup = new Group(parent, SWT.SHADOW_ETCHED_IN);
 		MigLayout userRegistrationlayout = new MigLayout("wrap", "[right]5[]", "");
@@ -186,11 +206,13 @@ public class UserManagementPart {
 		public void serviceSucceeded() {
 			logger.debug("User creation sucessful.");
 			userRegistered = true;
+			eventBroker.post(EventConstatns.USER_STATUS, ConnectionStatus.CONNECTED);
 		}
 
 	}
 
 	private class LoginUserListener extends ServiceAdapter {
+
 		@Override
 		public void serviceFinished() {
 			logger.debug("User login service finished");

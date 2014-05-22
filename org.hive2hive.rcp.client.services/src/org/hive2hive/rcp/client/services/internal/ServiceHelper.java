@@ -1,6 +1,5 @@
 package org.hive2hive.rcp.client.services.internal;
 
-import org.hive2hive.rcp.client.services.INetworkConnectionService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
@@ -16,8 +15,7 @@ final class ServiceHelper {
 
 	@SuppressWarnings("unchecked")
 	public static <T> T getService(Class<T> clazz) throws ClassCastException {
-		ServiceReference<?> serviceReference = INSTANCE.bundleContext.getServiceReference(INetworkConnectionService.class
-				.getName());
+		ServiceReference<?> serviceReference = INSTANCE.bundleContext.getServiceReference(clazz.getName());
 		return (T) INSTANCE.bundleContext.getService(serviceReference);
 	}
 

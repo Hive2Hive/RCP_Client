@@ -5,7 +5,6 @@ Bundle-SymbolicName: org.hive2hive.rcp.client.libs
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ClassPath: .,
- lib/miglayout-4.0-swt.jar,
  resources/,
  lib/bcprov-jdk16-1.46.jar,
  lib/commons-io-2.4.jar,
@@ -16,7 +15,8 @@ Bundle-ClassPath: .,
  lib/logback-classic-1.1.1.jar,
  lib/logback-core-1.1.1.jar,
  lib/tomp2p-core-5.0-Alpha4.jar,
- lib/org.hive2hive.core-1.1.1-SNAPSHOT.jar
+ lib/org.hive2hive.core-1.1.1-SNAPSHOT.jar,
+ lib/miglayout-4.0-swt.jar
 Require-Bundle: org.eclipse.swt;bundle-version="3.102.1"
 Eclipse-BuddyPolicy: registered
 Export-Package: ch.qos.logback.classic,
