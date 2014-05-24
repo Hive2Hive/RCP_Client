@@ -16,4 +16,6 @@ public interface IUserService {
 
 	void test(IEventBroker eventBroker);
 
+	void registerAndLoginUser(String userId, String password, String pin, Path rootDirPath, IEventBroker eventBroker);
+
 }

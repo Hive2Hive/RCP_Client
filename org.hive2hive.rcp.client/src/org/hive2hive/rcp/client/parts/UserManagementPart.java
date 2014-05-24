@@ -45,7 +45,7 @@ public class UserManagementPart {
 	private Text txtPin_reg;
 
 	private Text txtUserId_login;
-	private Text txtPassord_login;
+	private Text txtPassword_login;
 	private Text txtPin_login;
 	private Text txtFileRoot;
 
@@ -78,9 +78,9 @@ public class UserManagementPart {
 
 		Label lblPassword = new Label(loginGroup, SWT.NONE);
 		lblPassword.setText("Password:");
-		txtPassord_login = new Text(loginGroup, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
-		txtPassord_login.setText("secret");
-		txtPassord_login.setLayoutData("grow, wrap");
+		txtPassword_login = new Text(loginGroup, SWT.SINGLE | SWT.BORDER | SWT.DOUBLE_BUFFERED);
+		txtPassword_login.setText("secret");
+		txtPassword_login.setLayoutData("grow, wrap");
 
 		Label lblPin = new Label(loginGroup, SWT.NONE);
 		lblPin.setText("Pin:");
@@ -126,23 +126,24 @@ public class UserManagementPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				logger.debug("Login user started.");
-				boolean isUserRegistered = userService.isUserRegistered(txtUserId_login.getText());
-				if (!isUserRegistered) {
-					registerUser();
-				}
-
-				loader.setVisible(true);
+				// boolean isUserRegistered = userService.isUserRegistered(txtUserId_login.getText());
+				// if (!isUserRegistered) {
+				// registerUser();
+				// }
+				//
+				// loader.setVisible(true);
 				Path userDirectoryPath = Paths.get(txtFileRoot.getText());
-				userService.loginUser(txtUserId_login.getText(), txtPassord_login.getText(), txtPin_login.getText(),
-						userDirectoryPath, new LoginUserListener());
+				userService.registerAndLoginUser(txtUserId_login.getText(), txtPassword_login.getText(),
+						txtPin_login.getText(), Paths.get(txtFileRoot.getText()), eventBroker);
+				// userService.loginUser(txtUserId_login.getText(), txtPassword_login.getText(),
+				// txtPin_login.getText(),
+				// userDirectoryPath, new LoginUserListener());
 			}
 
 			private void registerUser() {
 				logger.debug("Registering user '{}'", txtUserId_login.getText());
 				eventBroker.post(EventConstatns.PROGRESS_INFORMATION,
 						String.format("Registering user %s", txtUserId_login.getText()));
-				userService.registerUser(txtUserId_login.getText(), txtPassord_login.getText(), txtPin_login.getText(),
-						new RegisterUserListener());
 			}
 		});
 	}

@@ -3,6 +3,8 @@ package org.hive2hive.rcp.client.parts;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import net.miginfocom.swt.MigLayout;
+
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.swt.SWT;
@@ -12,6 +14,7 @@ import org.eclipse.swt.widgets.Label;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
 import org.hive2hive.rcp.client.events.ConnectionStatus;
 import org.hive2hive.rcp.client.events.EventConstatns;
+import org.hive2hive.rcp.client.services.ServiceConstants;
 
 public class BottomBar {
 	private Label lblConnection;
@@ -24,6 +27,10 @@ public class BottomBar {
 
 	@PostConstruct
 	public void createControlls(Composite parent, IBundleResourceLoader resourceLoader) {
+
+		MigLayout layout = new MigLayout("insets 1 1 1 1", "[][][][grow]", "[]");
+		parent.setLayout(layout);
+
 		lblConnection = new Label(parent, SWT.NONE);
 		lblConnection.setImage(bundleResourceLoader.loadImage(this.getClass(), "images/Connection_disabled_32x32.png"));
 
@@ -41,6 +48,7 @@ public class BottomBar {
 		progressSymbol.setVisible(false);
 
 		lblProgressMessage = new Label(parent, SWT.NONE);
+		lblProgressMessage.setLayoutData("growx");
 	}
 
 	@Inject
@@ -59,13 +67,18 @@ public class BottomBar {
 
 	@Inject
 	@Optional
-	private void handleProgressInformation(@UIEventTopic(EventConstatns.PROGRESS_INFORMATION) String message) {
+	private void handleServiceStateEvent(@UIEventTopic(ServiceConstants.SERVICE_STATE) String message) {
 		if (message != null && !message.isEmpty()) {
 			progressSymbol.setVisible(true);
 			lblProgressMessage.setText(message);
-		} else {
-			progressSymbol.setVisible(false);
-			lblProgressMessage.setText("");
 		}
 	}
+
+	@Inject
+	@Optional
+	private void handleServiceFinishedEvent(@UIEventTopic(ServiceConstants.SERVICE_FINISHED) String message) {
+		progressSymbol.setVisible(false);
+		lblProgressMessage.setText("");
+	}
+
 }

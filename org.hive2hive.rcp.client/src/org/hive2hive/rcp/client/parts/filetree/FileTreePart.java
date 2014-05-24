@@ -41,7 +41,7 @@ public class FileTreePart {
 
 	@PostConstruct
 	public void createControlls(final Composite parent, IUserService userService) {
-		MigLayout layout = new MigLayout("wrap", "[left]", "[]5[fill,grow]");
+		MigLayout layout = new MigLayout("insets 1 1 1 1, wrap", "[left, grow]", "[][fill,grow]");
 		parent.setLayout(layout);
 
 		btnUpdate = new Button(parent, SWT.PUSH);
@@ -54,7 +54,7 @@ public class FileTreePart {
 		});
 
 		createTreeViewer(parent);
-		tree.setLayoutData("grow");
+		tree.setLayoutData("growx, growy");
 		treeViewer.setInput(FileTreeModelUtile.createDummyModel());
 		treeViewer.expandAll();
 	}

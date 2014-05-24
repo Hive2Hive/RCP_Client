@@ -3,20 +3,19 @@ package org.hive2hive.rcp.client.services.internal;
 import java.nio.file.Path;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
-import org.eclipse.swt.widgets.Display;
 import org.hive2hive.core.api.interfaces.IH2HNode;
 import org.hive2hive.core.api.interfaces.IUserManager;
 import org.hive2hive.core.exceptions.NoPeerConnectionException;
-import org.hive2hive.core.processes.framework.abstracts.ProcessStep;
 import org.hive2hive.core.processes.framework.concretes.SequentialProcess;
 import org.hive2hive.core.processes.framework.decorators.AsyncComponent;
 import org.hive2hive.core.processes.framework.exceptions.InvalidProcessStateException;
-import org.hive2hive.core.processes.framework.exceptions.ProcessExecutionException;
 import org.hive2hive.core.processes.framework.interfaces.IProcessComponent;
 import org.hive2hive.core.security.UserCredentials;
 import org.hive2hive.rcp.client.services.INetworkConnectionService;
 import org.hive2hive.rcp.client.services.IServiceListener;
 import org.hive2hive.rcp.client.services.IUserService;
+import org.hive2hive.rcp.client.services.internal.process.user.LoginProcessStep;
+import org.hive2hive.rcp.client.services.internal.process.user.RegisterProcessStep;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,44 +65,14 @@ public class H2HUserServiceImpl implements IUserService {
 		// INetworkConnectionService s = ServiceHelper.getService(INetworkConnectionService.class);
 		// logger.debug("Service over helper: {}", s);
 
-		SequentialProcess p = new SequentialProcess();
-		p.add(new RegisterProcessStep(eventBroker));
-		AsyncComponent ac = new AsyncComponent(p);
-		try {
-			ac.start();
-		} catch (InvalidProcessStateException e) {
-			logger.error("Can't start Process.", e);
-		}
-
-	}
-
-	private class RegisterProcessStep extends ProcessStep {
-
-		private final IEventBroker eventBroker;
-
-		public RegisterProcessStep(IEventBroker eventBroker) {
-			this.eventBroker = eventBroker;
-		}
-
-		private final Logger logger = LoggerFactory.getLogger(RegisterProcessStep.class);
-
-		@Override
-		protected void doExecute() throws InvalidProcessStateException, ProcessExecutionException {
-			logger.debug("Starting user registration");
-
-			Runnable r = new Runnable() {
-
-				@Override
-				public void run() {
-					eventBroker.post(IUserService.IUSERSERVICE_TEST, this.getClass().getName() + " is executing now.");
-				}
-			};
-			executeAsync(r);
-		}
-
-		private void executeAsync(Runnable runnable) {
-			Display.getDefault().asyncExec(runnable);
-		}
+		// SequentialProcess p = new SequentialProcess();
+		// p.add(new RegisterProcessStep(eventBroker));
+		// AsyncComponent ac = new AsyncComponent(p);
+		// try {
+		// ac.start();
+		// } catch (InvalidProcessStateException e) {
+		// logger.error("Can't start Process.", e);
+		// }
 
 	}
 
@@ -122,6 +91,20 @@ public class H2HUserServiceImpl implements IUserService {
 		IH2HNode node = connectionService.getCurrentNode();
 		IUserManager userManager = node.getUserManager();
 		return userManager;
+	}
+
+	@Override
+	public void registerAndLoginUser(String userId, String password, String pin, Path rootDirPath, IEventBroker eventBroker) {
+		SequentialProcess p = new SequentialProcess();
+		p.add(new RegisterProcessStep(userId, password, pin, eventBroker, getUserManager()));
+		p.add(new LoginProcessStep(userId, password, pin, rootDirPath, getUserManager(), eventBroker));
+		AsyncComponent ac = new AsyncComponent(p);
+		try {
+			ac.start();
+		} catch (InvalidProcessStateException e) {
+			logger.error("Can't start Process.", e);
+		}
+
 	}
 
 }
