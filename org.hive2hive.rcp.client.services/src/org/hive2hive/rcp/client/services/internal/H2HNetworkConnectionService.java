@@ -14,7 +14,7 @@ import org.hive2hive.rcp.client.services.IServiceListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class H2HNetworkConnectionService implements INetworkConnectionService {
+public class H2HNetworkConnectionService extends H2HService implements INetworkConnectionService {
 
 	private IH2HNode node = null;
 

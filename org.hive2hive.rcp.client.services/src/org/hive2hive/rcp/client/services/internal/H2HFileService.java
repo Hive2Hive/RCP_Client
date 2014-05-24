@@ -13,7 +13,7 @@ import org.hive2hive.rcp.client.services.ServicePayloadAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class H2HFileService implements IFileService {
+public class H2HFileService extends H2HService implements IFileService {
 	private static Logger logger = LoggerFactory.getLogger(H2HFileService.class);
 
 	private IFileManager fileManager;
@@ -38,7 +38,7 @@ public class H2HFileService implements IFileService {
 
 	private IFileManager getFileManager() {
 		if (fileManager == null) {
-			INetworkConnectionService networkConnectionService = ServiceHelper.getService(INetworkConnectionService.class);
+			INetworkConnectionService networkConnectionService = getService(INetworkConnectionService.class);
 			logger.debug("NetworkConnectionService is: {}", networkConnectionService);
 			fileManager = networkConnectionService.getCurrentNode().getFileManager();
 		}
