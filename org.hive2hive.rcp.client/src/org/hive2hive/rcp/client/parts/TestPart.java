@@ -7,6 +7,7 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
+import org.eclipse.e4.ui.workbench.swt.modeling.EMenuService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -37,12 +38,15 @@ public class TestPart {
 	private IUserService userService;
 
 	@PostConstruct
-	public void createControls(final Composite parent, IBundleResourceLoader bundleResourceLoader) {
+	public void createControls(final Composite parent, IBundleResourceLoader bundleResourceLoader, EMenuService menuService) {
 		logger.debug("Hello World from H2H - Chat");
 		logger.debug(this.getClass().getSimpleName() + " @PostConstruct method called.");
 
 		Label label = new Label(parent, SWT.NONE);
 		label.setImage(bundleResourceLoader.loadImage(this.getClass(), "images/Logo_200x200.png"));
+
+		menuService.registerContextMenu(label, "org.hive2hive.rcp.client.popupmenu.test");
+
 		Button b = new Button(parent, SWT.PUSH);
 		b.setText("Test");
 		b.addSelectionListener(new SelectionAdapter() {

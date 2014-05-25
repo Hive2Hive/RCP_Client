@@ -5,7 +5,11 @@
       <children xsi:type="advanced:Perspective" xmi:id="_nGi10MQHEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.perspective" label="Hive2Hive">
         <children xsi:type="basic:PartSashContainer" xmi:id="_qbm3sMQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.partsashcontainer.main" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_xCUF8MQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.partstack.0" containerData="3000">
-            <children xsi:type="basic:Part" xmi:id="_6ye7AN3cEeOaT_0n-Y-tPw" elementId="org.hive2hive.rcp.client.part.test" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.TestPart" label="Test"/>
+            <children xsi:type="basic:Part" xmi:id="_6ye7AN3cEeOaT_0n-Y-tPw" elementId="org.hive2hive.rcp.client.part.test" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.TestPart" label="Test">
+              <menus xsi:type="menu:PopupMenu" xmi:id="_N9OI8ONsEeOMtNVSZKLJAA" elementId="org.hive2hive.rcp.client.popupmenu.test">
+                <children xsi:type="menu:HandledMenuItem" xmi:id="_QmIE4ONsEeOMtNVSZKLJAA" elementId="org.hive2hive.rcp.client.handledmenuitem.test" label="Test Menu Element" command="_CFyFEONlEeOMtNVSZKLJAA"/>
+              </menus>
+            </children>
             <children xsi:type="basic:Part" xmi:id="_7FAS4MQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.part.filetree" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.filetree.FileTreePart" label="FileTree"/>
           </children>
           <children xsi:type="basic:PartSashContainer" xmi:id="_zvRbcMQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.partsashcontainer.0" containerData="7000">
@@ -26,6 +30,10 @@
       <children xsi:type="menu:ToolControl" xmi:id="_kUprANrGEeO8I8Kgex2XVA" elementId="org.hive2hive.rcp.client.bottombar.toolcontrol" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.BottomBar"/>
     </trimBars>
   </children>
+  <handlers xmi:id="_MnPRoONlEeOMtNVSZKLJAA" elementId="org.hive2hive.rcp.client.handler.network.connect" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.handler.NetworkConnectHandler" command="_CFyFEONlEeOMtNVSZKLJAA"/>
+  <handlers xmi:id="_Vj2AQONlEeOMtNVSZKLJAA" elementId="org.hive2hive.rcp.client.handler.network.disconnect" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.handler.NetworkDisconnectHandler" command="_Hy6nAONlEeOMtNVSZKLJAA"/>
+  <commands xmi:id="_CFyFEONlEeOMtNVSZKLJAA" elementId="org.hive2hive.rcp.client.network.connect" commandName="org.hive2hive.rcp.client.network.connect" description="Connect to the network"/>
+  <commands xmi:id="_Hy6nAONlEeOMtNVSZKLJAA" elementId="org.hive2hive.rcp.client.network.disconnect" commandName="org.hive2hive.rcp.client.network.disconnect" description="Disconnect from the current network"/>
   <addons xmi:id="_1D_P0cQBEeO5us8__qBFNQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_1D_P0sQBEeO5us8__qBFNQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_1D_P08QBEeO5us8__qBFNQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>

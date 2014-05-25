@@ -32,16 +32,20 @@ public class RegisterProcessStep extends ServiceProcessStep {
 
 	@Override
 	protected void doExecute() throws InvalidProcessStateException, ProcessExecutionException {
-		logger.debug("Starting user registration");
 
-		UserCredentials credentials = new UserCredentials(userId, password, pin);
-		publishProcessState("Registering user " + userId);
 		try {
-			IProcessComponent pc = userManager.register(credentials);
-			ComponentCompletionWaiter waiter = new ComponentCompletionWaiter();
-			pc.attachListener(waiter);
-			waiter.await();
-			logger.debug("Registration successful");
+			if (!userManager.isRegistered(userId)) {
+				logger.debug("Starting user registration");
+				publishProcessState("Registering user " + userId);
+				UserCredentials credentials = new UserCredentials(userId, password, pin);
+				IProcessComponent pc = userManager.register(credentials);
+				ComponentCompletionWaiter waiter = new ComponentCompletionWaiter();
+				pc.attachListener(waiter);
+				waiter.await();
+				logger.debug("Registration successful");
+			} else {
+				logger.debug("User {} is already registered - nothing to do here.", userId);
+			}
 		} catch (NoPeerConnectionException e) {
 			logger.error("Error while trying to register user '{}'.", userId, e);
 		} finally {
