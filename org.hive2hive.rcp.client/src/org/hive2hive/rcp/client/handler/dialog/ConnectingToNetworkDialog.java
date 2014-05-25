@@ -2,8 +2,8 @@ package org.hive2hive.rcp.client.handler.dialog;
 
 import net.miginfocom.swt.MigLayout;
 
-import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -12,18 +12,22 @@ import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ConnectingToNetworkDialog extends Dialog {
+public class ConnectingToNetworkDialog extends TitleAreaDialog {
 
 	private static final String INITIAL_NODE_CREATION_LABEL = "Create initial node";
 	private static final String CONNECT_TO_NODE_LABEL = "Connect to network";
 
 	private static final Logger logger = LoggerFactory.getLogger(ConnectingToNetworkDialog.class);
+
+	private final IBundleResourceLoader resourceLoader;
 
 	private Label lblConnectionAddress;
 	private Text txtIpAddress;
@@ -33,20 +37,30 @@ public class ConnectingToNetworkDialog extends Dialog {
 	private Button btnCreateInitialNode;
 	private Button btnConnectToNode;
 
-	public ConnectingToNetworkDialog(Shell parentShell) {
+	public ConnectingToNetworkDialog(Shell parentShell, IBundleResourceLoader resourceLoader) {
 		super(parentShell);
+		this.resourceLoader = resourceLoader;
 	}
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
+
+		getTitleImageLabel().setImage(resourceLoader.loadImage(this.getClass(), "images/connection/connect64x64.png"));
+
+		// TODO Nendor: Adjust user information.
+		// Which type of peer creation (initial vs. bootstrapping)
+		// Input errors (IP-address or port)
+		setMessage("Connecting to network");
+
 		Composite area = (Composite) super.createDialogArea(parent);
+		Composite container = new Composite(area, SWT.NONE);
 
 		logger.debug("Create controls");
 
-		MigLayout layout = new MigLayout("wrap", "[center][center]", "[]5[]5[]");
-		area.setLayout(layout);
+		MigLayout layout = new MigLayout("wrap", "[15!][]", "[]5[]");
+		container.setLayout(layout);
 
-		btnCreateInitialNode = new Button(area, SWT.RADIO);
+		btnCreateInitialNode = new Button(container, SWT.RADIO);
 		btnCreateInitialNode.setText("Create initial node");
 		btnCreateInitialNode.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -56,8 +70,9 @@ public class ConnectingToNetworkDialog extends Dialog {
 				getConnectButton().setEnabled(true);
 			}
 		});
+		btnCreateInitialNode.setLayoutData("span");
 
-		btnConnectToNode = new Button(area, SWT.RADIO);
+		btnConnectToNode = new Button(container, SWT.RADIO);
 		btnConnectToNode.setText("Connect to network node");
 		btnConnectToNode.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -67,11 +82,19 @@ public class ConnectingToNetworkDialog extends Dialog {
 				updateConnectButton(txtIpAddress.getText(), txtPort.getText());
 			}
 		});
+		btnConnectToNode.setLayoutData("span");
+		btnCreateInitialNode.setSelection(true);
 
-		Composite connectionAddressComposite = new Composite(area, SWT.NONE);
-		MigLayout connectionAddressLayout = new MigLayout("wrap", "[]4[]4[]4[]", "");
+		Composite connectionAddressComposite = createConnectionAddressComposite(container);
+		connectionAddressComposite.setLayoutData("skip");
+		return area;
+
+	}
+
+	private Composite createConnectionAddressComposite(Composite parent) {
+		final Group connectionAddressComposite = new Group(parent, SWT.SHADOW_NONE);
+		MigLayout connectionAddressLayout = new MigLayout("insets 2 2 2 2, wrap", "[]4[]4[]4[]", "");
 		connectionAddressComposite.setLayout(connectionAddressLayout);
-		connectionAddressComposite.setLayoutData("span");
 
 		lblConnectionAddress = new Label(connectionAddressComposite, SWT.NONE);
 		lblConnectionAddress.setText("Connection address:");
@@ -125,12 +148,8 @@ public class ConnectingToNetworkDialog extends Dialog {
 				}
 			}
 		});
-
 		enableConnectionDetails(false);
-		btnCreateInitialNode.setSelection(true);
-
-		return area;
-
+		return connectionAddressComposite;
 	}
 
 	private void enableConnectionDetails(boolean enabled) {
