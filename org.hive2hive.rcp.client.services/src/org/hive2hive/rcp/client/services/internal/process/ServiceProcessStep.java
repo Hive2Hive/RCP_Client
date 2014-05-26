@@ -7,18 +7,21 @@ import org.hive2hive.rcp.client.services.ServiceConstants;
 
 public abstract class ServiceProcessStep extends ProcessStep {
 
+	private final String topicId;
 	private final IEventBroker eventBroker;
 
-	public ServiceProcessStep(IEventBroker eventBroker) {
+	public ServiceProcessStep(String topicId, IEventBroker eventBroker) {
+		this.topicId = topicId;
 		this.eventBroker = eventBroker;
 	}
 
+	@Deprecated
 	protected void publishProcessFinished() {
 		publishProcessInfo(ServiceConstants.SERVICE_FINISHED, ServiceConstants.SERVICE_FINISHED);
 	}
 
 	protected void publishProcessState(final String eventMessage) {
-		publishProcessInfo(ServiceConstants.SERVICE_STATE, eventMessage);
+		publishProcessInfo(topicId, eventMessage);
 	}
 
 	private void publishProcessInfo(final String eventId, final Object eventObject) {

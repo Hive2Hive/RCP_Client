@@ -190,4 +190,16 @@ public class ConnectingToNetworkDialog extends TitleAreaDialog {
 	private Button getConnectButton() {
 		return getButton(IDialogConstants.OK_ID);
 	}
+
+	public String getIpAddress() {
+		return txtIpAddress.getText();
+	}
+
+	public String getPort() {
+		return txtPort.getText();
+	}
+
+	public boolean isCreateInitialNodeSelected() {
+		return true;
+	}
 }

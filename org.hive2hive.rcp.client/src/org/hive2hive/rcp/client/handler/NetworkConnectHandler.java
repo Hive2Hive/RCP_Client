@@ -2,6 +2,7 @@ package org.hive2hive.rcp.client.handler;
 
 import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.widgets.Shell;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
@@ -25,12 +26,18 @@ public class NetworkConnectHandler {
 	}
 
 	@Execute
-	public void execute(Shell shell, INetworkConnectionService networkConnectionService, IBundleResourceLoader resourceLoader) {
+	public void execute(Shell shell, INetworkConnectionService networkConnectionService,
+			IBundleResourceLoader resourceLoader, IEventBroker eventBroker) {
 		logger.debug("Connecting to the network now.");
 		ConnectingToNetworkDialog dialog = new ConnectingToNetworkDialog(shell, resourceLoader);
 		if (dialog.open() == IDialogConstants.OK_ID) {
 			logger.debug("Connect was pressed");
-			networkConnectionService.createInitialNode(null);
+			logger.debug("Have to create initial node = {}", dialog.isCreateInitialNodeSelected());
+			if (dialog.isCreateInitialNodeSelected()) {
+				networkConnectionService.createInitialNode(eventBroker);
+			} else {
+				logger.error("Implement this!");
+			}
 		} else {
 			logger.debug("Cancel was pressed");
 		}

@@ -9,6 +9,7 @@ import org.hive2hive.core.processes.framework.exceptions.InvalidProcessStateExce
 import org.hive2hive.core.processes.framework.exceptions.ProcessExecutionException;
 import org.hive2hive.core.processes.framework.interfaces.IProcessComponent;
 import org.hive2hive.core.security.UserCredentials;
+import org.hive2hive.rcp.client.services.ServiceConstants;
 import org.hive2hive.rcp.client.services.internal.process.ComponentCompletionWaiter;
 import org.hive2hive.rcp.client.services.internal.process.ServiceProcessStep;
 import org.slf4j.Logger;
@@ -26,7 +27,7 @@ public class LoginProcessStep extends ServiceProcessStep {
 
 	public LoginProcessStep(String userId, String password, String pin, Path rootDirPath, IUserManager userManager,
 			IEventBroker eventBroker) {
-		super(eventBroker);
+		super(ServiceConstants.SERVICE_STATE, eventBroker);
 		this.userId = userId;
 		this.password = password;
 		this.pin = pin;

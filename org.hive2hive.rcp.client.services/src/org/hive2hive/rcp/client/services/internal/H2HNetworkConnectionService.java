@@ -3,6 +3,7 @@ package org.hive2hive.rcp.client.services.internal;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.hive2hive.core.api.H2HNode;
 import org.hive2hive.core.api.configs.FileConfiguration;
 import org.hive2hive.core.api.configs.NetworkConfiguration;
@@ -82,6 +83,43 @@ public class H2HNetworkConnectionService extends H2HService implements INetworkC
 			serviceListener.serviceSucceeded();
 		} else {
 			serviceListener.serviceFailed();
+		}
+	}
+
+	@Override
+	public void createInitialNode(IEventBroker eventBroker) {
+		eventBroker.post(NETWORK_CONNECTION_STATUS, Status.CONNECTING_TO_NETWORK);
+		logger.debug("Creating initial network node.");
+		INetworkConfiguration initialNodeConfig = NetworkConfiguration.create("initialNodeID");
+		IFileConfiguration defaultFileConfig = FileConfiguration.createDefault();
+		node = H2HNode.createNode(initialNodeConfig, defaultFileConfig);
+		boolean success = node.connect();
+		if (success) {
+			eventBroker.post(NETWORK_CONNECTION_STATUS, Status.CONNECTING_SUCCESSFULL);
+		} else {
+			eventBroker.post(NETWORK_CONNECTION_STATUS, Status.CONNECTING_FAILED);
+		}
+	}
+
+	@Override
+	public void bootstrapToNetwork(String ipAddress, String port, IEventBroker eventBroker) {
+		eventBroker.post(NETWORK_CONNECTION_STATUS, Status.CONNECTING_TO_NETWORK);
+		logger.debug("Connecting to node with address {}:{}", ipAddress, port);
+		INetworkConfiguration nodeConfig;
+		boolean success = false;
+		try {
+			// TODO Nendor: Set a correct node ID here
+			nodeConfig = NetworkConfiguration.create("otherNode", InetAddress.getByName(ipAddress), Integer.parseInt(port));
+			IFileConfiguration defaultFileConfig = FileConfiguration.createDefault();
+			node = H2HNode.createNode(nodeConfig, defaultFileConfig);
+			success = node.connect();
+		} catch (UnknownHostException e) {
+			logger.error("Error while bootstraping to network with address {}:{}", ipAddress, port, e);
+		}
+		if (success) {
+			eventBroker.post(NETWORK_CONNECTION_STATUS, Status.CONNECTING_SUCCESSFULL);
+		} else {
+			eventBroker.post(NETWORK_CONNECTION_STATUS, Status.CONNECTING_FAILED);
 		}
 	}
 

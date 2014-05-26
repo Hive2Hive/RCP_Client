@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
 import org.hive2hive.rcp.client.events.ConnectionStatus;
 import org.hive2hive.rcp.client.events.EventConstatns;
+import org.hive2hive.rcp.client.services.INetworkConnectionService;
 import org.hive2hive.rcp.client.services.ServiceConstants;
 
 public class BottomBar {
@@ -155,16 +156,49 @@ public class BottomBar {
 	@Optional
 	private void handleServiceStateEvent(@UIEventTopic(ServiceConstants.SERVICE_STATE) String message) {
 		if (message != null && !message.isEmpty()) {
-			progressSymbol.setVisible(true);
-			lblProgressMessage.setText(message);
+			showProgressInfo(message);
 		}
 	}
 
 	@Inject
 	@Optional
 	private void handleServiceFinishedEvent(@UIEventTopic(ServiceConstants.SERVICE_FINISHED) String message) {
+		hideProgressInfo();
+	}
+
+	private void showProgressInfo(String info) {
+		progressSymbol.setVisible(true);
+		lblProgressMessage.setText(info);
+	}
+
+	private void hideProgressInfo() {
 		progressSymbol.setVisible(false);
 		lblProgressMessage.setText("");
+	}
+
+	@Inject
+	@Optional
+	private void handleNetworkConnectionStatus(
+			@UIEventTopic(INetworkConnectionService.NETWORK_CONNECTION_STATUS) INetworkConnectionService.Status status,
+			IBundleResourceLoader resourceLoader) {
+		switch (status) {
+			case CONNECTING_TO_NETWORK:
+				lblConnection
+						.setImage(resourceLoader.loadImage(this.getClass(), "images/connection/32x32/connect32x32.png"));
+				showProgressInfo("Connecting to network");
+				break;
+			case CONNECTING_SUCCESSFULL:
+				lblConnection.setImage(resourceLoader.loadImage(this.getClass(),
+						"images/connection/32x32/connected32x32.png"));
+				hideProgressInfo();
+				break;
+			case CONNECTING_FAILED:
+				lblConnection.setImage(resourceLoader.loadImage(this.getClass(),
+						"images/connection/32x32/disconnected32x32.png"));
+				hideProgressInfo();
+				break;
+		}
+
 	}
 
 }
