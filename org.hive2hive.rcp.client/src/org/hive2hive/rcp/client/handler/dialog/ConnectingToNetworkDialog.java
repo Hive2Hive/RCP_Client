@@ -37,6 +37,10 @@ public class ConnectingToNetworkDialog extends TitleAreaDialog {
 	private Button btnCreateInitialNode;
 	private Button btnConnectToNode;
 
+	private boolean createInitialNode = true;
+	private String ipAddress = "";
+	private String port = "";
+
 	public ConnectingToNetworkDialog(Shell parentShell, IBundleResourceLoader resourceLoader) {
 		super(parentShell);
 		this.resourceLoader = resourceLoader;
@@ -191,15 +195,29 @@ public class ConnectingToNetworkDialog extends TitleAreaDialog {
 		return getButton(IDialogConstants.OK_ID);
 	}
 
-	public String getIpAddress() {
-		return txtIpAddress.getText();
+	@Override
+	protected void okPressed() {
+		persistFileds();
+		super.okPressed();
 	}
 
-	public String getPort() {
-		return txtPort.getText();
+	private void persistFileds() {
+		logger.debug("Connect was pressed - persisting relevant field values");
+		createInitialNode = btnCreateInitialNode.getSelection();
+		ipAddress = txtIpAddress.getText();
+		port = txtPort.getText();
 	}
 
 	public boolean isCreateInitialNodeSelected() {
-		return true;
+		return createInitialNode;
 	}
+
+	public String getIpAddress() {
+		return ipAddress;
+	}
+
+	public String getPort() {
+		return port;
+	}
+
 }

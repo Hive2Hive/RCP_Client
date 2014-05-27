@@ -36,7 +36,8 @@ public class NetworkConnectHandler {
 			if (dialog.isCreateInitialNodeSelected()) {
 				networkConnectionService.createInitialNode(eventBroker);
 			} else {
-				logger.error("Implement this!");
+				logger.debug("Have to connect to node with address '{}:{}'", dialog.getIpAddress(), dialog.getPort());
+				networkConnectionService.bootstrapToNetwork(dialog.getIpAddress(), dialog.getPort(), eventBroker);
 			}
 		} else {
 			logger.debug("Cancel was pressed");
