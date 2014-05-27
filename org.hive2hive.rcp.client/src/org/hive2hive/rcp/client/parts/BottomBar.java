@@ -157,6 +157,13 @@ public class BottomBar {
 	private void handleUserStatus(@UIEventTopic(IUserService.USER_STATUS) IUserService.Status status,
 			IBundleResourceLoader resourceLoader) {
 		switch (status) {
+			case REGISTERING_USER:
+				showProgressInfo("Registering user");
+				break;
+			case REGISTER_SUCCESSFULL:
+			case RESISTER_FAILED:
+				hideProgressInfo();
+				break;
 			case LOGGING_IN_USER:
 				showProgressInfo("Logging in user");
 				lblUser.setImage(resourceLoader.loadImage(this.getClass(), "images/user/32x32/login32x32.png"));

@@ -7,7 +7,7 @@ import org.hive2hive.core.processes.framework.exceptions.InvalidProcessStateExce
 import org.hive2hive.core.processes.framework.exceptions.ProcessExecutionException;
 import org.hive2hive.core.processes.framework.interfaces.IProcessComponent;
 import org.hive2hive.core.security.UserCredentials;
-import org.hive2hive.rcp.client.services.ServiceConstants;
+import org.hive2hive.rcp.client.services.IUserService;
 import org.hive2hive.rcp.client.services.internal.process.ComponentCompletionWaiter;
 import org.hive2hive.rcp.client.services.internal.process.ServiceProcessStep;
 import org.slf4j.Logger;
@@ -22,7 +22,7 @@ public class RegisterProcessStep extends ServiceProcessStep {
 	private final IUserManager userManager;
 
 	public RegisterProcessStep(String userId, String password, String pin, IEventBroker eventBroker, IUserManager userManager) {
-		super(ServiceConstants.SERVICE_STATE, eventBroker);
+		super(IUserService.USER_STATUS, eventBroker);
 		this.userId = userId;
 		this.password = password;
 		this.pin = pin;
@@ -35,6 +35,7 @@ public class RegisterProcessStep extends ServiceProcessStep {
 	protected void doExecute() throws InvalidProcessStateException, ProcessExecutionException {
 
 		try {
+			publishProcessState(IUserService.Status.REGISTERING_USER);
 			if (!userManager.isRegistered(userId)) {
 				logger.debug("Starting user registration");
 				publishProcessState("Registering user " + userId);
@@ -47,10 +48,10 @@ public class RegisterProcessStep extends ServiceProcessStep {
 			} else {
 				logger.debug("User {} is already registered - nothing to do here.", userId);
 			}
+			publishProcessState(IUserService.Status.REGISTER_SUCCESSFULL);
 		} catch (NoPeerConnectionException e) {
+			publishProcessState(IUserService.Status.RESISTER_FAILED);
 			logger.error("Error while trying to register user '{}'.", userId, e);
-		} finally {
-			publishProcessFinished();
 		}
 
 	}

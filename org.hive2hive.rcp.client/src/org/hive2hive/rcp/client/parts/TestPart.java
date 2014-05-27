@@ -78,10 +78,4 @@ public class TestPart {
 		logger.debug("Test message '{}' received from service - event broker is working.", message);
 	}
 
-	@Inject
-	@Optional
-	private void receiveTestMessageFromUserService(@UIEventTopic(IUserService.IUSERSERVICE_TEST) String message) {
-		logger.debug("Got the following message: '{}'", message);
-	}
-
 }

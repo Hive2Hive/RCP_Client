@@ -3,6 +3,7 @@ package org.hive2hive.rcp.client.services.internal.process;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.swt.widgets.Display;
 import org.hive2hive.core.processes.framework.abstracts.ProcessStep;
+import org.hive2hive.rcp.client.services.IUserService;
 import org.hive2hive.rcp.client.services.ServiceConstants;
 
 public abstract class ServiceProcessStep extends ProcessStep {
@@ -20,8 +21,13 @@ public abstract class ServiceProcessStep extends ProcessStep {
 		publishProcessInfo(ServiceConstants.SERVICE_FINISHED, ServiceConstants.SERVICE_FINISHED);
 	}
 
+	@Deprecated
 	protected void publishProcessState(final String eventMessage) {
 		publishProcessInfo(topicId, eventMessage);
+	}
+
+	protected void publishProcessState(final IUserService.Status status) {
+		publishProcessInfo(topicId, status);
 	}
 
 	private void publishProcessInfo(final String eventId, final Object eventObject) {

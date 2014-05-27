@@ -9,7 +9,8 @@ import org.hive2hive.core.processes.framework.exceptions.InvalidProcessStateExce
 import org.hive2hive.core.processes.framework.exceptions.ProcessExecutionException;
 import org.hive2hive.core.processes.framework.interfaces.IProcessComponent;
 import org.hive2hive.core.security.UserCredentials;
-import org.hive2hive.rcp.client.services.ServiceConstants;
+import org.hive2hive.rcp.client.services.IUserService;
+import org.hive2hive.rcp.client.services.IUserService.Status;
 import org.hive2hive.rcp.client.services.internal.process.ComponentCompletionWaiter;
 import org.hive2hive.rcp.client.services.internal.process.ServiceProcessStep;
 import org.slf4j.Logger;
@@ -27,7 +28,7 @@ public class LoginProcessStep extends ServiceProcessStep {
 
 	public LoginProcessStep(String userId, String password, String pin, Path rootDirPath, IUserManager userManager,
 			IEventBroker eventBroker) {
-		super(ServiceConstants.SERVICE_STATE, eventBroker);
+		super(IUserService.USER_STATUS, eventBroker);
 		this.userId = userId;
 		this.password = password;
 		this.pin = pin;
@@ -40,15 +41,15 @@ public class LoginProcessStep extends ServiceProcessStep {
 		UserCredentials credentials = new UserCredentials(userId, password, pin);
 
 		try {
-			publishProcessState(String.format("Logging in user '%s'.", userId));
+			publishProcessState(Status.LOGGING_IN_USER);
 			IProcessComponent pc = userManager.login(credentials, roodDirPath);
 			ComponentCompletionWaiter waiter = new ComponentCompletionWaiter();
 			pc.attachListener(waiter);
 			waiter.await();
+			publishProcessState(Status.LOGIN_SUCCESSFUL);
 		} catch (NoPeerConnectionException e) {
+			publishProcessState(Status.LOGIN_FAILED);
 			logger.error("Error while trying to log in user '{}'.", userId, e);
-		} finally {
-			publishProcessFinished();
 		}
 	}
 
