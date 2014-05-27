@@ -148,6 +148,21 @@ public class BottomBar {
 						"images/connection/32x32/disconnected32x32.png"));
 				hideProgressInfo();
 				break;
+			case DISCONNECTING_FROM_NETWORK:
+				lblConnection.setImage(resourceLoader.loadImage(this.getClass(),
+						"images/connection/32x32/disconnect32x32.png"));
+				showProgressInfo("Disconnecting from network");
+				break;
+			case DISCONNECTING_SUCCESSFULL:
+				lblConnection.setImage(resourceLoader.loadImage(this.getClass(),
+						"images/connection/32x32/disconnected32x32.png"));
+				hideProgressInfo();
+				break;
+			case DISCONNECTING_FAILED:
+				lblConnection.setImage(resourceLoader.loadImage(this.getClass(),
+						"images/connection/32x32/connected32x32.png"));
+				hideProgressInfo();
+				break;
 		}
 
 	}

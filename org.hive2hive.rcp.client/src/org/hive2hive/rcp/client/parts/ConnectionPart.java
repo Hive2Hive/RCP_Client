@@ -5,7 +5,9 @@ import javax.inject.Inject;
 
 import net.miginfocom.swt.MigLayout;
 
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -17,10 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.hive2hive.core.network.Connection;
-import org.hive2hive.rcp.client.events.ConnectionStatus;
-import org.hive2hive.rcp.client.events.EventConstatns;
 import org.hive2hive.rcp.client.services.INetworkConnectionService;
-import org.hive2hive.rcp.client.services.ServiceAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -148,14 +147,14 @@ public class ConnectionPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (isConnected) {
-					networkConnectionService.disconnect(new ConnectionListener());
+					networkConnectionService.disconnect(eventBroker);
 				} else {
 					if (btnCreateInitialNode.getSelection()) {
-						networkConnectionService.createInitialNode(new ConnectionListener());
+						networkConnectionService.createInitialNode(eventBroker);
 					} else {
 						if (connectionDataCorrect(txtIpAddress.getText(), txtPort.getText())) {
 							networkConnectionService.bootstrapToNetwork(txtIpAddress.getText(), txtPort.getText(),
-									new ConnectionListener());
+									eventBroker);
 						}
 					}
 				}
@@ -197,26 +196,25 @@ public class ConnectionPart {
 		return c == '\u0008' || c == '\u007F';
 	}
 
-	private class ConnectionListener extends ServiceAdapter {
-		@Override
-		public void serviceSucceeded() {
-			if (isConnected) {
-				part.setIconURI("platform:/plugin/org.hive2hive.rcp.client/images/Logo_16x16_disconnected.png");
+	@Inject
+	@Optional
+	private void handleNetworkConnectionState(
+			@UIEventTopic(INetworkConnectionService.NETWORK_CONNECTION_STATUS) INetworkConnectionService.Status status) {
+		switch (status) {
+			case CONNECTING_SUCCESSFULL:
+				isConnected = true;
+				updateConnectionButton(DISCONNECT_LABEL);
+				break;
+			case DISCONNECTING_SUCCESSFULL:
 				isConnected = false;
 				if (btnCreateInitialNode.getSelection()) {
 					updateConnectionButton(INITIAL_NODE_CREATION_LABEL);
 				} else {
 					updateConnectionButton(CONNECT_TO_NODE_LABEL);
 				}
-				eventBroker.send(EventConstatns.CONNECTION_STATUS, ConnectionStatus.DISCONNECTED);
-			} else {
-				part.setIconURI("platform:/plugin/org.hive2hive.rcp.client/images/Logo_16x16.png");
-				isConnected = true;
-				updateConnectionButton(DISCONNECT_LABEL);
-				eventBroker.send(EventConstatns.CONNECTION_STATUS, ConnectionStatus.CONNECTED);
-			}
-
+				break;
 		}
+
 	}
 
 }

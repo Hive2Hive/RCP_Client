@@ -15,17 +15,11 @@ public interface INetworkConnectionService {
 		DISCONNECTING_FAILED
 	}
 
-	void createInitialNode(IServiceListener serviceListener);
-
 	void createInitialNode(IEventBroker eventBroker);
-
-	void bootstrapToNetwork(String ipAddress, String port, IServiceListener serviceListener);
 
 	void bootstrapToNetwork(String ipAddress, String port, IEventBroker eventBroker);
 
-	void disconnect(IServiceListener serviceListener);
-
-	String getServiceTestMessage();
+	void disconnect(IEventBroker eventBroker);
 
 	IH2HNode getCurrentNode();
 }
