@@ -8,6 +8,18 @@ public interface IUserService {
 
 	public final String IUSERSERVICE_TEST = "IUSERSERVICE_TEST";
 
+	public final String USER_STATUS = "USER_STATUS";
+
+	// logging in logged in logging
+	enum Status {
+		LOGGING_IN_USER,
+		LOGIN_SUCCESSFUL,
+		LOGIN_FAILED,
+		LOGGING_OUT_USER,
+		LOGOUT_SUCCESSFULL,
+		LOGOUT_FAILED
+	}
+
 	boolean registerUser(String userId, String password, String pin, IServiceListener listener);
 
 	boolean loginUser(String userId, String password, String pin, Path rootDirectoryPath, IServiceListener listener);

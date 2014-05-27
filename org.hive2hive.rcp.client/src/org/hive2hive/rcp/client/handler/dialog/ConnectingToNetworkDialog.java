@@ -45,7 +45,7 @@ public class ConnectingToNetworkDialog extends TitleAreaDialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 
-		getTitleImageLabel().setImage(resourceLoader.loadImage(this.getClass(), "images/connection/connect64x64.png"));
+		getTitleImageLabel().setImage(resourceLoader.loadImage(this.getClass(), "images/connection/64x64/connect64x64.png"));
 
 		// TODO Nendor: Adjust user information.
 		// Which type of peer creation (initial vs. bootstrapping)

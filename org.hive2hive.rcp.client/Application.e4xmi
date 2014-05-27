@@ -32,8 +32,12 @@
   </children>
   <handlers xmi:id="_MnPRoONlEeOMtNVSZKLJAA" elementId="org.hive2hive.rcp.client.handler.network.connect" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.handler.NetworkConnectHandler" command="_CFyFEONlEeOMtNVSZKLJAA"/>
   <handlers xmi:id="_Vj2AQONlEeOMtNVSZKLJAA" elementId="org.hive2hive.rcp.client.handler.network.disconnect" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.handler.NetworkDisconnectHandler" command="_Hy6nAONlEeOMtNVSZKLJAA"/>
-  <commands xmi:id="_CFyFEONlEeOMtNVSZKLJAA" elementId="org.hive2hive.rcp.client.network.connect" commandName="org.hive2hive.rcp.client.network.connect" description="Connect to the network"/>
-  <commands xmi:id="_Hy6nAONlEeOMtNVSZKLJAA" elementId="org.hive2hive.rcp.client.network.disconnect" commandName="org.hive2hive.rcp.client.network.disconnect" description="Disconnect from the current network"/>
+  <handlers xmi:id="_BaQzAOT-EeOp_a3RYQWIvg" elementId="org.hive2hive.rcp.client.handler.user.login" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.handler.LoginUserHandler" command="_yb7LcOT9EeOp_a3RYQWIvg"/>
+  <handlers xmi:id="_F0gwwOT-EeOp_a3RYQWIvg" elementId="org.hive2hive.rcp.client.handler.user.logout" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.handler.LogoutUserHandler" command="_1xkRkOT9EeOp_a3RYQWIvg"/>
+  <commands xmi:id="_CFyFEONlEeOMtNVSZKLJAA" elementId="org.hive2hive.rcp.client.command.network.connect" commandName="org.hive2hive.rcp.client.command.network.connect" description="Connect to the network"/>
+  <commands xmi:id="_Hy6nAONlEeOMtNVSZKLJAA" elementId="org.hive2hive.rcp.client.command.network.disconnect" commandName="org.hive2hive.rcp.client.command.network.disconnect" description="Disconnect from the current network"/>
+  <commands xmi:id="_yb7LcOT9EeOp_a3RYQWIvg" elementId="org.hive2hive.rcp.client.command.user.login" commandName="org.hive2hive.rcp.client.command.user.login" description="Logging in the user"/>
+  <commands xmi:id="_1xkRkOT9EeOp_a3RYQWIvg" elementId="org.hive2hive.rcp.client.command.usesr.logout" commandName="org.hive2hive.rcp.client.command.usesr.logout" description="Logging out the user"/>
   <addons xmi:id="_1D_P0cQBEeO5us8__qBFNQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_1D_P0sQBEeO5us8__qBFNQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_1D_P08QBEeO5us8__qBFNQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
