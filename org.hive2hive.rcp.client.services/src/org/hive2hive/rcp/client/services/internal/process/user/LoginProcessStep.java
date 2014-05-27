@@ -41,7 +41,7 @@ public class LoginProcessStep extends ServiceProcessStep {
 		UserCredentials credentials = new UserCredentials(userId, password, pin);
 
 		try {
-			publishProcessState(Status.LOGGING_IN_USER);
+			publishProcessState(Status.LOGGING_IN_USER, userId);
 			IProcessComponent pc = userManager.login(credentials, roodDirPath);
 			ComponentCompletionWaiter waiter = new ComponentCompletionWaiter();
 			pc.attachListener(waiter);

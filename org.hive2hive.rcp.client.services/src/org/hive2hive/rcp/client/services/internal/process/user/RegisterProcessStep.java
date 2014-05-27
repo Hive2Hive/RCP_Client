@@ -35,10 +35,9 @@ public class RegisterProcessStep extends ServiceProcessStep {
 	protected void doExecute() throws InvalidProcessStateException, ProcessExecutionException {
 
 		try {
-			publishProcessState(IUserService.Status.REGISTERING_USER);
+			publishProcessState(IUserService.Status.REGISTERING_USER, userId);
 			if (!userManager.isRegistered(userId)) {
 				logger.debug("Starting user registration");
-				publishProcessState("Registering user " + userId);
 				UserCredentials credentials = new UserCredentials(userId, password, pin);
 				IProcessComponent pc = userManager.register(credentials);
 				ComponentCompletionWaiter waiter = new ComponentCompletionWaiter();

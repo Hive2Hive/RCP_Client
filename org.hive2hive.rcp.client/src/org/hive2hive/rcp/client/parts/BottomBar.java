@@ -154,18 +154,18 @@ public class BottomBar {
 
 	@Inject
 	@Optional
-	private void handleUserStatus(@UIEventTopic(IUserService.USER_STATUS) IUserService.Status status,
+	private void handleUserStatus(@UIEventTopic(IUserService.USER_STATUS) IUserService.StatusMessage statusMessage,
 			IBundleResourceLoader resourceLoader) {
-		switch (status) {
+		switch (statusMessage.getStatus()) {
 			case REGISTERING_USER:
-				showProgressInfo("Registering user");
+				showProgressInfo(String.format("Registering user '%s'", statusMessage.getMessage()));
 				break;
 			case REGISTER_SUCCESSFULL:
 			case RESISTER_FAILED:
 				hideProgressInfo();
 				break;
 			case LOGGING_IN_USER:
-				showProgressInfo("Logging in user");
+				showProgressInfo(String.format("Logging in user '%s'", statusMessage.getMessage()));
 				lblUser.setImage(resourceLoader.loadImage(this.getClass(), "images/user/32x32/login32x32.png"));
 				break;
 			case LOGIN_SUCCESSFUL:
