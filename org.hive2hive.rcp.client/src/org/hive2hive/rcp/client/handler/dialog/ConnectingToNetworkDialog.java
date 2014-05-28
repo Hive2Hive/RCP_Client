@@ -52,7 +52,6 @@ public class ConnectingToNetworkDialog extends TitleAreaDialog {
 		getTitleImageLabel().setImage(resourceLoader.loadImage(this.getClass(), "images/connection/64x64/connect64x64.png"));
 
 		// TODO Nendor: Adjust user information.
-		// Which type of peer creation (initial vs. bootstrapping)
 		// Input errors (IP-address or port)
 		setMessage("Connecting to network");
 
