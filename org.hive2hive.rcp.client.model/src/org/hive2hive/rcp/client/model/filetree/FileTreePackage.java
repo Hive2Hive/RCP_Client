@@ -104,15 +104,6 @@ public interface FileTreePackage extends EPackage {
 	int FILE_TREE_ELEMENT_FEATURE_COUNT = 3;
 
 	/**
-	 * The number of operations of the '<em>Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_TREE_ELEMENT_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.ContainerImpl <em>Container</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -168,15 +159,6 @@ public interface FileTreePackage extends EPackage {
 	int CONTAINER_FEATURE_COUNT = FILE_TREE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Container</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_OPERATION_COUNT = FILE_TREE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.FileTreeImpl <em>File Tree</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -223,22 +205,22 @@ public interface FileTreePackage extends EPackage {
 	int FILE_TREE__CHILDREN = CONTAINER__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Elements</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_TREE__ELEMENTS = CONTAINER_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>File Tree</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_TREE_FEATURE_COUNT = CONTAINER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>File Tree</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_TREE_OPERATION_COUNT = CONTAINER_OPERATION_COUNT + 0;
+	int FILE_TREE_FEATURE_COUNT = CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.DirectoryImpl <em>Directory</em>}' class.
@@ -296,15 +278,6 @@ public interface FileTreePackage extends EPackage {
 	int DIRECTORY_FEATURE_COUNT = CONTAINER_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Directory</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIRECTORY_OPERATION_COUNT = CONTAINER_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.FileImpl <em>File</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -351,14 +324,96 @@ public interface FileTreePackage extends EPackage {
 	int FILE_FEATURE_COUNT = FILE_TREE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>File</em>' class.
+	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.UserImpl <em>User</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.hive2hive.rcp.client.model.filetree.impl.UserImpl
+	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getUser()
+	 * @generated
+	 */
+	int USER = 5;
+
+	/**
+	 * The feature id for the '<em><b>User Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_OPERATION_COUNT = FILE_TREE_ELEMENT_OPERATION_COUNT + 0;
+	int USER__USER_ID = 0;
 
+	/**
+	 * The feature id for the '<em><b>Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__PASSWORD = 1;
+
+	/**
+	 * The feature id for the '<em><b>Pin</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__PIN = 2;
+
+	/**
+	 * The feature id for the '<em><b>Root Dir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__ROOT_DIR = 3;
+
+	/**
+	 * The number of structural features of the '<em>User</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.PathToTreeElementMapImpl <em>Path To Tree Element Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.hive2hive.rcp.client.model.filetree.impl.PathToTreeElementMapImpl
+	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getPathToTreeElementMap()
+	 * @generated
+	 */
+	int PATH_TO_TREE_ELEMENT_MAP = 6;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_TO_TREE_ELEMENT_MAP__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_TO_TREE_ELEMENT_MAP__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Path To Tree Element Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_TO_TREE_ELEMENT_MAP_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '<em>Path</em>' data type.
@@ -368,7 +423,7 @@ public interface FileTreePackage extends EPackage {
 	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getPath()
 	 * @generated
 	 */
-	int PATH = 5;
+	int PATH = 7;
 
 
 	/**
@@ -380,6 +435,17 @@ public interface FileTreePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getFileTree();
+
+	/**
+	 * Returns the meta object for the map '{@link org.hive2hive.rcp.client.model.filetree.FileTree#getElements <em>Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Elements</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.FileTree#getElements()
+	 * @see #getFileTree()
+	 * @generated
+	 */
+	EReference getFileTree_Elements();
 
 	/**
 	 * Returns the meta object for class '{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement <em>Element</em>}'.
@@ -466,6 +532,94 @@ public interface FileTreePackage extends EPackage {
 	EReference getContainer_Children();
 
 	/**
+	 * Returns the meta object for class '{@link org.hive2hive.rcp.client.model.filetree.User <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.User
+	 * @generated
+	 */
+	EClass getUser();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.hive2hive.rcp.client.model.filetree.User#getUserId <em>User Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>User Id</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.User#getUserId()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_UserId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.hive2hive.rcp.client.model.filetree.User#getPassword <em>Password</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Password</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.User#getPassword()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_Password();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.hive2hive.rcp.client.model.filetree.User#getPin <em>Pin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Pin</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.User#getPin()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_Pin();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.hive2hive.rcp.client.model.filetree.User#getRootDir <em>Root Dir</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Root Dir</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.User#getRootDir()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_RootDir();
+
+	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Path To Tree Element Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Path To Tree Element Map</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyDataType="org.hive2hive.rcp.client.model.filetree.Path" keyRequired="true"
+	 *        valueType="org.hive2hive.rcp.client.model.filetree.FileTreeElement" valueRequired="true"
+	 * @generated
+	 */
+	EClass getPathToTreeElementMap();
+
+	/**
+	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getPathToTreeElementMap()
+	 * @generated
+	 */
+	EAttribute getPathToTreeElementMap_Key();
+
+	/**
+	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getPathToTreeElementMap()
+	 * @generated
+	 */
+	EReference getPathToTreeElementMap_Value();
+
+	/**
 	 * Returns the meta object for data type '{@link java.nio.file.Path <em>Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -508,6 +662,14 @@ public interface FileTreePackage extends EPackage {
 		 * @generated
 		 */
 		EClass FILE_TREE = eINSTANCE.getFileTree();
+
+		/**
+		 * The meta object literal for the '<em><b>Elements</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FILE_TREE__ELEMENTS = eINSTANCE.getFileTree_Elements();
 
 		/**
 		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.FileTreeElementImpl <em>Element</em>}' class.
@@ -580,6 +742,74 @@ public interface FileTreePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONTAINER__CHILDREN = eINSTANCE.getContainer_Children();
+
+		/**
+		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.UserImpl <em>User</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.hive2hive.rcp.client.model.filetree.impl.UserImpl
+		 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getUser()
+		 * @generated
+		 */
+		EClass USER = eINSTANCE.getUser();
+
+		/**
+		 * The meta object literal for the '<em><b>User Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER__USER_ID = eINSTANCE.getUser_UserId();
+
+		/**
+		 * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER__PASSWORD = eINSTANCE.getUser_Password();
+
+		/**
+		 * The meta object literal for the '<em><b>Pin</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER__PIN = eINSTANCE.getUser_Pin();
+
+		/**
+		 * The meta object literal for the '<em><b>Root Dir</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER__ROOT_DIR = eINSTANCE.getUser_RootDir();
+
+		/**
+		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.PathToTreeElementMapImpl <em>Path To Tree Element Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.hive2hive.rcp.client.model.filetree.impl.PathToTreeElementMapImpl
+		 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getPathToTreeElementMap()
+		 * @generated
+		 */
+		EClass PATH_TO_TREE_ELEMENT_MAP = eINSTANCE.getPathToTreeElementMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PATH_TO_TREE_ELEMENT_MAP__KEY = eINSTANCE.getPathToTreeElementMap_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PATH_TO_TREE_ELEMENT_MAP__VALUE = eINSTANCE.getPathToTreeElementMap_Value();
 
 		/**
 		 * The meta object literal for the '<em>Path</em>' data type.

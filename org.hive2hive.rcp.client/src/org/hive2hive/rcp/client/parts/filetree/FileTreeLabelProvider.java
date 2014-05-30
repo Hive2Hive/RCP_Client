@@ -3,9 +3,20 @@ package org.hive2hive.rcp.client.parts.filetree;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
+import org.eclipse.swt.program.Program;
+import org.eclipse.swt.widgets.Display;
+import org.hive2hive.rcp.client.model.filetree.Directory;
+import org.hive2hive.rcp.client.model.filetree.File;
 import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
 
 public class FileTreeLabelProvider implements ITableLabelProvider {
+
+	private final Image folderImage;
+
+	public FileTreeLabelProvider(Image folderImage) {
+		this.folderImage = folderImage;
+	}
 
 	@Override
 	public void addListener(ILabelProviderListener listener) {
@@ -33,7 +44,23 @@ public class FileTreeLabelProvider implements ITableLabelProvider {
 
 	@Override
 	public Image getColumnImage(Object element, int columnIndex) {
-		// TODO Auto-generated method stub
+		if (columnIndex == 0) {
+			if (element instanceof File) {
+				File file = (File) element;
+				System.out.println(file.getName());
+				String[] nameParts = file.getName().split("\\.");
+				String fileExtension = "." + nameParts[nameParts.length - 1];
+				System.out.println(String.format("File '%s' - extension '%s'", file.getName(), fileExtension));
+				Program program = Program.findProgram(fileExtension);
+				if (program != null) {
+					ImageData id = program.getImageData();
+					return new Image(Display.getCurrent(), id);
+				}
+			}
+			if (element instanceof Directory) {
+				return folderImage;
+			}
+		}
 		return null;
 	}
 

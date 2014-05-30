@@ -3,6 +3,7 @@
 package org.hive2hive.rcp.client.model.filetree.impl;
 
 import java.nio.file.Path;
+import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -62,6 +63,8 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 			case FileTreePackage.DIRECTORY: return createDirectory();
 			case FileTreePackage.FILE: return createFile();
 			case FileTreePackage.CONTAINER: return createContainer();
+			case FileTreePackage.USER: return createUser();
+			case FileTreePackage.PATH_TO_TREE_ELEMENT_MAP: return (EObject)createPathToTreeElementMap();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -135,6 +138,26 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 	public org.hive2hive.rcp.client.model.filetree.Container createContainer() {
 		ContainerImpl container = new ContainerImpl();
 		return container;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public User createUser() {
+		UserImpl user = new UserImpl();
+		return user;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map.Entry<Path, FileTreeElement> createPathToTreeElementMap() {
+		PathToTreeElementMapImpl pathToTreeElementMap = new PathToTreeElementMapImpl();
+		return pathToTreeElementMap;
 	}
 
 	/**

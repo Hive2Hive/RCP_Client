@@ -7,6 +7,7 @@ import org.eclipse.e4.core.services.events.IEventBroker;
 public interface IUserService {
 
 	public final String USER_STATUS = "USER_STATUS";
+	public final String LOGGED_IN_USER = "LOGGED_IN_USER";
 
 	// logging in logged in logging
 	enum Status {
@@ -20,17 +21,20 @@ public interface IUserService {
 		LOGOUT_SUCCESSFULL,
 		LOGOUT_FAILED
 	}
-	
-	public class StatusMessage{
+
+	public class StatusMessage {
 		private final Status status;
 		private final String message;
+
 		public StatusMessage(Status status, String message) {
 			this.status = status;
 			this.message = message;
 		}
+
 		public Status getStatus() {
 			return status;
 		}
+
 		public String getMessage() {
 			return message;
 		}

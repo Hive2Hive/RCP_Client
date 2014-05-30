@@ -8,6 +8,7 @@ This can be disabled with -vmargs -Dorg.eclipse.emf.examples.generator.validator
 Package filetree <http://filetree/1.0>
 
   Class FileTree -> Container
+    Reference elements : PathToTreeElementMap<<0..*>>
 
   Class FileTreeElement
     Attribute path : Path
@@ -20,5 +21,15 @@ Package filetree <http://filetree/1.0>
 
   Class Container -> FileTreeElement
     Reference children : FileTreeElement<<0..*>>
+
+  Class User
+    Attribute userId : EString
+    Attribute password : EString
+    Attribute pin : EString
+    Attribute rootDir : Path
+
+  Class PathToTreeElementMap
+    Attribute key : Path<<1..1>>
+    Reference value : FileTreeElement<<1..1>>
 
   DataType Path <java.nio.file.Path>

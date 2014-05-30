@@ -1,5 +1,6 @@
 package org.hive2hive.rcp.client.parts.filetree;
 
+import java.nio.file.Path;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -19,6 +20,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.hive2hive.core.processes.implementations.files.list.FileTaste;
+import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
+import org.hive2hive.rcp.client.model.filetree.Directory;
+import org.hive2hive.rcp.client.model.filetree.FileTree;
+import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
+import org.hive2hive.rcp.client.model.filetree.FileTreeFactory;
+import org.hive2hive.rcp.client.model.filetree.User;
 import org.hive2hive.rcp.client.model.filetree.util.FileTreeModelUtile;
 import org.hive2hive.rcp.client.services.IFileService;
 import org.hive2hive.rcp.client.services.IUserService;
@@ -39,8 +46,10 @@ public class FileTreePart {
 
 	private Button btnUpdate;
 
+	private User user;
+
 	@PostConstruct
-	public void createControlls(final Composite parent, IUserService userService) {
+	public void createControlls(final Composite parent, IUserService userService, IBundleResourceLoader resourceLoader) {
 		MigLayout layout = new MigLayout("insets 1, wrap", "[left, grow]", "[][fill,grow]");
 		parent.setLayout(layout);
 
@@ -53,19 +62,20 @@ public class FileTreePart {
 			}
 		});
 
-		createTreeViewer(parent);
+		createTreeViewer(parent, resourceLoader);
 		tree.setLayoutData("growx, growy");
 		treeViewer.setInput(FileTreeModelUtile.createDummyModel());
 		treeViewer.expandAll();
 	}
 
-	void createTreeViewer(final Composite parent) {
+	void createTreeViewer(final Composite parent, IBundleResourceLoader resourceLoader) {
 		tree = new Tree(parent, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		tree.setLinesVisible(true);
 		tree.setHeaderVisible(true);
 		treeViewer = new TreeViewer(tree);
 		treeViewer.setContentProvider(new FileTreeContentProvider());
-		treeViewer.setLabelProvider(new FileTreeLabelProvider());
+		treeViewer.setLabelProvider(new FileTreeLabelProvider(resourceLoader.loadImage(this.getClass(),
+				"images/folder/folder16x16.png")));
 
 		TreeColumn col = new TreeColumn(tree, SWT.LEFT);
 		col.setAlignment(SWT.LEFT);
@@ -86,6 +96,53 @@ public class FileTreePart {
 		for (FileTaste fileTaste : fileList) {
 			logger.debug(fileTaste.getPath().toString());
 		}
-		logger.error("Implement a refresh of the file tree");
+		FileTree fileTree = createFileTree(fileList);
+		treeViewer.setInput(fileTree);
+		treeViewer.expandAll();
+
+	}
+
+	private FileTree createFileTree(List<FileTaste> fileList) {
+
+		FileTreeFactory factory = FileTreeFactory.eINSTANCE;
+		FileTree tree = factory.createFileTree();
+		tree.setName(String.format("file root of '%s'", user.getUserId()));
+		tree.setPath(user.getRootDir());
+
+		Directory rootDir = factory.createDirectory();
+		rootDir.setName(user.getRootDir().toString());
+		rootDir.setPath(user.getRootDir());
+		tree.getElements().put(rootDir.getPath(), rootDir);
+		logger.debug("Hash of root dir path = {}", rootDir.getPath().hashCode());
+		tree.getChildren().add(rootDir);
+
+		for (FileTaste fileTaste : fileList) {
+			FileTreeElement element;
+			if (fileTaste.getFile().isDirectory()) {
+				element = FileTreeFactory.eINSTANCE.createDirectory();
+			} else {
+				element = FileTreeFactory.eINSTANCE.createFile();
+			}
+			addFileTreeElement(tree, element, fileTaste);
+		}
+		return tree;
+	}
+
+	private void addFileTreeElement(FileTree tree, FileTreeElement element, FileTaste fileTaste) {
+		element.setName(fileTaste.getName());
+		element.setPath(fileTaste.getFile().toPath());
+		tree.getElements().put(element.getPath(), element);
+		Path parentPath = element.getPath().getParent();
+		fileTaste.getPath().isAbsolute();
+		logger.debug("Hash of parent path = {}", parentPath.hashCode());
+		Directory parent = (Directory) tree.getElements().get(parentPath);
+		parent.getChildren().add(element);
+	}
+
+	@Inject
+	@Optional
+	private void handleLoggedInUser(@UIEventTopic(IUserService.LOGGED_IN_USER) User user) {
+		logger.debug("User '{}' is logged in now.", user.getUserId());
+		this.user = user;
 	}
 }
