@@ -5,8 +5,8 @@ Bundle-SymbolicName: org.hive2hive.rcp.client.services
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: org.hive2hive.rcp.client.model.todo
-Service-Component: OSGI-INF/component.xml,OSGI-INF/NetworkConnectionService.xml,OSGI-INF/UserService.xml,
- OSGI-INF/FileService.xml
+Service-Component: OSGI-INF/component.xml,OSGI-INF/NetworkConnectionService.xml,OSGI-INF/UserService.xml,OSGI-INF/FileService.xml,
+ OSGI-INF/ModelService.xml
 Bundle-ActivationPolicy: lazy
 Export-Package: org.hive2hive.rcp.client.services
 Require-Bundle: org.eclipse.swt;bundle-version="3.102.1",

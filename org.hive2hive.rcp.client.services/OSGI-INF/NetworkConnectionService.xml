@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.hive2hive.rcp.client.services.NetworkConnectionService">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.hive2hive.rcp.client.services.networkConnectionService">
    <implementation class="org.hive2hive.rcp.client.services.internal.H2HNetworkConnectionService"/>
    <service>
       <provide interface="org.hive2hive.rcp.client.services.INetworkConnectionService"/>

@@ -28,14 +28,17 @@ public class LoginProcessStep extends ServiceProcessStep {
 
 	private final IUserManager userManager;
 
+	private final User user;
+
 	public LoginProcessStep(String userId, String password, String pin, Path rootDirPath, IUserManager userManager,
-			IEventBroker eventBroker) {
+			IEventBroker eventBroker, User user) {
 		super(IUserService.USER_STATUS, eventBroker);
 		this.userId = userId;
 		this.password = password;
 		this.pin = pin;
 		this.roodDirPath = rootDirPath;
 		this.userManager = userManager;
+		this.user = user;
 	}
 
 	@Override
@@ -49,11 +52,19 @@ public class LoginProcessStep extends ServiceProcessStep {
 			pc.attachListener(waiter);
 			waiter.await();
 			publishProcessState(Status.LOGIN_SUCCESSFUL);
+			setUserFields();
 			publishLoddedInUser();
 		} catch (NoPeerConnectionException e) {
 			publishProcessState(Status.LOGIN_FAILED);
 			logger.error("Error while trying to log in user '{}'.", userId, e);
 		}
+	}
+
+	private void setUserFields() {
+		user.setUserId(userId);
+		user.setPassword(password);
+		user.setPin(pin);
+		user.setRootDir(roodDirPath);
 	}
 
 	private void publishLoddedInUser() {

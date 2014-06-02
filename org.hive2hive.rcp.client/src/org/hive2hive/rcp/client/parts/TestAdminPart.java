@@ -11,18 +11,25 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.hive2hive.rcp.client.services.IModelService;
 import org.hive2hive.rcp.client.services.INetworkConnectionService;
 import org.hive2hive.rcp.client.services.IUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestAdminPart {
 
-	// private static final Logger logger = LoggerFactory.getLogger(TestAdminPart.class);
+	private static final Logger logger = LoggerFactory.getLogger(TestAdminPart.class);
 
 	private Button btnCreateInitialNode;
 	private Button btnLoginTestUser;
+	private Button btnTest;
 
 	@Inject
 	private IEventBroker eventBroker;
+
+	@Inject
+	private IModelService modelService;
 
 	@PostConstruct
 	public void createComponents(final Composite parent, final INetworkConnectionService connectionService,
@@ -48,6 +55,14 @@ public class TestAdminPart {
 						eventBroker);
 			}
 		});
-	}
 
+		btnTest = new Button(parent, SWT.PUSH);
+		btnTest.setText("Test");
+		btnTest.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				logger.debug("user model = {}", modelService.getUser());
+			}
+		});
+	}
 }
