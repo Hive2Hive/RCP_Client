@@ -18,7 +18,7 @@
               <children xsi:type="basic:Part" xmi:id="_-CXb4MQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.part.connect" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.ConnectionPart" label="Connection" iconURI="platform:/plugin/org.hive2hive.rcp.client/images/Logo_16x16_disconnected.png"/>
             </children>
             <children xsi:type="basic:PartStack" xmi:id="_456UUMQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.partstack.2">
-              <children xsi:type="basic:Part" xmi:id="_QmckUOoXEeOSMrx3oeqGsw" elementId="org.hive2hive.rcp.client.part.filedetail" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.FileDetailPart" label="File Detail"/>
+              <children xsi:type="basic:Part" xmi:id="_QmckUOoXEeOSMrx3oeqGsw" elementId="org.hive2hive.rcp.client.part.filedetail" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.filedetails.FileDetailPart" label="File Detail"/>
               <children xsi:type="basic:Part" xmi:id="__MBLkMQIEeO5us8__qBFNQ" elementId="org.hive2hive.rcp.client.part.login" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.parts.UserManagementPart" label="User Management"/>
             </children>
           </children>

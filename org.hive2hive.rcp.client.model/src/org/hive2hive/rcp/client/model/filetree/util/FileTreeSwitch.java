@@ -114,6 +114,18 @@ public class FileTreeSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case FileTreePackage.USER_ID_TO_ACCESS_RIGHTS_MAP: {
+				@SuppressWarnings("unchecked") Map.Entry<String, AccessRights> userIdToAccessRightsMap = (Map.Entry<String, AccessRights>)theEObject;
+				T result = caseUserIdToAccessRightsMap(userIdToAccessRightsMap);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FileTreePackage.ACCESS_RIGHTS: {
+				AccessRights accessRights = (AccessRights)theEObject;
+				T result = caseAccessRights(accessRights);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -220,6 +232,36 @@ public class FileTreeSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePathToTreeElementMap(Map.Entry<Path, FileTreeElement> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>User Id To Access Rights Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>User Id To Access Rights Map</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUserIdToAccessRightsMap(Map.Entry<String, AccessRights> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Access Rights</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Access Rights</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAccessRights(AccessRights object) {
 		return null;
 	}
 

@@ -65,6 +65,8 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 			case FileTreePackage.CONTAINER: return createContainer();
 			case FileTreePackage.USER: return createUser();
 			case FileTreePackage.PATH_TO_TREE_ELEMENT_MAP: return (EObject)createPathToTreeElementMap();
+			case FileTreePackage.USER_ID_TO_ACCESS_RIGHTS_MAP: return (EObject)createUserIdToAccessRightsMap();
+			case FileTreePackage.ACCESS_RIGHTS: return createAccessRights();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -158,6 +160,26 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 	public Map.Entry<Path, FileTreeElement> createPathToTreeElementMap() {
 		PathToTreeElementMapImpl pathToTreeElementMap = new PathToTreeElementMapImpl();
 		return pathToTreeElementMap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map.Entry<String, AccessRights> createUserIdToAccessRightsMap() {
+		UserIdToAccessRightsMapImpl userIdToAccessRightsMap = new UserIdToAccessRightsMapImpl();
+		return userIdToAccessRightsMap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AccessRights createAccessRights() {
+		AccessRightsImpl accessRights = new AccessRightsImpl();
+		return accessRights;
 	}
 
 	/**

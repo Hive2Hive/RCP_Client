@@ -67,6 +67,15 @@ public interface FileTreeFactory extends EFactory {
 	User createUser();
 
 	/**
+	 * Returns a new object of class '<em>Access Rights</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Access Rights</em>'.
+	 * @generated
+	 */
+	AccessRights createAccessRights();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

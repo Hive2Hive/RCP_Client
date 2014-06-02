@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.hive2hive.rcp.client.model.filetree.AccessRights;
 import org.hive2hive.rcp.client.model.filetree.Directory;
 import org.hive2hive.rcp.client.model.filetree.File;
 import org.hive2hive.rcp.client.model.filetree.FileTree;
@@ -75,6 +76,20 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	 * @generated
 	 */
 	private EClass pathToTreeElementMapEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass userIdToAccessRightsMapEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass accessRightsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -221,6 +236,15 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFile_AccessRights() {
+		return (EReference)fileEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getContainer() {
 		return containerEClass;
 	}
@@ -311,6 +335,60 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getUserIdToAccessRightsMap() {
+		return userIdToAccessRightsMapEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUserIdToAccessRightsMap_Key() {
+		return (EAttribute)userIdToAccessRightsMapEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUserIdToAccessRightsMap_Value() {
+		return (EReference)userIdToAccessRightsMapEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAccessRights() {
+		return accessRightsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAccessRights_ReadPermission() {
+		return (EAttribute)accessRightsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAccessRights_WritePermission() {
+		return (EAttribute)accessRightsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getPath() {
 		return pathEDataType;
 	}
@@ -354,6 +432,7 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		directoryEClass = createEClass(DIRECTORY);
 
 		fileEClass = createEClass(FILE);
+		createEReference(fileEClass, FILE__ACCESS_RIGHTS);
 
 		containerEClass = createEClass(CONTAINER);
 		createEReference(containerEClass, CONTAINER__CHILDREN);
@@ -367,6 +446,14 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		pathToTreeElementMapEClass = createEClass(PATH_TO_TREE_ELEMENT_MAP);
 		createEAttribute(pathToTreeElementMapEClass, PATH_TO_TREE_ELEMENT_MAP__KEY);
 		createEReference(pathToTreeElementMapEClass, PATH_TO_TREE_ELEMENT_MAP__VALUE);
+
+		userIdToAccessRightsMapEClass = createEClass(USER_ID_TO_ACCESS_RIGHTS_MAP);
+		createEAttribute(userIdToAccessRightsMapEClass, USER_ID_TO_ACCESS_RIGHTS_MAP__KEY);
+		createEReference(userIdToAccessRightsMapEClass, USER_ID_TO_ACCESS_RIGHTS_MAP__VALUE);
+
+		accessRightsEClass = createEClass(ACCESS_RIGHTS);
+		createEAttribute(accessRightsEClass, ACCESS_RIGHTS__READ_PERMISSION);
+		createEAttribute(accessRightsEClass, ACCESS_RIGHTS__WRITE_PERMISSION);
 
 		// Create data types
 		pathEDataType = createEDataType(PATH);
@@ -417,6 +504,7 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		initEClass(directoryEClass, Directory.class, "Directory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(fileEClass, File.class, "File", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFile_AccessRights(), this.getUserIdToAccessRightsMap(), null, "accessRights", null, 0, -1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(containerEClass, org.hive2hive.rcp.client.model.filetree.Container.class, "Container", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getContainer_Children(), this.getFileTreeElement(), this.getFileTreeElement_Parent(), "children", null, 0, -1, org.hive2hive.rcp.client.model.filetree.Container.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -430,6 +518,14 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		initEClass(pathToTreeElementMapEClass, Map.Entry.class, "PathToTreeElementMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPathToTreeElementMap_Key(), this.getPath(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPathToTreeElementMap_Value(), this.getFileTreeElement(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(userIdToAccessRightsMapEClass, Map.Entry.class, "UserIdToAccessRightsMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUserIdToAccessRightsMap_Key(), ecorePackage.getEString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUserIdToAccessRightsMap_Value(), this.getAccessRights(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(accessRightsEClass, AccessRights.class, "AccessRights", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAccessRights_ReadPermission(), ecorePackage.getEBoolean(), "readPermission", null, 0, 1, AccessRights.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAccessRights_WritePermission(), ecorePackage.getEBoolean(), "writePermission", null, 0, 1, AccessRights.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(pathEDataType, Path.class, "Path", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

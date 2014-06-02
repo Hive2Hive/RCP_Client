@@ -11,6 +11,10 @@ import net.miginfocom.swt.MigLayout;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.UIEventTopic;
+import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -41,6 +45,9 @@ public class FileTreePart {
 	@Inject
 	private IEventBroker eventBroker;
 
+	@Inject
+	private ESelectionService selectionService;
+
 	private TreeViewer treeViewer;
 	private Tree tree;
 
@@ -69,13 +76,21 @@ public class FileTreePart {
 	}
 
 	void createTreeViewer(final Composite parent, IBundleResourceLoader resourceLoader) {
-		tree = new Tree(parent, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		tree = new Tree(parent, SWT.SINGLE | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		tree.setLinesVisible(true);
 		tree.setHeaderVisible(true);
 		treeViewer = new TreeViewer(tree);
 		treeViewer.setContentProvider(new FileTreeContentProvider());
 		treeViewer.setLabelProvider(new FileTreeLabelProvider(resourceLoader.loadImage(this.getClass(),
 				"images/folder/folder16x16.png")));
+
+		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
+				selectionService.setSelection(selection.getFirstElement());
+			}
+		});
 
 		TreeColumn col = new TreeColumn(tree, SWT.LEFT);
 		col.setAlignment(SWT.LEFT);
@@ -84,7 +99,7 @@ public class FileTreePart {
 
 		col = new TreeColumn(tree, SWT.LEFT);
 		col.setAlignment(SWT.LEFT);
-		col.setText("Infos");
+		col.setText("Path");
 		col.setWidth(100);
 	}
 
