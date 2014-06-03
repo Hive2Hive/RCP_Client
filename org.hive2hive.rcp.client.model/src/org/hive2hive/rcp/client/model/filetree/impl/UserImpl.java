@@ -8,9 +8,11 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.hive2hive.rcp.client.model.filetree.FileTree;
 import org.hive2hive.rcp.client.model.filetree.FileTreePackage;
 import org.hive2hive.rcp.client.model.filetree.User;
 
@@ -25,6 +27,7 @@ import org.hive2hive.rcp.client.model.filetree.User;
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.UserImpl#getPassword <em>Password</em>}</li>
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.UserImpl#getPin <em>Pin</em>}</li>
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.UserImpl#getRootDir <em>Root Dir</em>}</li>
+ *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.UserImpl#getFileTree <em>File Tree</em>}</li>
  * </ul>
  * </p>
  *
@@ -110,6 +113,16 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @ordered
 	 */
 	protected Path rootDir = ROOT_DIR_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getFileTree() <em>File Tree</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFileTree()
+	 * @generated
+	 * @ordered
+	 */
+	protected FileTree fileTree;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -219,6 +232,44 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public FileTree getFileTree() {
+		if (fileTree != null && fileTree.eIsProxy()) {
+			InternalEObject oldFileTree = (InternalEObject)fileTree;
+			fileTree = (FileTree)eResolveProxy(oldFileTree);
+			if (fileTree != oldFileTree) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FileTreePackage.USER__FILE_TREE, oldFileTree, fileTree));
+			}
+		}
+		return fileTree;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FileTree basicGetFileTree() {
+		return fileTree;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFileTree(FileTree newFileTree) {
+		FileTree oldFileTree = fileTree;
+		fileTree = newFileTree;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FileTreePackage.USER__FILE_TREE, oldFileTree, fileTree));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -230,6 +281,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 				return getPin();
 			case FileTreePackage.USER__ROOT_DIR:
 				return getRootDir();
+			case FileTreePackage.USER__FILE_TREE:
+				if (resolve) return getFileTree();
+				return basicGetFileTree();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -253,6 +307,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 				return;
 			case FileTreePackage.USER__ROOT_DIR:
 				setRootDir((Path)newValue);
+				return;
+			case FileTreePackage.USER__FILE_TREE:
+				setFileTree((FileTree)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -278,6 +335,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			case FileTreePackage.USER__ROOT_DIR:
 				setRootDir(ROOT_DIR_EDEFAULT);
 				return;
+			case FileTreePackage.USER__FILE_TREE:
+				setFileTree((FileTree)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -298,6 +358,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 				return PIN_EDEFAULT == null ? pin != null : !PIN_EDEFAULT.equals(pin);
 			case FileTreePackage.USER__ROOT_DIR:
 				return ROOT_DIR_EDEFAULT == null ? rootDir != null : !ROOT_DIR_EDEFAULT.equals(rootDir);
+			case FileTreePackage.USER__FILE_TREE:
+				return fileTree != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -73,8 +73,9 @@ public class FileDetailPart {
 		Table table = tblFileVersions.getTable();
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
-		tblFileVersions.setContentProvider(new ShareContentProvider());
-		tblFileVersions.setLabelProvider(new ShareLabelProvider());
+		// // TODO Nendor: create proper instances here
+		// tblFileVersions.setContentProvider(new ShareContentProvider());
+		// tblFileVersions.setLabelProvider(new ShareLabelProvider());
 	}
 
 }

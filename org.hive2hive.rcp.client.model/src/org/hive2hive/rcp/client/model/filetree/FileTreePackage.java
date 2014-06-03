@@ -379,13 +379,22 @@ public interface FileTreePackage extends EPackage {
 	int USER__ROOT_DIR = 3;
 
 	/**
+	 * The feature id for the '<em><b>File Tree</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__FILE_TREE = 4;
+
+	/**
 	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = 4;
+	int USER_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.PathToTreeElementMapImpl <em>Path To Tree Element Map</em>}' class.
@@ -680,6 +689,17 @@ public interface FileTreePackage extends EPackage {
 	EAttribute getUser_RootDir();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.hive2hive.rcp.client.model.filetree.User#getFileTree <em>File Tree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>File Tree</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.User#getFileTree()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EReference getUser_FileTree();
+
+	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Path To Tree Element Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -952,6 +972,14 @@ public interface FileTreePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute USER__ROOT_DIR = eINSTANCE.getUser_RootDir();
+
+		/**
+		 * The meta object literal for the '<em><b>File Tree</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER__FILE_TREE = eINSTANCE.getUser_FileTree();
 
 		/**
 		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.PathToTreeElementMapImpl <em>Path To Tree Element Map</em>}' class.

@@ -308,6 +308,15 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getUser_FileTree() {
+		return (EReference)userEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPathToTreeElementMap() {
 		return pathToTreeElementMapEClass;
 	}
@@ -442,6 +451,7 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		createEAttribute(userEClass, USER__PASSWORD);
 		createEAttribute(userEClass, USER__PIN);
 		createEAttribute(userEClass, USER__ROOT_DIR);
+		createEReference(userEClass, USER__FILE_TREE);
 
 		pathToTreeElementMapEClass = createEClass(PATH_TO_TREE_ELEMENT_MAP);
 		createEAttribute(pathToTreeElementMapEClass, PATH_TO_TREE_ELEMENT_MAP__KEY);
@@ -514,6 +524,7 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		initEAttribute(getUser_Password(), ecorePackage.getEString(), "password", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUser_Pin(), ecorePackage.getEString(), "pin", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUser_RootDir(), this.getPath(), "rootDir", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUser_FileTree(), this.getFileTree(), null, "fileTree", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pathToTreeElementMapEClass, Map.Entry.class, "PathToTreeElementMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPathToTreeElementMap_Key(), this.getPath(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

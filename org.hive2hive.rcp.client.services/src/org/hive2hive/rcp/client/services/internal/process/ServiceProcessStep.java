@@ -3,7 +3,6 @@ package org.hive2hive.rcp.client.services.internal.process;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.swt.widgets.Display;
 import org.hive2hive.core.processes.framework.abstracts.ProcessStep;
-import org.hive2hive.rcp.client.model.filetree.User;
 import org.hive2hive.rcp.client.services.IUserService;
 
 public abstract class ServiceProcessStep extends ProcessStep {
@@ -24,7 +23,7 @@ public abstract class ServiceProcessStep extends ProcessStep {
 		publishProcessInfo(topicId, new IUserService.StatusMessage(status, message));
 	}
 
-	protected void publish(String messageId, User messageObject) {
+	protected void publish(String messageId, Object messageObject) {
 		eventBroker.post(messageId, messageObject);
 	}
 

@@ -65,7 +65,7 @@ public class FileTreePart {
 		btnUpdate.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				fileService.fetchUpdatedFileList(eventBroker);
+				fileService.updateFileTreeOfUser(eventBroker);
 			}
 		});
 

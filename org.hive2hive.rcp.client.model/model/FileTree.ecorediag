@@ -125,7 +125,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_o6NJIedkEeOVeJjSx8-fuA" fontColor="4210752" fontName="Lucida Grande" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="FileTree.ecore#//User"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_o6NJIudkEeOVeJjSx8-fuA" x="448" y="255"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_o6NJIudkEeOVeJjSx8-fuA" x="378" y="350"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_asF14OdqEeOVeJjSx8-fuA" type="1001">
     <children xmi:type="notation:Node" xmi:id="_asGc8OdqEeOVeJjSx8-fuA" type="4001"/>
@@ -303,5 +303,18 @@
     <element xmi:type="ecore:EReference" href="FileTree.ecore#//File/accessRights"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jpmGs-p7EeOSMrx3oeqGsw" points="[-50, -8, 246, 21]$[-187, -8, 109, 21]"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jpoi8Op7EeOSMrx3oeqGsw" id="(0.26174496644295303,0.16326530612244897)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_XNdEMOp9EeOSMrx3oeqGsw" type="3002" source="_o6NJIOdkEeOVeJjSx8-fuA" target="_peMvMN_eEeOszI65_A6bmg">
+    <children xmi:type="notation:Node" xmi:id="_XNdrQOp9EeOSMrx3oeqGsw" type="4011">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_XNdrQep9EeOSMrx3oeqGsw" x="-10" y="-10"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_XNdrQup9EeOSMrx3oeqGsw" type="4012">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_XNdrQ-p9EeOSMrx3oeqGsw" x="10" y="10"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_XNdEMep9EeOSMrx3oeqGsw" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_XNdEMup9EeOSMrx3oeqGsw" fontColor="4210752" fontName="Lucida Grande" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="FileTree.ecore#//User/fileTree"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_XNdEM-p9EeOSMrx3oeqGsw" points="[-18, -8, 216, 95]$[-228, -8, 6, 95]$[-228, -83, 6, 20]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_XNfgcOp9EeOSMrx3oeqGsw" id="(0.15702479338842976,0.30927835051546393)"/>
   </edges>
 </notation:Diagram>

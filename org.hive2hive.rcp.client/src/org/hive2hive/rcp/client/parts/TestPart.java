@@ -3,10 +3,8 @@ package org.hive2hive.rcp.client.parts;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.Focus;
-import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.swt.modeling.EMenuService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -70,12 +68,6 @@ public class TestPart {
 	@Focus
 	private void setFocus() {
 		logger.debug(this.getClass().getSimpleName() + " @Focus method called");
-	}
-
-	@Inject
-	@Optional
-	private void receiveTestMessage(@UIEventTopic(IFileService.TEST) String message) {
-		logger.debug("Test message '{}' received from service - event broker is working.", message);
 	}
 
 }

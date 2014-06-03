@@ -11,6 +11,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.hive2hive.rcp.client.services.IFileService;
 import org.hive2hive.rcp.client.services.IModelService;
 import org.hive2hive.rcp.client.services.INetworkConnectionService;
 import org.hive2hive.rcp.client.services.IUserService;
@@ -30,6 +31,9 @@ public class TestAdminPart {
 
 	@Inject
 	private IModelService modelService;
+
+	@Inject
+	private IFileService fileService;
 
 	@PostConstruct
 	public void createComponents(final Composite parent, final INetworkConnectionService connectionService,
@@ -62,6 +66,7 @@ public class TestAdminPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				logger.debug("user model = {}", modelService.getUser());
+				fileService.updateFileTreeOfUser(eventBroker);
 			}
 		});
 	}
