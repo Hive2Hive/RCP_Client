@@ -7,7 +7,6 @@ import org.eclipse.e4.core.services.events.IEventBroker;
 public interface IUserService {
 
 	public final String USER_STATUS = "USER_STATUS";
-	public final String LOGGED_IN_USER = "LOGGED_IN_USER";
 
 	// logging in logged in logging
 	enum Status {

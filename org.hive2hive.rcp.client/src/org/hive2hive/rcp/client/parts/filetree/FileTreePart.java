@@ -32,6 +32,7 @@ import org.hive2hive.rcp.client.model.filetree.FileTreeFactory;
 import org.hive2hive.rcp.client.model.filetree.User;
 import org.hive2hive.rcp.client.model.filetree.util.FileTreeModelUtile;
 import org.hive2hive.rcp.client.services.IFileService;
+import org.hive2hive.rcp.client.services.IModelService;
 import org.hive2hive.rcp.client.services.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,12 +49,13 @@ public class FileTreePart {
 	@Inject
 	private ESelectionService selectionService;
 
+	@Inject
+	private IModelService modelService;
+
 	private TreeViewer treeViewer;
 	private Tree tree;
 
 	private Button btnUpdate;
-
-	private User user;
 
 	@PostConstruct
 	public void createControlls(final Composite parent, IUserService userService, IBundleResourceLoader resourceLoader) {
@@ -119,6 +121,8 @@ public class FileTreePart {
 
 	private FileTree createFileTree(List<FileTaste> fileList) {
 
+		User user = modelService.getUser();
+
 		FileTreeFactory factory = FileTreeFactory.eINSTANCE;
 		FileTree tree = factory.createFileTree();
 		tree.setName(String.format("file root of '%s'", user.getUserId()));
@@ -154,10 +158,4 @@ public class FileTreePart {
 		parent.getChildren().add(element);
 	}
 
-	@Inject
-	@Optional
-	private void handleLoggedInUser(@UIEventTopic(IUserService.LOGGED_IN_USER) User user) {
-		logger.debug("User '{}' is logged in now.", user.getUserId());
-		this.user = user;
-	}
 }

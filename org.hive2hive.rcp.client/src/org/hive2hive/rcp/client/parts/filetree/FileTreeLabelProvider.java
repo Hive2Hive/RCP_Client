@@ -47,10 +47,8 @@ public class FileTreeLabelProvider implements ITableLabelProvider {
 		if (columnIndex == 0) {
 			if (element instanceof File) {
 				File file = (File) element;
-				System.out.println(file.getName());
 				String[] nameParts = file.getName().split("\\.");
 				String fileExtension = "." + nameParts[nameParts.length - 1];
-				System.out.println(String.format("File '%s' - extension '%s'", file.getName(), fileExtension));
 				Program program = Program.findProgram(fileExtension);
 				if (program != null) {
 					ImageData id = program.getImageData();
