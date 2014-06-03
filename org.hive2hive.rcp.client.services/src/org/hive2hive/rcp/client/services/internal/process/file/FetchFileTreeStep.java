@@ -1,5 +1,6 @@
 package org.hive2hive.rcp.client.services.internal.process.file;
 
+import java.nio.file.Path;
 import java.util.List;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
@@ -9,16 +10,28 @@ import org.hive2hive.core.processes.framework.exceptions.InvalidProcessStateExce
 import org.hive2hive.core.processes.framework.exceptions.ProcessExecutionException;
 import org.hive2hive.core.processes.framework.interfaces.IResultProcessComponent;
 import org.hive2hive.core.processes.implementations.files.list.FileTaste;
+import org.hive2hive.rcp.client.model.filetree.Directory;
+import org.hive2hive.rcp.client.model.filetree.FileTree;
+import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
+import org.hive2hive.rcp.client.model.filetree.FileTreeFactory;
+import org.hive2hive.rcp.client.model.filetree.User;
 import org.hive2hive.rcp.client.services.IFileService;
+import org.hive2hive.rcp.client.services.IModelService;
 import org.hive2hive.rcp.client.services.internal.process.ResultProcessWaiter;
 import org.hive2hive.rcp.client.services.internal.process.ServiceProcessStep;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FetchFileTreeStep extends ServiceProcessStep {
-	private final IFileManager fileManager;
+	private static final Logger logger = LoggerFactory.getLogger(FetchFileTreeStep.class);
 
-	public FetchFileTreeStep(IFileManager fileManager, IEventBroker eventBroker) {
+	private final IFileManager fileManager;
+	private final IModelService modelService;
+
+	public FetchFileTreeStep(IFileManager fileManager, IModelService modelService, IEventBroker eventBroker) {
 		super(IFileService.FILE_SERVICE_STATUS, eventBroker);
 		this.fileManager = fileManager;
+		this.modelService = modelService;
 	}
 
 	@Override
@@ -30,7 +43,8 @@ public class FetchFileTreeStep extends ServiceProcessStep {
 			waiter.await();
 			List<FileTaste> result = waiter.getResult();
 			if (result != null) {
-				publish(IFileService.FILE_LIST_UPDATE, result);
+				createFileTree(result);
+				publish(IFileService.FILE_LIST_UPDATE, IFileService.FILE_LIST_UPDATE);
 			}
 		} catch (NoSessionException e) {
 			e.printStackTrace();
@@ -38,4 +52,43 @@ public class FetchFileTreeStep extends ServiceProcessStep {
 
 	}
 
+	private void createFileTree(List<FileTaste> fileList) {
+
+		User user = modelService.getUser();
+
+		FileTreeFactory factory = FileTreeFactory.eINSTANCE;
+		FileTree tree = factory.createFileTree();
+		tree.setName(String.format("file root of '%s'", user.getUserId()));
+		tree.setPath(user.getRootDir());
+
+		Directory rootDir = factory.createDirectory();
+		rootDir.setName(user.getRootDir().toString());
+		rootDir.setPath(user.getRootDir());
+		tree.getElements().put(rootDir.getPath(), rootDir);
+		logger.debug("Hash of root dir path = {}", rootDir.getPath().hashCode());
+		tree.getChildren().add(rootDir);
+
+		for (FileTaste fileTaste : fileList) {
+			FileTreeElement element;
+			if (fileTaste.getFile().isDirectory()) {
+				element = FileTreeFactory.eINSTANCE.createDirectory();
+			} else {
+				element = FileTreeFactory.eINSTANCE.createFile();
+			}
+			addFileTreeElement(tree, element, fileTaste);
+		}
+
+		user.setFileTree(tree);
+	}
+
+	private void addFileTreeElement(FileTree tree, FileTreeElement element, FileTaste fileTaste) {
+		element.setName(fileTaste.getName());
+		element.setPath(fileTaste.getFile().toPath());
+		tree.getElements().put(element.getPath(), element);
+		Path parentPath = element.getPath().getParent();
+		fileTaste.getPath().isAbsolute();
+		logger.debug("Hash of parent path = {}", parentPath.hashCode());
+		Directory parent = (Directory) tree.getElements().get(parentPath);
+		parent.getChildren().add(element);
+	}
 }

@@ -1,8 +1,5 @@
 package org.hive2hive.rcp.client.parts.filetree;
 
-import java.nio.file.Path;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -23,14 +20,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
-import org.hive2hive.core.processes.implementations.files.list.FileTaste;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
-import org.hive2hive.rcp.client.model.filetree.Directory;
-import org.hive2hive.rcp.client.model.filetree.FileTree;
-import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
-import org.hive2hive.rcp.client.model.filetree.FileTreeFactory;
-import org.hive2hive.rcp.client.model.filetree.User;
-import org.hive2hive.rcp.client.model.filetree.util.FileTreeModelUtile;
 import org.hive2hive.rcp.client.services.IFileService;
 import org.hive2hive.rcp.client.services.IModelService;
 import org.hive2hive.rcp.client.services.IUserService;
@@ -73,8 +63,6 @@ public class FileTreePart {
 
 		createTreeViewer(parent, resourceLoader);
 		tree.setLayoutData("growx, growy");
-		treeViewer.setInput(FileTreeModelUtile.createDummyModel());
-		treeViewer.expandAll();
 	}
 
 	void createTreeViewer(final Composite parent, IBundleResourceLoader resourceLoader) {
@@ -107,55 +95,19 @@ public class FileTreePart {
 
 	@Inject
 	@Optional
-	public void updateFileTree(@UIEventTopic(IFileService.FILE_LIST_UPDATE) List<FileTaste> fileList) {
+	private void handleSuccessfulUserLogin(@UIEventTopic(IUserService.USER_STATUS) IUserService.StatusMessage statusMessage) {
+		if (IUserService.Status.LOGIN_SUCCESSFUL == statusMessage.getStatus()) {
+			logger.debug("User '{}' logged in successfully - request current file tree.", statusMessage.getMessage());
+			fileService.updateFileTreeOfUser(eventBroker);
+		}
+	}
+
+	@Inject
+	@Optional
+	public void updateFileTree(@UIEventTopic(IFileService.FILE_LIST_UPDATE) String message) {
 		logger.debug("File list was updated.");
-		logger.debug("Paths of the files in the current tree:");
-		for (FileTaste fileTaste : fileList) {
-			logger.debug(fileTaste.getPath().toString());
-		}
-		FileTree fileTree = createFileTree(fileList);
-		treeViewer.setInput(fileTree);
+		treeViewer.setInput(modelService.getUser().getFileTree());
 		treeViewer.expandAll();
-
-	}
-
-	private FileTree createFileTree(List<FileTaste> fileList) {
-
-		User user = modelService.getUser();
-
-		FileTreeFactory factory = FileTreeFactory.eINSTANCE;
-		FileTree tree = factory.createFileTree();
-		tree.setName(String.format("file root of '%s'", user.getUserId()));
-		tree.setPath(user.getRootDir());
-
-		Directory rootDir = factory.createDirectory();
-		rootDir.setName(user.getRootDir().toString());
-		rootDir.setPath(user.getRootDir());
-		tree.getElements().put(rootDir.getPath(), rootDir);
-		logger.debug("Hash of root dir path = {}", rootDir.getPath().hashCode());
-		tree.getChildren().add(rootDir);
-
-		for (FileTaste fileTaste : fileList) {
-			FileTreeElement element;
-			if (fileTaste.getFile().isDirectory()) {
-				element = FileTreeFactory.eINSTANCE.createDirectory();
-			} else {
-				element = FileTreeFactory.eINSTANCE.createFile();
-			}
-			addFileTreeElement(tree, element, fileTaste);
-		}
-		return tree;
-	}
-
-	private void addFileTreeElement(FileTree tree, FileTreeElement element, FileTaste fileTaste) {
-		element.setName(fileTaste.getName());
-		element.setPath(fileTaste.getFile().toPath());
-		tree.getElements().put(element.getPath(), element);
-		Path parentPath = element.getPath().getParent();
-		fileTaste.getPath().isAbsolute();
-		logger.debug("Hash of parent path = {}", parentPath.hashCode());
-		Directory parent = (Directory) tree.getElements().get(parentPath);
-		parent.getChildren().add(element);
 	}
 
 }
