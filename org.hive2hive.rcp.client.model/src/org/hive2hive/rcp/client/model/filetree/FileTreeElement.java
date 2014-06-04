@@ -3,6 +3,8 @@
 package org.hive2hive.rcp.client.model.filetree;
 
 import java.nio.file.Path;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement#getPath <em>Path</em>}</li>
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement#getName <em>Name</em>}</li>
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement#getParent <em>Parent</em>}</li>
+ *   <li>{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement#getAccessRights <em>Access Rights</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,5 +106,21 @@ public interface FileTreeElement extends EObject {
 	 * @generated
 	 */
 	void setParent(Container value);
+
+	/**
+	 * Returns the value of the '<em><b>Access Rights</b></em>' reference list.
+	 * The list contents are of type {@link org.hive2hive.rcp.client.model.filetree.AccessRight}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Access Rights</em>' map isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Access Rights</em>' reference list.
+	 * @see org.hive2hive.rcp.client.model.filetree.FileTreePackage#getFileTreeElement_AccessRights()
+	 * @model
+	 * @generated
+	 */
+	EList<AccessRight> getAccessRights();
 
 } // FileTreeElement

@@ -95,12 +95,8 @@ public class FileTreeAdapterFactory extends AdapterFactoryImpl {
 				return createPathToTreeElementMapAdapter();
 			}
 			@Override
-			public Adapter caseUserIdToAccessRightsMap(Map.Entry<String, AccessRights> object) {
-				return createUserIdToAccessRightsMapAdapter();
-			}
-			@Override
-			public Adapter caseAccessRights(AccessRights object) {
-				return createAccessRightsAdapter();
+			public Adapter caseAccessRight(AccessRight object) {
+				return createAccessRightAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -221,30 +217,16 @@ public class FileTreeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>User Id To Access Rights Map</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.hive2hive.rcp.client.model.filetree.AccessRight <em>Access Right</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see java.util.Map.Entry
+	 * @see org.hive2hive.rcp.client.model.filetree.AccessRight
 	 * @generated
 	 */
-	public Adapter createUserIdToAccessRightsMapAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.hive2hive.rcp.client.model.filetree.AccessRights <em>Access Rights</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.hive2hive.rcp.client.model.filetree.AccessRights
-	 * @generated
-	 */
-	public Adapter createAccessRightsAdapter() {
+	public Adapter createAccessRightAdapter() {
 		return null;
 	}
 

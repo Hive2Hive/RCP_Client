@@ -114,15 +114,9 @@ public class FileTreeSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FileTreePackage.USER_ID_TO_ACCESS_RIGHTS_MAP: {
-				@SuppressWarnings("unchecked") Map.Entry<String, AccessRights> userIdToAccessRightsMap = (Map.Entry<String, AccessRights>)theEObject;
-				T result = caseUserIdToAccessRightsMap(userIdToAccessRightsMap);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FileTreePackage.ACCESS_RIGHTS: {
-				AccessRights accessRights = (AccessRights)theEObject;
-				T result = caseAccessRights(accessRights);
+			case FileTreePackage.ACCESS_RIGHT: {
+				AccessRight accessRight = (AccessRight)theEObject;
+				T result = caseAccessRight(accessRight);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -236,32 +230,17 @@ public class FileTreeSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>User Id To Access Rights Map</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Access Right</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>User Id To Access Rights Map</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Access Right</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseUserIdToAccessRightsMap(Map.Entry<String, AccessRights> object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Access Rights</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Access Rights</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAccessRights(AccessRights object) {
+	public T caseAccessRight(AccessRight object) {
 		return null;
 	}
 

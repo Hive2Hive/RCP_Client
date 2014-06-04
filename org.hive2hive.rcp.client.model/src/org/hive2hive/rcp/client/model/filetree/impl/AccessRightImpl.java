@@ -9,24 +9,25 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.hive2hive.rcp.client.model.filetree.AccessRights;
+import org.hive2hive.rcp.client.model.filetree.AccessRight;
 import org.hive2hive.rcp.client.model.filetree.FileTreePackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Access Rights</b></em>'.
+ * An implementation of the model object '<em><b>Access Right</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.AccessRightsImpl#isReadPermission <em>Read Permission</em>}</li>
- *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.AccessRightsImpl#isWritePermission <em>Write Permission</em>}</li>
+ *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.AccessRightImpl#isReadPermission <em>Read Permission</em>}</li>
+ *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.AccessRightImpl#isWritePermission <em>Write Permission</em>}</li>
+ *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.AccessRightImpl#getUserId <em>User Id</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class AccessRightsImpl extends MinimalEObjectImpl.Container implements AccessRights {
+public class AccessRightImpl extends MinimalEObjectImpl.Container implements AccessRight {
 	/**
 	 * The default value of the '{@link #isReadPermission() <em>Read Permission</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -68,11 +69,31 @@ public class AccessRightsImpl extends MinimalEObjectImpl.Container implements Ac
 	protected boolean writePermission = WRITE_PERMISSION_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getUserId() <em>User Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUserId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String USER_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUserId() <em>User Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUserId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String userId = USER_ID_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AccessRightsImpl() {
+	protected AccessRightImpl() {
 		super();
 	}
 
@@ -83,7 +104,7 @@ public class AccessRightsImpl extends MinimalEObjectImpl.Container implements Ac
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return FileTreePackage.Literals.ACCESS_RIGHTS;
+		return FileTreePackage.Literals.ACCESS_RIGHT;
 	}
 
 	/**
@@ -104,7 +125,7 @@ public class AccessRightsImpl extends MinimalEObjectImpl.Container implements Ac
 		boolean oldReadPermission = readPermission;
 		readPermission = newReadPermission;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FileTreePackage.ACCESS_RIGHTS__READ_PERMISSION, oldReadPermission, readPermission));
+			eNotify(new ENotificationImpl(this, Notification.SET, FileTreePackage.ACCESS_RIGHT__READ_PERMISSION, oldReadPermission, readPermission));
 	}
 
 	/**
@@ -125,7 +146,28 @@ public class AccessRightsImpl extends MinimalEObjectImpl.Container implements Ac
 		boolean oldWritePermission = writePermission;
 		writePermission = newWritePermission;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FileTreePackage.ACCESS_RIGHTS__WRITE_PERMISSION, oldWritePermission, writePermission));
+			eNotify(new ENotificationImpl(this, Notification.SET, FileTreePackage.ACCESS_RIGHT__WRITE_PERMISSION, oldWritePermission, writePermission));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getUserId() {
+		return userId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUserId(String newUserId) {
+		String oldUserId = userId;
+		userId = newUserId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FileTreePackage.ACCESS_RIGHT__USER_ID, oldUserId, userId));
 	}
 
 	/**
@@ -136,10 +178,12 @@ public class AccessRightsImpl extends MinimalEObjectImpl.Container implements Ac
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FileTreePackage.ACCESS_RIGHTS__READ_PERMISSION:
+			case FileTreePackage.ACCESS_RIGHT__READ_PERMISSION:
 				return isReadPermission();
-			case FileTreePackage.ACCESS_RIGHTS__WRITE_PERMISSION:
+			case FileTreePackage.ACCESS_RIGHT__WRITE_PERMISSION:
 				return isWritePermission();
+			case FileTreePackage.ACCESS_RIGHT__USER_ID:
+				return getUserId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -152,11 +196,14 @@ public class AccessRightsImpl extends MinimalEObjectImpl.Container implements Ac
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FileTreePackage.ACCESS_RIGHTS__READ_PERMISSION:
+			case FileTreePackage.ACCESS_RIGHT__READ_PERMISSION:
 				setReadPermission((Boolean)newValue);
 				return;
-			case FileTreePackage.ACCESS_RIGHTS__WRITE_PERMISSION:
+			case FileTreePackage.ACCESS_RIGHT__WRITE_PERMISSION:
 				setWritePermission((Boolean)newValue);
+				return;
+			case FileTreePackage.ACCESS_RIGHT__USER_ID:
+				setUserId((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -170,11 +217,14 @@ public class AccessRightsImpl extends MinimalEObjectImpl.Container implements Ac
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FileTreePackage.ACCESS_RIGHTS__READ_PERMISSION:
+			case FileTreePackage.ACCESS_RIGHT__READ_PERMISSION:
 				setReadPermission(READ_PERMISSION_EDEFAULT);
 				return;
-			case FileTreePackage.ACCESS_RIGHTS__WRITE_PERMISSION:
+			case FileTreePackage.ACCESS_RIGHT__WRITE_PERMISSION:
 				setWritePermission(WRITE_PERMISSION_EDEFAULT);
+				return;
+			case FileTreePackage.ACCESS_RIGHT__USER_ID:
+				setUserId(USER_ID_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -188,10 +238,12 @@ public class AccessRightsImpl extends MinimalEObjectImpl.Container implements Ac
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FileTreePackage.ACCESS_RIGHTS__READ_PERMISSION:
+			case FileTreePackage.ACCESS_RIGHT__READ_PERMISSION:
 				return readPermission != READ_PERMISSION_EDEFAULT;
-			case FileTreePackage.ACCESS_RIGHTS__WRITE_PERMISSION:
+			case FileTreePackage.ACCESS_RIGHT__WRITE_PERMISSION:
 				return writePermission != WRITE_PERMISSION_EDEFAULT;
+			case FileTreePackage.ACCESS_RIGHT__USER_ID:
+				return USER_ID_EDEFAULT == null ? userId != null : !USER_ID_EDEFAULT.equals(userId);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -210,8 +262,10 @@ public class AccessRightsImpl extends MinimalEObjectImpl.Container implements Ac
 		result.append(readPermission);
 		result.append(", writePermission: ");
 		result.append(writePermission);
+		result.append(", userId: ");
+		result.append(userId);
 		result.append(')');
 		return result.toString();
 	}
 
-} //AccessRightsImpl
+} //AccessRightImpl

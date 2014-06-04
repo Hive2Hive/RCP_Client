@@ -95,13 +95,22 @@ public interface FileTreePackage extends EPackage {
 	int FILE_TREE_ELEMENT__PARENT = 2;
 
 	/**
+	 * The feature id for the '<em><b>Access Rights</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_TREE_ELEMENT__ACCESS_RIGHTS = 3;
+
+	/**
 	 * The number of structural features of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_TREE_ELEMENT_FEATURE_COUNT = 3;
+	int FILE_TREE_ELEMENT_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.ContainerImpl <em>Container</em>}' class.
@@ -139,6 +148,15 @@ public interface FileTreePackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTAINER__PARENT = FILE_TREE_ELEMENT__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Access Rights</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER__ACCESS_RIGHTS = FILE_TREE_ELEMENT__ACCESS_RIGHTS;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -194,6 +212,15 @@ public interface FileTreePackage extends EPackage {
 	 * @ordered
 	 */
 	int FILE_TREE__PARENT = CONTAINER__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Access Rights</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_TREE__ACCESS_RIGHTS = CONTAINER__ACCESS_RIGHTS;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -260,6 +287,15 @@ public interface FileTreePackage extends EPackage {
 	int DIRECTORY__PARENT = CONTAINER__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>Access Rights</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECTORY__ACCESS_RIGHTS = CONTAINER__ACCESS_RIGHTS;
+
+	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -315,13 +351,13 @@ public interface FileTreePackage extends EPackage {
 	int FILE__PARENT = FILE_TREE_ELEMENT__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Access Rights</b></em>' map.
+	 * The feature id for the '<em><b>Access Rights</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE__ACCESS_RIGHTS = FILE_TREE_ELEMENT_FEATURE_COUNT + 0;
+	int FILE__ACCESS_RIGHTS = FILE_TREE_ELEMENT__ACCESS_RIGHTS;
 
 	/**
 	 * The number of structural features of the '<em>File</em>' class.
@@ -330,7 +366,7 @@ public interface FileTreePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_FEATURE_COUNT = FILE_TREE_ELEMENT_FEATURE_COUNT + 1;
+	int FILE_FEATURE_COUNT = FILE_TREE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.UserImpl <em>User</em>}' class.
@@ -434,51 +470,14 @@ public interface FileTreePackage extends EPackage {
 	int PATH_TO_TREE_ELEMENT_MAP_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.UserIdToAccessRightsMapImpl <em>User Id To Access Rights Map</em>}' class.
+	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.AccessRightImpl <em>Access Right</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.hive2hive.rcp.client.model.filetree.impl.UserIdToAccessRightsMapImpl
-	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getUserIdToAccessRightsMap()
+	 * @see org.hive2hive.rcp.client.model.filetree.impl.AccessRightImpl
+	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getAccessRight()
 	 * @generated
 	 */
-	int USER_ID_TO_ACCESS_RIGHTS_MAP = 7;
-
-	/**
-	 * The feature id for the '<em><b>Key</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_ID_TO_ACCESS_RIGHTS_MAP__KEY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_ID_TO_ACCESS_RIGHTS_MAP__VALUE = 1;
-
-	/**
-	 * The number of structural features of the '<em>User Id To Access Rights Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_ID_TO_ACCESS_RIGHTS_MAP_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.AccessRightsImpl <em>Access Rights</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.hive2hive.rcp.client.model.filetree.impl.AccessRightsImpl
-	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getAccessRights()
-	 * @generated
-	 */
-	int ACCESS_RIGHTS = 8;
+	int ACCESS_RIGHT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Read Permission</b></em>' attribute.
@@ -487,7 +486,7 @@ public interface FileTreePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACCESS_RIGHTS__READ_PERMISSION = 0;
+	int ACCESS_RIGHT__READ_PERMISSION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Write Permission</b></em>' attribute.
@@ -496,16 +495,25 @@ public interface FileTreePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACCESS_RIGHTS__WRITE_PERMISSION = 1;
+	int ACCESS_RIGHT__WRITE_PERMISSION = 1;
 
 	/**
-	 * The number of structural features of the '<em>Access Rights</em>' class.
+	 * The feature id for the '<em><b>User Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACCESS_RIGHTS_FEATURE_COUNT = 2;
+	int ACCESS_RIGHT__USER_ID = 2;
+
+	/**
+	 * The number of structural features of the '<em>Access Right</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACCESS_RIGHT_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '<em>Path</em>' data type.
@@ -515,7 +523,7 @@ public interface FileTreePackage extends EPackage {
 	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getPath()
 	 * @generated
 	 */
-	int PATH = 9;
+	int PATH = 8;
 
 
 	/**
@@ -583,6 +591,17 @@ public interface FileTreePackage extends EPackage {
 	EReference getFileTreeElement_Parent();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement#getAccessRights <em>Access Rights</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Access Rights</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.FileTreeElement#getAccessRights()
+	 * @see #getFileTreeElement()
+	 * @generated
+	 */
+	EReference getFileTreeElement_AccessRights();
+
+	/**
 	 * Returns the meta object for class '{@link org.hive2hive.rcp.client.model.filetree.Directory <em>Directory</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -601,17 +620,6 @@ public interface FileTreePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getFile();
-
-	/**
-	 * Returns the meta object for the map '{@link org.hive2hive.rcp.client.model.filetree.File#getAccessRights <em>Access Rights</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Access Rights</em>'.
-	 * @see org.hive2hive.rcp.client.model.filetree.File#getAccessRights()
-	 * @see #getFile()
-	 * @generated
-	 */
-	EReference getFile_AccessRights();
 
 	/**
 	 * Returns the meta object for class '{@link org.hive2hive.rcp.client.model.filetree.Container <em>Container</em>}'.
@@ -734,70 +742,47 @@ public interface FileTreePackage extends EPackage {
 	EReference getPathToTreeElementMap_Value();
 
 	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>User Id To Access Rights Map</em>}'.
+	 * Returns the meta object for class '{@link org.hive2hive.rcp.client.model.filetree.AccessRight <em>Access Right</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>User Id To Access Rights Map</em>'.
-	 * @see java.util.Map.Entry
-	 * @model keyDataType="org.eclipse.emf.ecore.EString"
-	 *        valueType="org.hive2hive.rcp.client.model.filetree.AccessRights" valueRequired="true"
+	 * @return the meta object for class '<em>Access Right</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.AccessRight
 	 * @generated
 	 */
-	EClass getUserIdToAccessRightsMap();
+	EClass getAccessRight();
 
 	/**
-	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Key</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getUserIdToAccessRightsMap()
-	 * @generated
-	 */
-	EAttribute getUserIdToAccessRightsMap_Key();
-
-	/**
-	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Value</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getUserIdToAccessRightsMap()
-	 * @generated
-	 */
-	EReference getUserIdToAccessRightsMap_Value();
-
-	/**
-	 * Returns the meta object for class '{@link org.hive2hive.rcp.client.model.filetree.AccessRights <em>Access Rights</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Access Rights</em>'.
-	 * @see org.hive2hive.rcp.client.model.filetree.AccessRights
-	 * @generated
-	 */
-	EClass getAccessRights();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.hive2hive.rcp.client.model.filetree.AccessRights#isReadPermission <em>Read Permission</em>}'.
+	 * Returns the meta object for the attribute '{@link org.hive2hive.rcp.client.model.filetree.AccessRight#isReadPermission <em>Read Permission</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Read Permission</em>'.
-	 * @see org.hive2hive.rcp.client.model.filetree.AccessRights#isReadPermission()
-	 * @see #getAccessRights()
+	 * @see org.hive2hive.rcp.client.model.filetree.AccessRight#isReadPermission()
+	 * @see #getAccessRight()
 	 * @generated
 	 */
-	EAttribute getAccessRights_ReadPermission();
+	EAttribute getAccessRight_ReadPermission();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.hive2hive.rcp.client.model.filetree.AccessRights#isWritePermission <em>Write Permission</em>}'.
+	 * Returns the meta object for the attribute '{@link org.hive2hive.rcp.client.model.filetree.AccessRight#isWritePermission <em>Write Permission</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Write Permission</em>'.
-	 * @see org.hive2hive.rcp.client.model.filetree.AccessRights#isWritePermission()
-	 * @see #getAccessRights()
+	 * @see org.hive2hive.rcp.client.model.filetree.AccessRight#isWritePermission()
+	 * @see #getAccessRight()
 	 * @generated
 	 */
-	EAttribute getAccessRights_WritePermission();
+	EAttribute getAccessRight_WritePermission();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.hive2hive.rcp.client.model.filetree.AccessRight#getUserId <em>User Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>User Id</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.AccessRight#getUserId()
+	 * @see #getAccessRight()
+	 * @generated
+	 */
+	EAttribute getAccessRight_UserId();
 
 	/**
 	 * Returns the meta object for data type '{@link java.nio.file.Path <em>Path</em>}'.
@@ -886,6 +871,14 @@ public interface FileTreePackage extends EPackage {
 		EReference FILE_TREE_ELEMENT__PARENT = eINSTANCE.getFileTreeElement_Parent();
 
 		/**
+		 * The meta object literal for the '<em><b>Access Rights</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FILE_TREE_ELEMENT__ACCESS_RIGHTS = eINSTANCE.getFileTreeElement_AccessRights();
+
+		/**
 		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.DirectoryImpl <em>Directory</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -904,14 +897,6 @@ public interface FileTreePackage extends EPackage {
 		 * @generated
 		 */
 		EClass FILE = eINSTANCE.getFile();
-
-		/**
-		 * The meta object literal for the '<em><b>Access Rights</b></em>' map feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FILE__ACCESS_RIGHTS = eINSTANCE.getFile_AccessRights();
 
 		/**
 		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.ContainerImpl <em>Container</em>}' class.
@@ -1008,40 +993,14 @@ public interface FileTreePackage extends EPackage {
 		EReference PATH_TO_TREE_ELEMENT_MAP__VALUE = eINSTANCE.getPathToTreeElementMap_Value();
 
 		/**
-		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.UserIdToAccessRightsMapImpl <em>User Id To Access Rights Map</em>}' class.
+		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.AccessRightImpl <em>Access Right</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.hive2hive.rcp.client.model.filetree.impl.UserIdToAccessRightsMapImpl
-		 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getUserIdToAccessRightsMap()
+		 * @see org.hive2hive.rcp.client.model.filetree.impl.AccessRightImpl
+		 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getAccessRight()
 		 * @generated
 		 */
-		EClass USER_ID_TO_ACCESS_RIGHTS_MAP = eINSTANCE.getUserIdToAccessRightsMap();
-
-		/**
-		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute USER_ID_TO_ACCESS_RIGHTS_MAP__KEY = eINSTANCE.getUserIdToAccessRightsMap_Key();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USER_ID_TO_ACCESS_RIGHTS_MAP__VALUE = eINSTANCE.getUserIdToAccessRightsMap_Value();
-
-		/**
-		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.AccessRightsImpl <em>Access Rights</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.hive2hive.rcp.client.model.filetree.impl.AccessRightsImpl
-		 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getAccessRights()
-		 * @generated
-		 */
-		EClass ACCESS_RIGHTS = eINSTANCE.getAccessRights();
+		EClass ACCESS_RIGHT = eINSTANCE.getAccessRight();
 
 		/**
 		 * The meta object literal for the '<em><b>Read Permission</b></em>' attribute feature.
@@ -1049,7 +1008,7 @@ public interface FileTreePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ACCESS_RIGHTS__READ_PERMISSION = eINSTANCE.getAccessRights_ReadPermission();
+		EAttribute ACCESS_RIGHT__READ_PERMISSION = eINSTANCE.getAccessRight_ReadPermission();
 
 		/**
 		 * The meta object literal for the '<em><b>Write Permission</b></em>' attribute feature.
@@ -1057,7 +1016,15 @@ public interface FileTreePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ACCESS_RIGHTS__WRITE_PERMISSION = eINSTANCE.getAccessRights_WritePermission();
+		EAttribute ACCESS_RIGHT__WRITE_PERMISSION = eINSTANCE.getAccessRight_WritePermission();
+
+		/**
+		 * The meta object literal for the '<em><b>User Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ACCESS_RIGHT__USER_ID = eINSTANCE.getAccessRight_UserId();
 
 		/**
 		 * The meta object literal for the '<em>Path</em>' data type.

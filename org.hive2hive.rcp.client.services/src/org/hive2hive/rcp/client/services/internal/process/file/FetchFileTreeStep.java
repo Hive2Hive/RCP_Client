@@ -6,10 +6,13 @@ import java.util.List;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.hive2hive.core.api.interfaces.IFileManager;
 import org.hive2hive.core.exceptions.NoSessionException;
+import org.hive2hive.core.model.PermissionType;
+import org.hive2hive.core.model.UserPermission;
 import org.hive2hive.core.processes.framework.exceptions.InvalidProcessStateException;
 import org.hive2hive.core.processes.framework.exceptions.ProcessExecutionException;
 import org.hive2hive.core.processes.framework.interfaces.IResultProcessComponent;
 import org.hive2hive.core.processes.implementations.files.list.FileTaste;
+import org.hive2hive.rcp.client.model.filetree.AccessRight;
 import org.hive2hive.rcp.client.model.filetree.Directory;
 import org.hive2hive.rcp.client.model.filetree.FileTree;
 import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
@@ -85,9 +88,22 @@ public class FetchFileTreeStep extends ServiceProcessStep {
 		element.setName(fileTaste.getName());
 		element.setPath(fileTaste.getFile().toPath());
 		tree.getElements().put(element.getPath(), element);
+		addAccessRights(element, fileTaste);
+		addToParent(tree, element);
+	}
+
+	private void addAccessRights(FileTreeElement element, FileTaste fileTaste) {
+		for (UserPermission permission : fileTaste.getUserPermissions()) {
+			AccessRight accessRight = FileTreeFactory.eINSTANCE.createAccessRight();
+			accessRight.setUserId(permission.getUserId());
+			accessRight.setReadPermission(true);
+			accessRight.setWritePermission(PermissionType.WRITE == permission.getPermission());
+			element.getAccessRights().add(accessRight);
+		}
+	}
+
+	void addToParent(FileTree tree, FileTreeElement element) {
 		Path parentPath = element.getPath().getParent();
-		fileTaste.getPath().isAbsolute();
-		logger.debug("Hash of parent path = {}", parentPath.hashCode());
 		Directory parent = (Directory) tree.getElements().get(parentPath);
 		parent.getChildren().add(element);
 	}

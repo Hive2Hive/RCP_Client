@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
+import org.hive2hive.rcp.client.model.filetree.util.FileTreeModelUtile;
 import org.hive2hive.rcp.client.services.IFileService;
 import org.hive2hive.rcp.client.services.IModelService;
 import org.hive2hive.rcp.client.services.IUserService;
@@ -63,6 +64,9 @@ public class FileTreePart {
 
 		createTreeViewer(parent, resourceLoader);
 		tree.setLayoutData("growx, growy");
+
+		treeViewer.setInput(FileTreeModelUtile.createDummyModel());
+		treeViewer.expandAll();
 	}
 
 	void createTreeViewer(final Composite parent, IBundleResourceLoader resourceLoader) {
