@@ -30,7 +30,7 @@ public class NetworkConnectHandler {
 			IBundleResourceLoader resourceLoader, IEventBroker eventBroker) {
 		logger.debug("Connecting to the network now.");
 		ConnectingToNetworkDialog dialog = new ConnectingToNetworkDialog(shell, resourceLoader);
-		if (dialog.open() == IDialogConstants.OK_ID) {
+		if (IDialogConstants.OK_ID == dialog.open()) {
 			logger.debug("Connect was pressed");
 			logger.debug("Have to create initial node = {}", dialog.isCreateInitialNodeSelected());
 			if (dialog.isCreateInitialNodeSelected()) {

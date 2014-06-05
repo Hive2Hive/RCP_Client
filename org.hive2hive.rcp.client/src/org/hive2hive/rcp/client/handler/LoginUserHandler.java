@@ -20,7 +20,7 @@ public class LoginUserHandler {
 	public void loginUser(Shell shell, IBundleResourceLoader resourceLoader, IUserService userService,
 			IEventBroker eventBroker) {
 		UserLoginDialog dialog = new UserLoginDialog(shell, resourceLoader);
-		if (dialog.open() == IDialogConstants.OK_ID) {
+		if (IDialogConstants.OK_ID == dialog.open()) {
 			logger.debug("Login user '{}'", dialog.getUserId());
 			Path fileRootPath = Paths.get(dialog.getFileRoot());
 			userService.registerAndLoginUser(dialog.getUserId(), dialog.getPassword(), dialog.getPin(), fileRootPath,

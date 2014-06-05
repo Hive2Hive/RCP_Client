@@ -48,6 +48,8 @@ public class UserLoginDialog extends TitleAreaDialog {
 	protected Control createDialogArea(Composite parent) {
 		getTitleImageLabel().setImage(resourceLoader.loadImage(this.getClass(), "images/user/64x64/login64x64.png"));
 
+		setMessage("Log in user");
+
 		Composite area = (Composite) super.createDialogArea(parent);
 		final Composite container = new Composite(area, SWT.NONE);
 
