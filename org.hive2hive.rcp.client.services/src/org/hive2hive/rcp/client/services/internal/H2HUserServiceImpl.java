@@ -84,10 +84,10 @@ public class H2HUserServiceImpl extends H2HService implements IUserService {
 
 	@Override
 	public void registerAndLoginUser(String userId, String password, String pin, Path rootDirPath, IEventBroker eventBroker) {
-		SequentialProcess p = new SequentialProcess();
-		p.add(new RegisterProcessStep(userId, password, pin, eventBroker, getUserManager()));
-		p.add(new LoginProcessStep(userId, password, pin, rootDirPath, getUserManager(), eventBroker, getUser()));
-		runProcessAsynchronously(p);
+		SequentialProcess process = new SequentialProcess();
+		process.add(new RegisterProcessStep(userId, password, pin, eventBroker, getUserManager()));
+		process.add(new LoginProcessStep(userId, password, pin, rootDirPath, getUserManager(), eventBroker, getUser()));
+		runProcessAsynchronously(process);
 	}
 
 }

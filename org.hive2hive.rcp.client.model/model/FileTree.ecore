@@ -12,9 +12,10 @@
         eOpposite="#//Container/children"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="accessRights" upperBound="-1"
         eType="#//AccessRight"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" eType="#//File"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Directory" eSuperTypes="#//Container"/>
-  <eClassifiers xsi:type="ecore:EClass" name="File" eSuperTypes="#//FileTreeElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="H2HFile" eSuperTypes="#//FileTreeElement"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Path" instanceClassName="java.nio.file.Path"/>
   <eClassifiers xsi:type="ecore:EClass" name="Container" eSuperTypes="#//FileTreeElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
@@ -36,4 +37,5 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="writePermission" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="userId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="File" instanceClassName="java.io.File"/>
 </ecore:EPackage>

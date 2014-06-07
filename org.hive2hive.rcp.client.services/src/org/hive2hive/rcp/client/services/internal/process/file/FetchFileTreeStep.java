@@ -40,6 +40,7 @@ public class FetchFileTreeStep extends ServiceProcessStep {
 	@Override
 	protected void doExecute() throws InvalidProcessStateException, ProcessExecutionException {
 		try {
+			logger.debug("Start fetching file tree.");
 			IResultProcessComponent<List<FileTaste>> resultProcessComponent = fileManager.getFileList();
 			ResultProcessWaiter<List<FileTaste>> waiter = new ResultProcessWaiter<>();
 			resultProcessComponent.attachListener(waiter);
@@ -47,7 +48,8 @@ public class FetchFileTreeStep extends ServiceProcessStep {
 			List<FileTaste> result = waiter.getResult();
 			if (result != null) {
 				createFileTree(result);
-				publish(IFileService.FILE_LIST_UPDATE, IFileService.FILE_LIST_UPDATE);
+				publish(IFileService.FILE_SERVICE_STATUS, IFileService.Status.FILE_LIST_UPDATE);
+				logger.debug("Fetching file tree successful.");
 			}
 		} catch (NoSessionException e) {
 			e.printStackTrace();
@@ -76,7 +78,7 @@ public class FetchFileTreeStep extends ServiceProcessStep {
 			if (fileTaste.getFile().isDirectory()) {
 				element = FileTreeFactory.eINSTANCE.createDirectory();
 			} else {
-				element = FileTreeFactory.eINSTANCE.createFile();
+				element = FileTreeFactory.eINSTANCE.createH2HFile();
 			}
 			addFileTreeElement(tree, element, fileTaste);
 		}
@@ -87,6 +89,7 @@ public class FetchFileTreeStep extends ServiceProcessStep {
 	private void addFileTreeElement(FileTree tree, FileTreeElement element, FileTaste fileTaste) {
 		element.setName(fileTaste.getName());
 		element.setPath(fileTaste.getFile().toPath());
+		element.setFile(fileTaste.getFile());
 		tree.getElements().put(element.getPath(), element);
 		addAccessRights(element, fileTaste);
 		addToParent(tree, element);

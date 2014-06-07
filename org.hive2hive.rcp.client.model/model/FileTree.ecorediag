@@ -27,6 +27,10 @@
         <element xmi:type="ecore:EAttribute" href="FileTree.ecore#//FileTreeElement/name"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_NOSNIeA8EeOszI65_A6bmg"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_IJ9zEO0_EeOkzeDPiD7vcA" type="2001">
+        <element xmi:type="ecore:EAttribute" href="FileTree.ecore#//FileTreeElement/file"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_IJ9zEe0_EeOkzeDPiD7vcA"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_qnf5kt_eEeOszI65_A6bmg"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_qnf5k9_eEeOszI65_A6bmg"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_qnf5lN_eEeOszI65_A6bmg"/>
@@ -69,7 +73,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_JcIrc9_fEeOszI65_A6bmg"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_JcHdUd_fEeOszI65_A6bmg" fontColor="4210752" fontName="Lucida Grande" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="FileTree.ecore#//File"/>
+    <element xmi:type="ecore:EClass" href="FileTree.ecore#//H2HFile"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_JcHdUt_fEeOszI65_A6bmg" x="32" y="156"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_A9A6sOA6EeOszI65_A6bmg" type="1004">
@@ -77,7 +81,7 @@
     <children xmi:type="notation:Node" xmi:id="_A9CI0OA6EeOszI65_A6bmg" type="4009"/>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_A9A6seA6EeOszI65_A6bmg" fontColor="4210752" fontName="Lucida Grande" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EDataType" href="FileTree.ecore#//Path"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_A9A6suA6EeOszI65_A6bmg" x="344" y="24"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_A9A6suA6EeOszI65_A6bmg" x="336" y="-42"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_F3WJ4OA-EeOszI65_A6bmg" type="1001">
     <children xmi:type="notation:Node" xmi:id="_F3Ww8OA-EeOszI65_A6bmg" type="4001"/>
@@ -174,6 +178,13 @@
     <styles xmi:type="notation:ShapeStyle" xmi:id="_SAhXMep7EeOSMrx3oeqGsw" fontColor="4210752" fontName="Lucida Grande" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="FileTree.ecore#//AccessRight"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SAhXMup7EeOSMrx3oeqGsw" x="-280" y="42"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_D8wy0O0_EeOkzeDPiD7vcA" type="1004">
+    <children xmi:type="notation:Node" xmi:id="_D8yoAO0_EeOkzeDPiD7vcA" type="4008"/>
+    <children xmi:type="notation:Node" xmi:id="_D8zPEO0_EeOkzeDPiD7vcA" type="4009"/>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_D8wy0e0_EeOkzeDPiD7vcA" fontColor="4210752" fontName="Lucida Grande" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EDataType" href="FileTree.ecore#//File"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_D8wy0u0_EeOkzeDPiD7vcA" x="-252" y="-28"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_n8jWQd_eEeOszI65_A6bmg"/>
   <element xmi:type="ecore:EPackage" href="FileTree.ecore#/"/>

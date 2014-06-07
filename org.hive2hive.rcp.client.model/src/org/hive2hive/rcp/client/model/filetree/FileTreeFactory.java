@@ -40,13 +40,13 @@ public interface FileTreeFactory extends EFactory {
 	Directory createDirectory();
 
 	/**
-	 * Returns a new object of class '<em>File</em>'.
+	 * Returns a new object of class '<em>H2H File</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>File</em>'.
+	 * @return a new object of class '<em>H2H File</em>'.
 	 * @generated
 	 */
-	File createFile();
+	H2HFile createH2HFile();
 
 	/**
 	 * Returns a new object of class '<em>Container</em>'.

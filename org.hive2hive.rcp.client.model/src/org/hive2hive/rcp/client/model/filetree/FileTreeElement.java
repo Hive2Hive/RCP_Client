@@ -2,6 +2,7 @@
  */
 package org.hive2hive.rcp.client.model.filetree;
 
+import java.io.File;
 import java.nio.file.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
@@ -19,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement#getName <em>Name</em>}</li>
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement#getParent <em>Parent</em>}</li>
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement#getAccessRights <em>Access Rights</em>}</li>
+ *   <li>{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement#getFile <em>File</em>}</li>
  * </ul>
  * </p>
  *
@@ -122,5 +124,31 @@ public interface FileTreeElement extends EObject {
 	 * @generated
 	 */
 	EList<AccessRight> getAccessRights();
+
+	/**
+	 * Returns the value of the '<em><b>File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>File</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>File</em>' attribute.
+	 * @see #setFile(File)
+	 * @see org.hive2hive.rcp.client.model.filetree.FileTreePackage#getFileTreeElement_File()
+	 * @model dataType="org.hive2hive.rcp.client.model.filetree.File"
+	 * @generated
+	 */
+	File getFile();
+
+	/**
+	 * Sets the value of the '{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement#getFile <em>File</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>File</em>' attribute.
+	 * @see #getFile()
+	 * @generated
+	 */
+	void setFile(File value);
 
 } // FileTreeElement

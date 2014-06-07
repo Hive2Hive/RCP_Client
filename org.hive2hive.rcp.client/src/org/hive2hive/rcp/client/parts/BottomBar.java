@@ -12,6 +12,7 @@ import org.eclipse.e4.core.commands.EHandlerService;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -20,8 +21,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.widgets.Shell;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
 import org.hive2hive.rcp.client.services.INetworkConnectionService;
+import org.hive2hive.rcp.client.services.IService;
 import org.hive2hive.rcp.client.services.IUserService;
 
 public class BottomBar {
@@ -214,6 +217,12 @@ public class BottomBar {
 	private void hideProgressInfo() {
 		progressSymbol.setVisible(false);
 		lblProgressMessage.setText("");
+	}
+
+	@Inject
+	@Optional
+	private void displayServiceError(Shell shell, @UIEventTopic(IService.SERVICE_ERROR) String errorMessage) {
+		MessageDialog.openError(shell, "Exception", errorMessage);
 	}
 
 }

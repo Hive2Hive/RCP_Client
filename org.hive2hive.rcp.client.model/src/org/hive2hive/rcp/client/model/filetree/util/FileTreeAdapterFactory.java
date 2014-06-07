@@ -79,8 +79,8 @@ public class FileTreeAdapterFactory extends AdapterFactoryImpl {
 				return createDirectoryAdapter();
 			}
 			@Override
-			public Adapter caseFile(File object) {
-				return createFileAdapter();
+			public Adapter caseH2HFile(H2HFile object) {
+				return createH2HFileAdapter();
 			}
 			@Override
 			public Adapter caseContainer(Container object) {
@@ -161,16 +161,16 @@ public class FileTreeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.hive2hive.rcp.client.model.filetree.File <em>File</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.hive2hive.rcp.client.model.filetree.H2HFile <em>H2H File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.hive2hive.rcp.client.model.filetree.File
+	 * @see org.hive2hive.rcp.client.model.filetree.H2HFile
 	 * @generated
 	 */
-	public Adapter createFileAdapter() {
+	public Adapter createH2HFileAdapter() {
 		return null;
 	}
 

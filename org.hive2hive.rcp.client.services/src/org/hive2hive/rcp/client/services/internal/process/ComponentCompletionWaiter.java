@@ -11,6 +11,7 @@ public class ComponentCompletionWaiter implements IProcessComponentListener {
 	private final Logger logger = LoggerFactory.getLogger(ComponentCompletionWaiter.class);
 
 	private final CountDownLatch latch = new CountDownLatch(1);
+	private RollbackReason rollBackReason;
 
 	@Override
 	public void onSucceeded() {
@@ -19,6 +20,7 @@ public class ComponentCompletionWaiter implements IProcessComponentListener {
 
 	@Override
 	public void onFailed(RollbackReason reason) {
+		rollBackReason = reason;
 		latch.countDown();
 	}
 
@@ -28,5 +30,9 @@ public class ComponentCompletionWaiter implements IProcessComponentListener {
 		} catch (InterruptedException e) {
 			logger.error("Wait for the process component to finish was interrupted.", e);
 		}
+	}
+
+	public RollbackReason getRollBackReason() {
+		return rollBackReason;
 	}
 }

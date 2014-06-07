@@ -4,9 +4,9 @@ import java.nio.file.Paths;
 
 import org.hive2hive.rcp.client.model.filetree.AccessRight;
 import org.hive2hive.rcp.client.model.filetree.Directory;
-import org.hive2hive.rcp.client.model.filetree.File;
 import org.hive2hive.rcp.client.model.filetree.FileTree;
 import org.hive2hive.rcp.client.model.filetree.FileTreeFactory;
+import org.hive2hive.rcp.client.model.filetree.H2HFile;
 
 public final class FileTreeModelUtile {
 
@@ -28,7 +28,7 @@ public final class FileTreeModelUtile {
 		dir1.setPath(Paths.get("/root/dir1"));
 		rootDir.getChildren().add(dir1);
 
-		File fileA = factory.createFile();
+		H2HFile fileA = factory.createH2HFile();
 		fileA.setName("FileA.txt");
 		fileA.setPath(Paths.get("/root/dir1/FileA"));
 		AccessRight accessRight = factory.createAccessRight();
@@ -50,7 +50,7 @@ public final class FileTreeModelUtile {
 		subDir1.setPath(Paths.get("/root/dir1/SubDir1"));
 		dir1.getChildren().add(subDir1);
 
-		File subFileA = factory.createFile();
+		H2HFile subFileA = factory.createH2HFile();
 		subFileA.setName("SubFileA.png");
 		subFileA.setPath(Paths.get("/root/dir1/SubDir1/SubFileA"));
 		subDir1.getChildren().add(subFileA);

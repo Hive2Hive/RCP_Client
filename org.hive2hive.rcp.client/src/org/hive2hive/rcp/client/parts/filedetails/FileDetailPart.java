@@ -7,6 +7,8 @@ import javax.inject.Named;
 import net.miginfocom.swt.MigLayout;
 
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.services.events.IEventBroker;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -24,9 +26,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
 import org.hive2hive.rcp.client.model.filetree.AccessRight;
+import org.hive2hive.rcp.client.model.filetree.FileTree;
 import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
 import org.hive2hive.rcp.client.model.filetree.FileTreeFactory;
 import org.hive2hive.rcp.client.parts.filedetails.dialog.AddUserAccessRighsDialog;
+import org.hive2hive.rcp.client.services.IFileService;
+import org.hive2hive.rcp.client.services.IModelService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +54,16 @@ public class FileDetailPart {
 	private Button btnAddUserAccessRights;
 
 	@Inject
-	Shell shell;
+	private Shell shell;
+
+	@Inject
+	private IFileService fileService;
+
+	@Inject
+	private IEventBroker eventBroker;
+
+	@Inject
+	private IModelService modelService;
 
 	@PostConstruct
 	public void createControlls(Composite parent, IBundleResourceLoader resourceLoader) {
@@ -191,8 +205,17 @@ public class FileDetailPart {
 		right.setUserId(userId);
 		right.setReadPermission(true);
 		right.setWritePermission(grantWriteAccess);
-		fileTreeElement.getAccessRights().add(right);
-		updateAccessRights();
+		fileService.shareWithUser(userId, fileTreeElement.getFile(), right, eventBroker);
+	}
+
+	@Inject
+	@Optional
+	private void handleFileTreeChanged(@UIEventTopic(IFileService.FILE_SERVICE_STATUS) IFileService.Status status) {
+		if (IFileService.Status.FILE_LIST_UPDATE == status && fileTreeElement != null) {
+			FileTree fileTree = modelService.getUser().getFileTree();
+			fileTreeElement = fileTree.getElements().get(fileTreeElement.getPath());
+			updateViewElements();
+		}
 	}
 
 }

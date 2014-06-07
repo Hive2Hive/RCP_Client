@@ -104,13 +104,22 @@ public interface FileTreePackage extends EPackage {
 	int FILE_TREE_ELEMENT__ACCESS_RIGHTS = 3;
 
 	/**
+	 * The feature id for the '<em><b>File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_TREE_ELEMENT__FILE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_TREE_ELEMENT_FEATURE_COUNT = 4;
+	int FILE_TREE_ELEMENT_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.ContainerImpl <em>Container</em>}' class.
@@ -157,6 +166,15 @@ public interface FileTreePackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTAINER__ACCESS_RIGHTS = FILE_TREE_ELEMENT__ACCESS_RIGHTS;
+
+	/**
+	 * The feature id for the '<em><b>File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER__FILE = FILE_TREE_ELEMENT__FILE;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -221,6 +239,15 @@ public interface FileTreePackage extends EPackage {
 	 * @ordered
 	 */
 	int FILE_TREE__ACCESS_RIGHTS = CONTAINER__ACCESS_RIGHTS;
+
+	/**
+	 * The feature id for the '<em><b>File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_TREE__FILE = CONTAINER__FILE;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -296,6 +323,15 @@ public interface FileTreePackage extends EPackage {
 	int DIRECTORY__ACCESS_RIGHTS = CONTAINER__ACCESS_RIGHTS;
 
 	/**
+	 * The feature id for the '<em><b>File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECTORY__FILE = CONTAINER__FILE;
+
+	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -314,14 +350,14 @@ public interface FileTreePackage extends EPackage {
 	int DIRECTORY_FEATURE_COUNT = CONTAINER_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.FileImpl <em>File</em>}' class.
+	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.H2HFileImpl <em>H2H File</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileImpl
-	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getFile()
+	 * @see org.hive2hive.rcp.client.model.filetree.impl.H2HFileImpl
+	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getH2HFile()
 	 * @generated
 	 */
-	int FILE = 3;
+	int H2H_FILE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -330,7 +366,7 @@ public interface FileTreePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE__PATH = FILE_TREE_ELEMENT__PATH;
+	int H2H_FILE__PATH = FILE_TREE_ELEMENT__PATH;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -339,7 +375,7 @@ public interface FileTreePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE__NAME = FILE_TREE_ELEMENT__NAME;
+	int H2H_FILE__NAME = FILE_TREE_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference.
@@ -348,7 +384,7 @@ public interface FileTreePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE__PARENT = FILE_TREE_ELEMENT__PARENT;
+	int H2H_FILE__PARENT = FILE_TREE_ELEMENT__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Access Rights</b></em>' reference list.
@@ -357,16 +393,35 @@ public interface FileTreePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE__ACCESS_RIGHTS = FILE_TREE_ELEMENT__ACCESS_RIGHTS;
+	int H2H_FILE__ACCESS_RIGHTS = FILE_TREE_ELEMENT__ACCESS_RIGHTS;
 
 	/**
-	 * The number of structural features of the '<em>File</em>' class.
+	 * The feature id for the '<em><b>File</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_FEATURE_COUNT = FILE_TREE_ELEMENT_FEATURE_COUNT + 0;
+	int H2H_FILE__FILE = FILE_TREE_ELEMENT__FILE;
+
+	/**
+	 * The number of structural features of the '<em>H2H File</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int H2H_FILE_FEATURE_COUNT = FILE_TREE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '<em>File</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.io.File
+	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getFile()
+	 * @generated
+	 */
+	int FILE = 9;
 
 	/**
 	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.UserImpl <em>User</em>}' class.
@@ -602,6 +657,17 @@ public interface FileTreePackage extends EPackage {
 	EReference getFileTreeElement_AccessRights();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement#getFile <em>File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>File</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.FileTreeElement#getFile()
+	 * @see #getFileTreeElement()
+	 * @generated
+	 */
+	EAttribute getFileTreeElement_File();
+
+	/**
 	 * Returns the meta object for class '{@link org.hive2hive.rcp.client.model.filetree.Directory <em>Directory</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -612,14 +678,25 @@ public interface FileTreePackage extends EPackage {
 	EClass getDirectory();
 
 	/**
-	 * Returns the meta object for class '{@link org.hive2hive.rcp.client.model.filetree.File <em>File</em>}'.
+	 * Returns the meta object for class '{@link org.hive2hive.rcp.client.model.filetree.H2HFile <em>H2H File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>File</em>'.
-	 * @see org.hive2hive.rcp.client.model.filetree.File
+	 * @return the meta object for class '<em>H2H File</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.H2HFile
 	 * @generated
 	 */
-	EClass getFile();
+	EClass getH2HFile();
+
+	/**
+	 * Returns the meta object for data type '{@link java.io.File <em>File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>File</em>'.
+	 * @see java.io.File
+	 * @model instanceClass="java.io.File"
+	 * @generated
+	 */
+	EDataType getFile();
 
 	/**
 	 * Returns the meta object for class '{@link org.hive2hive.rcp.client.model.filetree.Container <em>Container</em>}'.
@@ -879,6 +956,14 @@ public interface FileTreePackage extends EPackage {
 		EReference FILE_TREE_ELEMENT__ACCESS_RIGHTS = eINSTANCE.getFileTreeElement_AccessRights();
 
 		/**
+		 * The meta object literal for the '<em><b>File</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILE_TREE_ELEMENT__FILE = eINSTANCE.getFileTreeElement_File();
+
+		/**
 		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.DirectoryImpl <em>Directory</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -889,14 +974,24 @@ public interface FileTreePackage extends EPackage {
 		EClass DIRECTORY = eINSTANCE.getDirectory();
 
 		/**
-		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.FileImpl <em>File</em>}' class.
+		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.H2HFileImpl <em>H2H File</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.hive2hive.rcp.client.model.filetree.impl.FileImpl
+		 * @see org.hive2hive.rcp.client.model.filetree.impl.H2HFileImpl
+		 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getH2HFile()
+		 * @generated
+		 */
+		EClass H2H_FILE = eINSTANCE.getH2HFile();
+
+		/**
+		 * The meta object literal for the '<em>File</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.io.File
 		 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getFile()
 		 * @generated
 		 */
-		EClass FILE = eINSTANCE.getFile();
+		EDataType FILE = eINSTANCE.getFile();
 
 		/**
 		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.ContainerImpl <em>Container</em>}' class.

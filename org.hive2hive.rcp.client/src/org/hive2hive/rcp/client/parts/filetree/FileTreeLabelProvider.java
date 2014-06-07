@@ -7,8 +7,8 @@ import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Display;
 import org.hive2hive.rcp.client.model.filetree.Directory;
-import org.hive2hive.rcp.client.model.filetree.File;
 import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
+import org.hive2hive.rcp.client.model.filetree.H2HFile;
 
 public class FileTreeLabelProvider implements ITableLabelProvider {
 
@@ -45,8 +45,8 @@ public class FileTreeLabelProvider implements ITableLabelProvider {
 	@Override
 	public Image getColumnImage(Object element, int columnIndex) {
 		if (columnIndex == 0) {
-			if (element instanceof File) {
-				File file = (File) element;
+			if (element instanceof H2HFile) {
+				H2HFile file = (H2HFile) element;
 				String[] nameParts = file.getName().split("\\.");
 				String fileExtension = "." + nameParts[nameParts.length - 1];
 				Program program = Program.findProgram(fileExtension);

@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.hive2hive.rcp.client.model.filetree.AccessRight;
 import org.hive2hive.rcp.client.model.filetree.Directory;
-import org.hive2hive.rcp.client.model.filetree.File;
 import org.hive2hive.rcp.client.model.filetree.FileTree;
 import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
 import org.hive2hive.rcp.client.model.filetree.FileTreeFactory;
 import org.hive2hive.rcp.client.model.filetree.FileTreePackage;
+import org.hive2hive.rcp.client.model.filetree.H2HFile;
 import org.hive2hive.rcp.client.model.filetree.User;
 
 /**
@@ -60,7 +60,7 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	 * 
 	 * @generated
 	 */
-	private EClass fileEClass = null;
+	private EClass h2HFileEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,6 +101,14 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	 * @generated
 	 */
 	private EDataType pathEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EDataType fileEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -251,6 +259,17 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getFileTreeElement_File() {
+		return (EAttribute) fileTreeElementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
 	public EClass getDirectory() {
 		return directoryEClass;
 	}
@@ -262,8 +281,19 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	 * @generated
 	 */
 	@Override
-	public EClass getFile() {
-		return fileEClass;
+	public EClass getH2HFile() {
+		return h2HFileEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public EDataType getFile() {
+		return fileEDataType;
 	}
 
 	/**
@@ -484,10 +514,11 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		createEAttribute(fileTreeElementEClass, FILE_TREE_ELEMENT__NAME);
 		createEReference(fileTreeElementEClass, FILE_TREE_ELEMENT__PARENT);
 		createEReference(fileTreeElementEClass, FILE_TREE_ELEMENT__ACCESS_RIGHTS);
+		createEAttribute(fileTreeElementEClass, FILE_TREE_ELEMENT__FILE);
 
 		directoryEClass = createEClass(DIRECTORY);
 
-		fileEClass = createEClass(FILE);
+		h2HFileEClass = createEClass(H2H_FILE);
 
 		containerEClass = createEClass(CONTAINER);
 		createEReference(containerEClass, CONTAINER__CHILDREN);
@@ -510,6 +541,7 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 
 		// Create data types
 		pathEDataType = createEDataType(PATH);
+		fileEDataType = createEDataType(FILE);
 	}
 
 	/**
@@ -546,7 +578,7 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		// Add supertypes to classes
 		fileTreeEClass.getESuperTypes().add(this.getContainer());
 		directoryEClass.getESuperTypes().add(this.getContainer());
-		fileEClass.getESuperTypes().add(this.getFileTreeElement());
+		h2HFileEClass.getESuperTypes().add(this.getFileTreeElement());
 		containerEClass.getESuperTypes().add(this.getFileTreeElement());
 
 		// Initialize classes and features; add operations and parameters
@@ -567,10 +599,12 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		initEReference(getFileTreeElement_AccessRights(), this.getAccessRight(), null, "accessRights", null, 0, -1,
 				FileTreeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFileTreeElement_File(), this.getFile(), "file", null, 0, 1, FileTreeElement.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(directoryEClass, Directory.class, "Directory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(fileEClass, File.class, "File", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(h2HFileEClass, H2HFile.class, "H2HFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(containerEClass, org.hive2hive.rcp.client.model.filetree.Container.class, "Container", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -612,6 +646,7 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 
 		// Initialize data types
 		initEDataType(pathEDataType, Path.class, "Path", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(fileEDataType, java.io.File.class, "File", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

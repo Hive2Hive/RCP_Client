@@ -108,10 +108,12 @@ public class FileTreePart {
 
 	@Inject
 	@Optional
-	public void updateFileTree(@UIEventTopic(IFileService.FILE_LIST_UPDATE) String message) {
-		logger.debug("File list was updated.");
-		treeViewer.setInput(modelService.getUser().getFileTree());
-		treeViewer.expandAll();
+	public void updateFileTree(@UIEventTopic(IFileService.FILE_SERVICE_STATUS) IFileService.Status status) {
+		if (IFileService.Status.FILE_LIST_UPDATE == status) {
+			logger.debug("File list was updated.");
+			treeViewer.setInput(modelService.getUser().getFileTree());
+			treeViewer.expandAll();
+		}
 	}
 
 }
