@@ -26,7 +26,9 @@ import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
 import org.hive2hive.rcp.client.services.INetworkConnectionService;
 import org.hive2hive.rcp.client.services.IService;
 import org.hive2hive.rcp.client.services.IUserService;
+import org.hive2hive.rcp.client.services.ServiceFailureMessage;
 
+@SuppressWarnings("restriction")
 public class BottomBar {
 
 	private static final String CONNECT_TO_NETWORK_COMMAND_ID = "org.hive2hive.rcp.client.command.network.connect";
@@ -221,8 +223,10 @@ public class BottomBar {
 
 	@Inject
 	@Optional
-	private void displayServiceError(Shell shell, @UIEventTopic(IService.SERVICE_ERROR) String errorMessage) {
-		MessageDialog.openError(shell, "Exception", errorMessage);
+	private void displayServiceError(Shell shell,
+			@UIEventTopic(IService.SERVICE_FAILURE) ServiceFailureMessage failureMessage) {
+		String message = failureMessage.getMessage() + "\n\n" + failureMessage.getDetails();
+		MessageDialog.openError(shell, failureMessage.getTitle(), message);
 	}
 
 }
