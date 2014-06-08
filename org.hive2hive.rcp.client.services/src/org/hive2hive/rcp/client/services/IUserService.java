@@ -21,23 +21,23 @@ public interface IUserService {
 		LOGOUT_FAILED
 	}
 
-	public class StatusMessage {
-		private final Status status;
-		private final String message;
-
-		public StatusMessage(Status status, String message) {
-			this.status = status;
-			this.message = message;
-		}
-
-		public Status getStatus() {
-			return status;
-		}
-
-		public String getMessage() {
-			return message;
-		}
-	}
+	// public class StatusMessage {
+	// private final Status status;
+	// private final String message;
+	//
+	// public StatusMessage(Status status, String message) {
+	// this.status = status;
+	// this.message = message;
+	// }
+	//
+	// public Status getStatus() {
+	// return status;
+	// }
+	//
+	// public String getMessage() {
+	// return message;
+	// }
+	// }
 
 	boolean isUserRegistered(String userId);
 

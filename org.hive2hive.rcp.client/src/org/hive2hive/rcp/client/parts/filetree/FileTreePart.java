@@ -24,6 +24,7 @@ import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
 import org.hive2hive.rcp.client.model.filetree.util.FileTreeModelUtile;
 import org.hive2hive.rcp.client.services.IFileService;
 import org.hive2hive.rcp.client.services.IModelService;
+import org.hive2hive.rcp.client.services.IService;
 import org.hive2hive.rcp.client.services.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,7 +100,8 @@ public class FileTreePart {
 
 	@Inject
 	@Optional
-	private void handleSuccessfulUserLogin(@UIEventTopic(IUserService.USER_STATUS) IUserService.StatusMessage statusMessage) {
+	private void handleSuccessfulUserLogin(
+			@UIEventTopic(IUserService.USER_STATUS) IService.StatusMessage<IUserService.Status> statusMessage) {
 		if (IUserService.Status.LOGIN_SUCCESSFUL == statusMessage.getStatus()) {
 			logger.debug("User '{}' logged in successfully - request current file tree.", statusMessage.getMessage());
 			fileService.updateFileTreeOfUser(eventBroker);

@@ -174,7 +174,8 @@ public class BottomBar {
 
 	@Inject
 	@Optional
-	private void handleUserStatus(@UIEventTopic(IUserService.USER_STATUS) IUserService.StatusMessage statusMessage,
+	private void handleUserStatus(
+			@UIEventTopic(IUserService.USER_STATUS) IService.StatusMessage<IUserService.Status> statusMessage,
 			IBundleResourceLoader resourceLoader) {
 		switch (statusMessage.getStatus()) {
 			case REGISTERING_USER:
