@@ -1,5 +1,7 @@
 package org.hive2hive.rcp.client.parts.filedetails;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,6 +26,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
+import org.hive2hive.core.model.IFileVersion;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
 import org.hive2hive.rcp.client.model.filetree.AccessRight;
 import org.hive2hive.rcp.client.model.filetree.FileTree;
@@ -109,6 +112,7 @@ public class FileDetailPart {
 			logger.debug("Selected element: {}", element);
 			fileTreeElement = element;
 			updateViewElements();
+			fileService.getFileVersions(fileTreeElement.getFile(), eventBroker);
 		}
 	}
 
@@ -215,6 +219,16 @@ public class FileDetailPart {
 			FileTree fileTree = modelService.getUser().getFileTree();
 			fileTreeElement = fileTree.getElements().get(fileTreeElement.getPath());
 			updateViewElements();
+		}
+	}
+
+	@Inject
+	@Optional
+	private void handleFileVersionFetch(@UIEventTopic(IFileService.FETCHED_FILE_VERSIONS) List<IFileVersion> fileVersions) {
+		logger.debug("Received file versions:");
+		for (IFileVersion fileVersion : fileVersions) {
+			logger.debug("File version: index={}, date={}, size={}", fileVersion.getIndex(), fileVersion.getDate(),
+					fileVersion.getSize());
 		}
 	}
 
