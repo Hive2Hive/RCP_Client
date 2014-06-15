@@ -10,7 +10,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
+import org.hive2hive.rcp.client.model.filetree.TreeElement;
 
 public class AddUserAccessRighsDialog extends TitleAreaDialog {
 
@@ -22,14 +22,14 @@ public class AddUserAccessRighsDialog extends TitleAreaDialog {
 	private Button btnReadAccess;
 	private Button btnWriteAccess;
 
-	private final FileTreeElement fileTreeElement;
+	private final TreeElement treeElement;
 
 	private String userId;
 	private boolean grantWriteAccess;
 
-	public AddUserAccessRighsDialog(Shell parentShell, FileTreeElement fileTreeElement) {
+	public AddUserAccessRighsDialog(Shell parentShell, TreeElement treeElement) {
 		super(parentShell);
-		this.fileTreeElement = fileTreeElement;
+		this.treeElement = treeElement;
 	}
 
 	@Override
@@ -46,12 +46,12 @@ public class AddUserAccessRighsDialog extends TitleAreaDialog {
 		Label label = new Label(container, SWT.NONE);
 		label.setText("Filename:");
 		lblFileName = new Label(container, SWT.NONE);
-		lblFileName.setText(fileTreeElement.getName());
+		lblFileName.setText(treeElement.getName());
 
 		label = new Label(container, SWT.NONE);
 		label.setText("Path:");
 		lblFilePath = new Label(container, SWT.NONE);
-		lblFilePath.setText(fileTreeElement.getPath().toString());
+		lblFilePath.setText(treeElement.getPath().toString());
 		lblFilePath.setLayoutData("growx");
 
 		label = new Label(container, SWT.NONE);

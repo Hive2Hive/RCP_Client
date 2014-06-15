@@ -3,7 +3,7 @@ package org.hive2hive.rcp.client.parts.filetree;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.hive2hive.rcp.client.model.filetree.Container;
-import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
+import org.hive2hive.rcp.client.model.filetree.TreeElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +38,7 @@ public class FileTreeContentProvider implements ITreeContentProvider {
 
 	@Override
 	public Object getParent(Object element) {
-		FileTreeElement treeElement = (FileTreeElement) element;
+		TreeElement treeElement = (TreeElement) element;
 		return treeElement.getParent();
 	}
 

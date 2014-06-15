@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="filetree" nsURI="http://filetree/1.0" nsPrefix="filetree">
-  <eClassifiers xsi:type="ecore:EClass" name="FileTree" eSuperTypes="#//Container">
+  <eClassifiers xsi:type="ecore:EClass" name="Tree" eSuperTypes="#//Container">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//PathToTreeElementMap" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FileTreeElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="TreeElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="#//Path"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Container"
         eOpposite="#//Container/children"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="accessRights" upperBound="-1"
         eType="#//AccessRight"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" eType="#//File"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" eType="#//JavaIoFile"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Directory" eSuperTypes="#//Container"/>
-  <eClassifiers xsi:type="ecore:EClass" name="H2HFile" eSuperTypes="#//FileTreeElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="File" eSuperTypes="#//TreeElement"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Path" instanceClassName="java.nio.file.Path"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Container" eSuperTypes="#//FileTreeElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Container" eSuperTypes="#//TreeElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
-        eType="#//FileTreeElement" containment="true" eOpposite="#//FileTreeElement/parent"/>
+        eType="#//TreeElement" containment="true" eOpposite="#//TreeElement/parent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="User">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="userId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rootDir" eType="#//Path"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fileTree" eType="#//FileTree"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileTree" eType="#//Tree"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathToTreeElementMap" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="#//Path"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//FileTreeElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//TreeElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AccessRight">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="readPermission" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="writePermission" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="userId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="File" instanceClassName="java.io.File"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="JavaIoFile" instanceClassName="java.io.File"/>
 </ecore:EPackage>

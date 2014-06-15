@@ -14,9 +14,9 @@ import org.hive2hive.core.processes.framework.interfaces.IResultProcessComponent
 import org.hive2hive.core.processes.implementations.files.list.FileTaste;
 import org.hive2hive.rcp.client.model.filetree.AccessRight;
 import org.hive2hive.rcp.client.model.filetree.Directory;
-import org.hive2hive.rcp.client.model.filetree.FileTree;
-import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
 import org.hive2hive.rcp.client.model.filetree.FileTreeFactory;
+import org.hive2hive.rcp.client.model.filetree.Tree;
+import org.hive2hive.rcp.client.model.filetree.TreeElement;
 import org.hive2hive.rcp.client.model.filetree.User;
 import org.hive2hive.rcp.client.services.IFileService;
 import org.hive2hive.rcp.client.services.IModelService;
@@ -62,7 +62,7 @@ public class FetchFileTreeStep extends ServiceProcessStep {
 		User user = modelService.getUser();
 
 		FileTreeFactory factory = FileTreeFactory.eINSTANCE;
-		FileTree tree = factory.createFileTree();
+		Tree tree = factory.createTree();
 		tree.setName(String.format("file root of '%s'", user.getUserId()));
 		tree.setPath(user.getRootDir());
 
@@ -74,40 +74,40 @@ public class FetchFileTreeStep extends ServiceProcessStep {
 		tree.getChildren().add(rootDir);
 
 		for (FileTaste fileTaste : fileList) {
-			FileTreeElement element;
+			TreeElement treeElement;
 			if (fileTaste.getFile().isDirectory()) {
-				element = FileTreeFactory.eINSTANCE.createDirectory();
+				treeElement = FileTreeFactory.eINSTANCE.createDirectory();
 			} else {
-				element = FileTreeFactory.eINSTANCE.createH2HFile();
+				treeElement = FileTreeFactory.eINSTANCE.createFile();
 			}
-			addFileTreeElement(tree, element, fileTaste);
+			addFileTreeElement(tree, treeElement, fileTaste);
 		}
 
 		user.setFileTree(tree);
 	}
 
-	private void addFileTreeElement(FileTree tree, FileTreeElement element, FileTaste fileTaste) {
-		element.setName(fileTaste.getName());
-		element.setPath(fileTaste.getFile().toPath());
-		element.setFile(fileTaste.getFile());
-		tree.getElements().put(element.getPath(), element);
-		addAccessRights(element, fileTaste);
-		addToParent(tree, element);
+	private void addFileTreeElement(Tree tree, TreeElement treeElement, FileTaste fileTaste) {
+		treeElement.setName(fileTaste.getName());
+		treeElement.setPath(fileTaste.getFile().toPath());
+		treeElement.setFile(fileTaste.getFile());
+		tree.getElements().put(treeElement.getPath(), treeElement);
+		addAccessRights(treeElement, fileTaste);
+		addToParent(tree, treeElement);
 	}
 
-	private void addAccessRights(FileTreeElement element, FileTaste fileTaste) {
+	private void addAccessRights(TreeElement treeElement, FileTaste fileTaste) {
 		for (UserPermission permission : fileTaste.getUserPermissions()) {
 			AccessRight accessRight = FileTreeFactory.eINSTANCE.createAccessRight();
 			accessRight.setUserId(permission.getUserId());
 			accessRight.setReadPermission(true);
 			accessRight.setWritePermission(PermissionType.WRITE == permission.getPermission());
-			element.getAccessRights().add(accessRight);
+			treeElement.getAccessRights().add(accessRight);
 		}
 	}
 
-	void addToParent(FileTree tree, FileTreeElement element) {
-		Path parentPath = element.getPath().getParent();
+	void addToParent(Tree tree, TreeElement treeElement) {
+		Path parentPath = treeElement.getPath().getParent();
 		Directory parent = (Directory) tree.getElements().get(parentPath);
-		parent.getChildren().add(element);
+		parent.getChildren().add(treeElement);
 	}
 }

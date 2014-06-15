@@ -47,4 +47,5 @@
   <addons xmi:id="_1D_P1cQBEeO5us8__qBFNQ" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
   <addons xmi:id="_1D_P1sQBEeO5us8__qBFNQ" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
   <addons xmi:id="_1D_P18QBEeO5us8__qBFNQ" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
+  <addons xmi:id="_R8364PMOEeOqUaQ6nV__Kg" elementId="org.hive2hive.rcp.client.addon.modelInitializationAddon" contributionURI="bundleclass://org.hive2hive.rcp.client/org.hive2hive.rcp.client.addon.ServieceInitializationAddon"/>
 </application:Application>

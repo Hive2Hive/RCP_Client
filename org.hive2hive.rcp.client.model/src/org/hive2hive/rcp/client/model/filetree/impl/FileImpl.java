@@ -4,25 +4,25 @@ package org.hive2hive.rcp.client.model.filetree.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.hive2hive.rcp.client.model.filetree.File;
 import org.hive2hive.rcp.client.model.filetree.FileTreePackage;
-import org.hive2hive.rcp.client.model.filetree.H2HFile;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>H2H File</b></em>'.
+ * An implementation of the model object '<em><b>File</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class H2HFileImpl extends FileTreeElementImpl implements H2HFile {
+public class FileImpl extends TreeElementImpl implements File {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected H2HFileImpl() {
+	protected FileImpl() {
 		super();
 	}
 
@@ -33,7 +33,7 @@ public class H2HFileImpl extends FileTreeElementImpl implements H2HFile {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return FileTreePackage.Literals.H2H_FILE;
+		return FileTreePackage.Literals.FILE;
 	}
 
-} //H2HFileImpl
+} //FileImpl

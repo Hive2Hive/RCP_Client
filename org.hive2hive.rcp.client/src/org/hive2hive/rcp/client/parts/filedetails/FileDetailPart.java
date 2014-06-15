@@ -29,9 +29,9 @@ import org.eclipse.swt.widgets.Table;
 import org.hive2hive.core.model.IFileVersion;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
 import org.hive2hive.rcp.client.model.filetree.AccessRight;
-import org.hive2hive.rcp.client.model.filetree.FileTree;
-import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
 import org.hive2hive.rcp.client.model.filetree.FileTreeFactory;
+import org.hive2hive.rcp.client.model.filetree.Tree;
+import org.hive2hive.rcp.client.model.filetree.TreeElement;
 import org.hive2hive.rcp.client.parts.filedetails.dialog.AddUserAccessRighsDialog;
 import org.hive2hive.rcp.client.services.IFileService;
 import org.hive2hive.rcp.client.services.IModelService;
@@ -42,7 +42,7 @@ public class FileDetailPart {
 
 	private static final Logger logger = LoggerFactory.getLogger(FileDetailPart.class);
 
-	private FileTreeElement fileTreeElement;
+	private TreeElement treeElement;
 
 	private Label lblFileName;
 	private Label lblPath;
@@ -107,23 +107,23 @@ public class FileDetailPart {
 	}
 
 	@Inject
-	private void handleSelectionChanged(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) FileTreeElement element) {
-		if (element != null) {
-			logger.debug("Selected element: {}", element);
-			fileTreeElement = element;
+	private void handleSelectionChanged(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) TreeElement treeElement) {
+		if (treeElement != null) {
+			logger.debug("Selected element: {}", treeElement);
+			this.treeElement = treeElement;
 			updateViewElements();
-			fileService.getFileVersions(fileTreeElement.getFile(), eventBroker);
+			fileService.getFileVersions(treeElement.getFile(), eventBroker);
 		}
 	}
 
 	private void updateViewElements() {
-		lblFileName.setText(fileTreeElement.getName());
-		lblPath.setText(fileTreeElement.getPath().toString());
+		lblFileName.setText(treeElement.getName());
+		lblPath.setText(treeElement.getPath().toString());
 		updateAccessRights();
 	}
 
 	private void updateAccessRights() {
-		tblSharedWith.setInput(fileTreeElement.getAccessRights());
+		tblSharedWith.setInput(treeElement.getAccessRights());
 	}
 
 	private void createSharedWithTable(Composite parent, IBundleResourceLoader resourceLoader) {
@@ -196,7 +196,7 @@ public class FileDetailPart {
 
 	private void addAccessRightsForFile() {
 		logger.debug("Giving new user access to the file {}.", lblFileName.getText());
-		AddUserAccessRighsDialog dialog = new AddUserAccessRighsDialog(shell, fileTreeElement);
+		AddUserAccessRighsDialog dialog = new AddUserAccessRighsDialog(shell, treeElement);
 		if (IDialogConstants.OK_ID == dialog.open()) {
 			String userId = dialog.getUserId();
 			boolean grantWriteAccess = dialog.isGrantWriteAccess();
@@ -209,15 +209,15 @@ public class FileDetailPart {
 		right.setUserId(userId);
 		right.setReadPermission(true);
 		right.setWritePermission(grantWriteAccess);
-		fileService.shareWithUser(userId, fileTreeElement.getFile(), right, eventBroker);
+		fileService.shareWithUser(userId, treeElement.getFile(), right, eventBroker);
 	}
 
 	@Inject
 	@Optional
 	private void handleFileTreeChanged(@UIEventTopic(IFileService.FILE_SERVICE_STATUS) IFileService.Status status) {
-		if (IFileService.Status.FILE_LIST_UPDATE == status && fileTreeElement != null) {
-			FileTree fileTree = modelService.getUser().getFileTree();
-			fileTreeElement = fileTree.getElements().get(fileTreeElement.getPath());
+		if (IFileService.Status.FILE_LIST_UPDATE == status && treeElement != null) {
+			Tree fileTree = modelService.getUser().getFileTree();
+			treeElement = fileTree.getElements().get(treeElement.getPath());
 			updateViewElements();
 		}
 	}

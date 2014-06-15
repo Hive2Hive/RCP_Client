@@ -3,6 +3,7 @@
 package org.hive2hive.rcp.client.model.filetree.impl;
 
 import java.nio.file.Path;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EMap;
@@ -11,8 +12,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
 import org.hive2hive.rcp.client.model.filetree.FileTreePackage;
+import org.hive2hive.rcp.client.model.filetree.TreeElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,18 +22,20 @@ import org.hive2hive.rcp.client.model.filetree.FileTreePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.PathToTreeElementMapImpl#getTypedKey <em>Key</em>}</li>
- *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.PathToTreeElementMapImpl#getTypedValue <em>Value</em>}</li>
+ * <li>{@link org.hive2hive.rcp.client.model.filetree.impl.PathToTreeElementMapImpl#getTypedKey <em>Key</em>}</li>
+ * <li>{@link org.hive2hive.rcp.client.model.filetree.impl.PathToTreeElementMapImpl#getTypedValue <em>Value
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<Path,FileTreeElement> {
+public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<Path, TreeElement> {
 	/**
 	 * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTypedKey()
 	 * @generated
 	 * @ordered
@@ -43,6 +46,7 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	 * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTypedKey()
 	 * @generated
 	 * @ordered
@@ -53,15 +57,17 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	 * The cached value of the '{@link #getTypedValue() <em>Value</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTypedValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected FileTreeElement value;
+	protected TreeElement value;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PathToTreeElementMapImpl() {
@@ -71,6 +77,7 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,6 +88,7 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Path getTypedKey() {
@@ -90,27 +98,32 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTypedKey(Path newKey) {
 		Path oldKey = key;
 		key = newKey;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, FileTreePackage.PATH_TO_TREE_ELEMENT_MAP__KEY, oldKey, key));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public FileTreeElement getTypedValue() {
+	public TreeElement getTypedValue() {
 		if (value != null && value.eIsProxy()) {
-			InternalEObject oldValue = (InternalEObject)value;
-			value = (FileTreeElement)eResolveProxy(oldValue);
+			InternalEObject oldValue = (InternalEObject) value;
+			value = (TreeElement) eResolveProxy(oldValue);
 			if (value != oldValue) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FileTreePackage.PATH_TO_TREE_ELEMENT_MAP__VALUE, oldValue, value));
+				if (eNotificationRequired()) {
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							FileTreePackage.PATH_TO_TREE_ELEMENT_MAP__VALUE, oldValue, value));
+				}
 			}
 		}
 		return value;
@@ -119,27 +132,32 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public FileTreeElement basicGetTypedValue() {
+	public TreeElement basicGetTypedValue() {
 		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setTypedValue(FileTreeElement newValue) {
-		FileTreeElement oldValue = value;
+	public void setTypedValue(TreeElement newValue) {
+		TreeElement oldValue = value;
 		value = newValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FileTreePackage.PATH_TO_TREE_ELEMENT_MAP__VALUE, oldValue, value));
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, FileTreePackage.PATH_TO_TREE_ELEMENT_MAP__VALUE, oldValue,
+					value));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +166,9 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 			case FileTreePackage.PATH_TO_TREE_ELEMENT_MAP__KEY:
 				return getTypedKey();
 			case FileTreePackage.PATH_TO_TREE_ELEMENT_MAP__VALUE:
-				if (resolve) return getTypedValue();
+				if (resolve) {
+					return getTypedValue();
+				}
 				return basicGetTypedValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -157,16 +177,17 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FileTreePackage.PATH_TO_TREE_ELEMENT_MAP__KEY:
-				setTypedKey((Path)newValue);
+				setTypedKey((Path) newValue);
 				return;
 			case FileTreePackage.PATH_TO_TREE_ELEMENT_MAP__VALUE:
-				setTypedValue((FileTreeElement)newValue);
+				setTypedValue((TreeElement) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -175,6 +196,7 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +206,7 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 				setTypedKey(KEY_EDEFAULT);
 				return;
 			case FileTreePackage.PATH_TO_TREE_ELEMENT_MAP__VALUE:
-				setTypedValue((FileTreeElement)null);
+				setTypedValue((TreeElement) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -193,6 +215,7 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -209,11 +232,14 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (key: ");
@@ -225,6 +251,7 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected int hash = -1;
@@ -232,12 +259,14 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public int getHash() {
 		if (hash == -1) {
 			Object theKey = getKey();
-			hash = (theKey == null ? 0 : theKey.hashCode());
+			hash = theKey == null ? 0 : theKey.hashCode();
 		}
 		return hash;
 	}
@@ -245,8 +274,10 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public void setHash(int hash) {
 		this.hash = hash;
 	}
@@ -254,8 +285,10 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public Path getKey() {
 		return getTypedKey();
 	}
@@ -263,8 +296,10 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@Override
 	public void setKey(Path key) {
 		setTypedKey(key);
 	}
@@ -272,19 +307,23 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public FileTreeElement getValue() {
+	@Override
+	public TreeElement getValue() {
 		return getTypedValue();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public FileTreeElement setValue(FileTreeElement value) {
-		FileTreeElement oldValue = getValue();
+	@Override
+	public TreeElement setValue(TreeElement value) {
+		TreeElement oldValue = getValue();
 		setTypedValue(value);
 		return oldValue;
 	}
@@ -292,12 +331,13 @@ public class PathToTreeElementMapImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EMap<Path, FileTreeElement> getEMap() {
+	public EMap<Path, TreeElement> getEMap() {
 		EObject container = eContainer();
-		return container == null ? null : (EMap<Path, FileTreeElement>)container.eGet(eContainmentFeature());
+		return container == null ? null : (EMap<Path, TreeElement>) container.eGet(eContainmentFeature());
 	}
 
-} //PathToTreeElementMapImpl
+} // PathToTreeElementMapImpl

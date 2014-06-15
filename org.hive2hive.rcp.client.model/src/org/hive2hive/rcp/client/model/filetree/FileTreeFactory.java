@@ -22,13 +22,13 @@ public interface FileTreeFactory extends EFactory {
 	FileTreeFactory eINSTANCE = org.hive2hive.rcp.client.model.filetree.impl.FileTreeFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>File Tree</em>'.
+	 * Returns a new object of class '<em>Tree</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>File Tree</em>'.
+	 * @return a new object of class '<em>Tree</em>'.
 	 * @generated
 	 */
-	FileTree createFileTree();
+	Tree createTree();
 
 	/**
 	 * Returns a new object of class '<em>Directory</em>'.
@@ -40,13 +40,13 @@ public interface FileTreeFactory extends EFactory {
 	Directory createDirectory();
 
 	/**
-	 * Returns a new object of class '<em>H2H File</em>'.
+	 * Returns a new object of class '<em>File</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>H2H File</em>'.
+	 * @return a new object of class '<em>File</em>'.
 	 * @generated
 	 */
-	H2HFile createH2HFile();
+	File createFile();
 
 	/**
 	 * Returns a new object of class '<em>Container</em>'.

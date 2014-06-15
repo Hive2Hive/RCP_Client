@@ -20,11 +20,11 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Container extends FileTreeElement {
+public interface Container extends TreeElement {
 	/**
 	 * Returns the value of the '<em><b>Children</b></em>' containment reference list.
-	 * The list contents are of type {@link org.hive2hive.rcp.client.model.filetree.FileTreeElement}.
-	 * It is bidirectional and its opposite is '{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement#getParent <em>Parent</em>}'.
+	 * The list contents are of type {@link org.hive2hive.rcp.client.model.filetree.TreeElement}.
+	 * It is bidirectional and its opposite is '{@link org.hive2hive.rcp.client.model.filetree.TreeElement#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Children</em>' containment reference list isn't clear,
@@ -33,10 +33,10 @@ public interface Container extends FileTreeElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Children</em>' containment reference list.
 	 * @see org.hive2hive.rcp.client.model.filetree.FileTreePackage#getContainer_Children()
-	 * @see org.hive2hive.rcp.client.model.filetree.FileTreeElement#getParent
+	 * @see org.hive2hive.rcp.client.model.filetree.TreeElement#getParent
 	 * @model opposite="parent" containment="true"
 	 * @generated
 	 */
-	EList<FileTreeElement> getChildren();
+	EList<TreeElement> getChildren();
 
 } // Container

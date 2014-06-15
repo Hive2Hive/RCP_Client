@@ -66,17 +66,17 @@ public class FileTreeSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case FileTreePackage.FILE_TREE: {
-				FileTree fileTree = (FileTree)theEObject;
-				T result = caseFileTree(fileTree);
-				if (result == null) result = caseContainer(fileTree);
-				if (result == null) result = caseFileTreeElement(fileTree);
+			case FileTreePackage.TREE: {
+				Tree tree = (Tree)theEObject;
+				T result = caseTree(tree);
+				if (result == null) result = caseContainer(tree);
+				if (result == null) result = caseTreeElement(tree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FileTreePackage.FILE_TREE_ELEMENT: {
-				FileTreeElement fileTreeElement = (FileTreeElement)theEObject;
-				T result = caseFileTreeElement(fileTreeElement);
+			case FileTreePackage.TREE_ELEMENT: {
+				TreeElement treeElement = (TreeElement)theEObject;
+				T result = caseTreeElement(treeElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -84,21 +84,21 @@ public class FileTreeSwitch<T> extends Switch<T> {
 				Directory directory = (Directory)theEObject;
 				T result = caseDirectory(directory);
 				if (result == null) result = caseContainer(directory);
-				if (result == null) result = caseFileTreeElement(directory);
+				if (result == null) result = caseTreeElement(directory);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FileTreePackage.H2H_FILE: {
-				H2HFile h2HFile = (H2HFile)theEObject;
-				T result = caseH2HFile(h2HFile);
-				if (result == null) result = caseFileTreeElement(h2HFile);
+			case FileTreePackage.FILE: {
+				File file = (File)theEObject;
+				T result = caseFile(file);
+				if (result == null) result = caseTreeElement(file);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case FileTreePackage.CONTAINER: {
 				Container container = (Container)theEObject;
 				T result = caseContainer(container);
-				if (result == null) result = caseFileTreeElement(container);
+				if (result == null) result = caseTreeElement(container);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -109,7 +109,7 @@ public class FileTreeSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case FileTreePackage.PATH_TO_TREE_ELEMENT_MAP: {
-				@SuppressWarnings("unchecked") Map.Entry<Path, FileTreeElement> pathToTreeElementMap = (Map.Entry<Path, FileTreeElement>)theEObject;
+				@SuppressWarnings("unchecked") Map.Entry<Path, TreeElement> pathToTreeElementMap = (Map.Entry<Path, TreeElement>)theEObject;
 				T result = casePathToTreeElementMap(pathToTreeElementMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -125,32 +125,32 @@ public class FileTreeSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>File Tree</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Tree</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>File Tree</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Tree</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFileTree(FileTree object) {
+	public T caseTree(Tree object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Tree Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Tree Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFileTreeElement(FileTreeElement object) {
+	public T caseTreeElement(TreeElement object) {
 		return null;
 	}
 
@@ -170,17 +170,17 @@ public class FileTreeSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>H2H File</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>File</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>H2H File</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>File</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseH2HFile(H2HFile object) {
+	public T caseFile(File object) {
 		return null;
 	}
 
@@ -225,7 +225,7 @@ public class FileTreeSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePathToTreeElementMap(Map.Entry<Path, FileTreeElement> object) {
+	public T casePathToTreeElementMap(Map.Entry<Path, TreeElement> object) {
 		return null;
 	}
 

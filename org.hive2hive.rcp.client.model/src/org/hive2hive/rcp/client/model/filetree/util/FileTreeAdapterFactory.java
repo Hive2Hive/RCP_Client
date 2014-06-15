@@ -67,20 +67,20 @@ public class FileTreeAdapterFactory extends AdapterFactoryImpl {
 	protected FileTreeSwitch<Adapter> modelSwitch =
 		new FileTreeSwitch<Adapter>() {
 			@Override
-			public Adapter caseFileTree(FileTree object) {
-				return createFileTreeAdapter();
+			public Adapter caseTree(Tree object) {
+				return createTreeAdapter();
 			}
 			@Override
-			public Adapter caseFileTreeElement(FileTreeElement object) {
-				return createFileTreeElementAdapter();
+			public Adapter caseTreeElement(TreeElement object) {
+				return createTreeElementAdapter();
 			}
 			@Override
 			public Adapter caseDirectory(Directory object) {
 				return createDirectoryAdapter();
 			}
 			@Override
-			public Adapter caseH2HFile(H2HFile object) {
-				return createH2HFileAdapter();
+			public Adapter caseFile(File object) {
+				return createFileAdapter();
 			}
 			@Override
 			public Adapter caseContainer(Container object) {
@@ -91,7 +91,7 @@ public class FileTreeAdapterFactory extends AdapterFactoryImpl {
 				return createUserAdapter();
 			}
 			@Override
-			public Adapter casePathToTreeElementMap(Map.Entry<Path, FileTreeElement> object) {
+			public Adapter casePathToTreeElementMap(Map.Entry<Path, TreeElement> object) {
 				return createPathToTreeElementMapAdapter();
 			}
 			@Override
@@ -119,30 +119,30 @@ public class FileTreeAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.hive2hive.rcp.client.model.filetree.FileTree <em>File Tree</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.hive2hive.rcp.client.model.filetree.Tree <em>Tree</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.hive2hive.rcp.client.model.filetree.FileTree
+	 * @see org.hive2hive.rcp.client.model.filetree.Tree
 	 * @generated
 	 */
-	public Adapter createFileTreeAdapter() {
+	public Adapter createTreeAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.hive2hive.rcp.client.model.filetree.FileTreeElement <em>Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.hive2hive.rcp.client.model.filetree.TreeElement <em>Tree Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.hive2hive.rcp.client.model.filetree.FileTreeElement
+	 * @see org.hive2hive.rcp.client.model.filetree.TreeElement
 	 * @generated
 	 */
-	public Adapter createFileTreeElementAdapter() {
+	public Adapter createTreeElementAdapter() {
 		return null;
 	}
 
@@ -161,16 +161,16 @@ public class FileTreeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.hive2hive.rcp.client.model.filetree.H2HFile <em>H2H File</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.hive2hive.rcp.client.model.filetree.File <em>File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.hive2hive.rcp.client.model.filetree.H2HFile
+	 * @see org.hive2hive.rcp.client.model.filetree.File
 	 * @generated
 	 */
-	public Adapter createH2HFileAdapter() {
+	public Adapter createFileAdapter() {
 		return null;
 	}
 

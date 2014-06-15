@@ -140,12 +140,12 @@ public interface User extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>File Tree</em>' reference.
-	 * @see #setFileTree(FileTree)
+	 * @see #setFileTree(Tree)
 	 * @see org.hive2hive.rcp.client.model.filetree.FileTreePackage#getUser_FileTree()
 	 * @model
 	 * @generated
 	 */
-	FileTree getFileTree();
+	Tree getFileTree();
 
 	/**
 	 * Sets the value of the '{@link org.hive2hive.rcp.client.model.filetree.User#getFileTree <em>File Tree</em>}' reference.
@@ -155,6 +155,6 @@ public interface User extends EObject {
 	 * @see #getFileTree()
 	 * @generated
 	 */
-	void setFileTree(FileTree value);
+	void setFileTree(Tree value);
 
 } // User

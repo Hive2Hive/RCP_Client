@@ -60,9 +60,9 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case FileTreePackage.FILE_TREE: return createFileTree();
+			case FileTreePackage.TREE: return createTree();
 			case FileTreePackage.DIRECTORY: return createDirectory();
-			case FileTreePackage.H2H_FILE: return createH2HFile();
+			case FileTreePackage.FILE: return createFile();
 			case FileTreePackage.CONTAINER: return createContainer();
 			case FileTreePackage.USER: return createUser();
 			case FileTreePackage.PATH_TO_TREE_ELEMENT_MAP: return (EObject)createPathToTreeElementMap();
@@ -82,8 +82,8 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 		switch (eDataType.getClassifierID()) {
 			case FileTreePackage.PATH:
 				return createPathFromString(eDataType, initialValue);
-			case FileTreePackage.FILE:
-				return createFileFromString(eDataType, initialValue);
+			case FileTreePackage.JAVA_IO_FILE:
+				return createJavaIoFileFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -99,8 +99,8 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 		switch (eDataType.getClassifierID()) {
 			case FileTreePackage.PATH:
 				return convertPathToString(eDataType, instanceValue);
-			case FileTreePackage.FILE:
-				return convertFileToString(eDataType, instanceValue);
+			case FileTreePackage.JAVA_IO_FILE:
+				return convertJavaIoFileToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -111,9 +111,9 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FileTree createFileTree() {
-		FileTreeImpl fileTree = new FileTreeImpl();
-		return fileTree;
+	public Tree createTree() {
+		TreeImpl tree = new TreeImpl();
+		return tree;
 	}
 
 	/**
@@ -131,9 +131,9 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public H2HFile createH2HFile() {
-		H2HFileImpl h2HFile = new H2HFileImpl();
-		return h2HFile;
+	public org.hive2hive.rcp.client.model.filetree.File createFile() {
+		FileImpl file = new FileImpl();
+		return file;
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map.Entry<Path, FileTreeElement> createPathToTreeElementMap() {
+	public Map.Entry<Path, TreeElement> createPathToTreeElementMap() {
 		PathToTreeElementMapImpl pathToTreeElementMap = new PathToTreeElementMapImpl();
 		return pathToTreeElementMap;
 	}
@@ -199,7 +199,7 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public File createFileFromString(EDataType eDataType, String initialValue) {
+	public File createJavaIoFileFromString(EDataType eDataType, String initialValue) {
 		return (File)super.createFromString(eDataType, initialValue);
 	}
 
@@ -208,7 +208,7 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertFileToString(EDataType eDataType, Object instanceValue) {
+	public String convertJavaIoFileToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

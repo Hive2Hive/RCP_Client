@@ -3,8 +3,10 @@ package org.hive2hive.rcp.client.parts;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.swt.modeling.EMenuService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -18,6 +20,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
 import org.hive2hive.rcp.client.services.IFileService;
+import org.hive2hive.rcp.client.services.IModelService;
 import org.hive2hive.rcp.client.services.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +37,8 @@ public class TestPart {
 
 	@Inject
 	private IUserService userService;
+	@Inject
+	private IModelService modelService;
 
 	@PostConstruct
 	public void createControls(final Composite parent, IBundleResourceLoader bundleResourceLoader, EMenuService menuService) {
@@ -52,7 +57,8 @@ public class TestPart {
 			public void widgetSelected(SelectionEvent e) {
 				// fileService.test(eventBroker);
 				// fileService.fetchUpdatedFileList(eventBroker);
-				userService.test(eventBroker);
+				// userService.test(eventBroker);
+				modelService.test();
 			}
 		});
 		// logger.debug("extensions:");
@@ -68,6 +74,12 @@ public class TestPart {
 	@Focus
 	private void setFocus() {
 		logger.debug(this.getClass().getSimpleName() + " @Focus method called");
+	}
+
+	@Inject
+	@Optional
+	private void testModelService(@UIEventTopic("IModelService/test/message") String message) {
+		logger.error("Message: {}", message);
 	}
 
 }

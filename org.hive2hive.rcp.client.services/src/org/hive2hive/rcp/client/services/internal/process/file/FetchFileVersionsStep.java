@@ -11,7 +11,7 @@ import org.hive2hive.core.model.IFileVersion;
 import org.hive2hive.core.processes.framework.exceptions.InvalidProcessStateException;
 import org.hive2hive.core.processes.framework.exceptions.ProcessExecutionException;
 import org.hive2hive.core.processes.framework.interfaces.IResultProcessComponent;
-import org.hive2hive.rcp.client.model.filetree.FileTreeElement;
+import org.hive2hive.rcp.client.model.filetree.TreeElement;
 import org.hive2hive.rcp.client.services.IFileService;
 import org.hive2hive.rcp.client.services.IModelService;
 import org.hive2hive.rcp.client.services.internal.process.ResultProcessWaiter;
@@ -43,7 +43,7 @@ public class FetchFileVersionsStep extends ServiceProcessStep {
 			waiter.await();
 			List<IFileVersion> fileVersions = waiter.getResult();
 			// TODO add file versions to model
-			FileTreeElement fileTreeElement = modelService.getUser().getFileTree().getElements().get(file.getPath());
+			TreeElement treeElement = modelService.getUser().getFileTree().getElements().get(file.getPath());
 			publish(IFileService.FETCHED_FILE_VERSIONS, fileVersions);
 		} catch (NoSessionException | NoPeerConnectionException e) {
 			e.printStackTrace();
