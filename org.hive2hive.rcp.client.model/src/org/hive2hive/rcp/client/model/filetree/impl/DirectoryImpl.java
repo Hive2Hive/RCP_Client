@@ -3,6 +3,7 @@
 package org.hive2hive.rcp.client.model.filetree.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.hive2hive.rcp.client.model.filetree.Directory;
 import org.hive2hive.rcp.client.model.filetree.FileTreePackage;
 
@@ -35,9 +36,4 @@ public class DirectoryImpl extends ContainerImpl implements Directory {
 		return FileTreePackage.Literals.DIRECTORY;
 	}
 
-	@Override
-	public String toString() {
-		return getName();
-	}
-
-} // DirectoryImpl
+} //DirectoryImpl

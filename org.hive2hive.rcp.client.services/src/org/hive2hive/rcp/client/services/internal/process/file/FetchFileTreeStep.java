@@ -17,7 +17,7 @@ import org.hive2hive.rcp.client.model.filetree.Directory;
 import org.hive2hive.rcp.client.model.filetree.FileTreeFactory;
 import org.hive2hive.rcp.client.model.filetree.Tree;
 import org.hive2hive.rcp.client.model.filetree.TreeElement;
-import org.hive2hive.rcp.client.model.filetree.User;
+import org.hive2hive.rcp.client.model.uimodel.User;
 import org.hive2hive.rcp.client.services.IFileService;
 import org.hive2hive.rcp.client.services.IModelService;
 import org.hive2hive.rcp.client.services.internal.process.ResultProcessWaiter;
@@ -59,7 +59,7 @@ public class FetchFileTreeStep extends ServiceProcessStep {
 
 	private void createFileTree(List<FileTaste> fileList) {
 
-		User user = modelService.getUser();
+		User user = modelService.getModel().getUser();
 
 		FileTreeFactory factory = FileTreeFactory.eINSTANCE;
 		Tree tree = factory.createTree();
@@ -83,7 +83,7 @@ public class FetchFileTreeStep extends ServiceProcessStep {
 			addFileTreeElement(tree, treeElement, fileTaste);
 		}
 
-		user.setFileTree(tree);
+		user.setLocalTree(tree);
 	}
 
 	private void addFileTreeElement(Tree tree, TreeElement treeElement, FileTaste fileTaste) {

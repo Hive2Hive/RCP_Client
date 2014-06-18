@@ -61,11 +61,10 @@ public class TestAdminPart {
 		});
 
 		btnTest = new Button(parent, SWT.PUSH);
-		btnTest.setText("Test");
+		btnTest.setText("Update local file tree of user");
 		btnTest.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				logger.debug("user model = {}", modelService.getUser());
 				fileService.updateFileTreeOfUser(eventBroker);
 			}
 		});

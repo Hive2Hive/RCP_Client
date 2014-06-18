@@ -2,9 +2,8 @@
  */
 package org.hive2hive.rcp.client.model.filetree.impl;
 
-import static org.hive2hive.rcp.client.model.filetree.FileTreePackage.CONTAINER;
-
 import java.nio.file.Path;
+
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -12,7 +11,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.hive2hive.rcp.client.model.filetree.AccessRight;
 import org.hive2hive.rcp.client.model.filetree.Directory;
 import org.hive2hive.rcp.client.model.filetree.File;
@@ -20,20 +21,17 @@ import org.hive2hive.rcp.client.model.filetree.FileTreeFactory;
 import org.hive2hive.rcp.client.model.filetree.FileTreePackage;
 import org.hive2hive.rcp.client.model.filetree.Tree;
 import org.hive2hive.rcp.client.model.filetree.TreeElement;
-import org.hive2hive.rcp.client.model.filetree.User;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass treeEClass = null;
@@ -41,7 +39,6 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass treeElementEClass = null;
@@ -49,7 +46,6 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass directoryEClass = null;
@@ -57,7 +53,6 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass fileEClass = null;
@@ -65,7 +60,6 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass containerEClass = null;
@@ -73,15 +67,6 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass userEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass pathToTreeElementMapEClass = null;
@@ -89,7 +74,6 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass accessRightEClass = null;
@@ -97,7 +81,6 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType pathEDataType = null;
@@ -105,7 +88,6 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType javaIoFileEDataType = null;
@@ -114,11 +96,12 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()},
-	 * which also performs initialization of the package, or returns the registered package, if one already
-	 * exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.hive2hive.rcp.client.model.filetree.FileTreePackage#eNS_URI
 	 * @see #init()
@@ -131,33 +114,27 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it
-	 * depends.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>
-	 * This method is used to initialize {@link FileTreePackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the
-	 * package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>This method is used to initialize {@link FileTreePackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static FileTreePackage init() {
-		if (isInited) {
-			return (FileTreePackage) EPackage.Registry.INSTANCE.getEPackage(FileTreePackage.eNS_URI);
-		}
+		if (isInited) return (FileTreePackage)EPackage.Registry.INSTANCE.getEPackage(FileTreePackage.eNS_URI);
 
 		// Obtain or create and register package
-		FileTreePackageImpl theFileTreePackage = (FileTreePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FileTreePackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI) : new FileTreePackageImpl());
+		FileTreePackageImpl theFileTreePackage = (FileTreePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FileTreePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FileTreePackageImpl());
 
 		isInited = true;
 
@@ -170,6 +147,7 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		// Mark meta-data to indicate it can't be changed
 		theFileTreePackage.freeze();
 
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(FileTreePackage.eNS_URI, theFileTreePackage);
 		return theFileTreePackage;
@@ -178,10 +156,8 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getTree() {
 		return treeEClass;
 	}
@@ -189,21 +165,17 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getTree_Elements() {
-		return (EReference) treeEClass.getEStructuralFeatures().get(0);
+		return (EReference)treeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getTreeElement() {
 		return treeElementEClass;
 	}
@@ -211,65 +183,53 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTreeElement_Path() {
-		return (EAttribute) treeElementEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)treeElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTreeElement_Name() {
-		return (EAttribute) treeElementEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)treeElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getTreeElement_Parent() {
-		return (EReference) treeElementEClass.getEStructuralFeatures().get(2);
+		return (EReference)treeElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getTreeElement_AccessRights() {
-		return (EReference) treeElementEClass.getEStructuralFeatures().get(3);
+		return (EReference)treeElementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTreeElement_File() {
-		return (EAttribute) treeElementEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)treeElementEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getDirectory() {
 		return directoryEClass;
 	}
@@ -277,10 +237,8 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getFile() {
 		return fileEClass;
 	}
@@ -288,10 +246,8 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getContainer() {
 		return containerEClass;
 	}
@@ -299,87 +255,17 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getContainer_Children() {
-		return (EReference) containerEClass.getEStructuralFeatures().get(0);
+		return (EReference)containerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
-	public EClass getUser() {
-		return userEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUser_UserId() {
-		return (EAttribute) userEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUser_Password() {
-		return (EAttribute) userEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUser_Pin() {
-		return (EAttribute) userEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUser_RootDir() {
-		return (EAttribute) userEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public EReference getUser_FileTree() {
-		return (EReference) userEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
 	public EClass getPathToTreeElementMap() {
 		return pathToTreeElementMapEClass;
 	}
@@ -387,32 +273,26 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getPathToTreeElementMap_Key() {
-		return (EAttribute) pathToTreeElementMapEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)pathToTreeElementMapEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getPathToTreeElementMap_Value() {
-		return (EReference) pathToTreeElementMapEClass.getEStructuralFeatures().get(1);
+		return (EReference)pathToTreeElementMapEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getAccessRight() {
 		return accessRightEClass;
 	}
@@ -420,43 +300,35 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getAccessRight_ReadPermission() {
-		return (EAttribute) accessRightEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)accessRightEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getAccessRight_WritePermission() {
-		return (EAttribute) accessRightEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)accessRightEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getAccessRight_UserId() {
-		return (EAttribute) accessRightEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)accessRightEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EDataType getPath() {
 		return pathEDataType;
 	}
@@ -464,10 +336,8 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public EDataType getJavaIoFile() {
 		return javaIoFileEDataType;
 	}
@@ -475,34 +345,28 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
 	public FileTreeFactory getFileTreeFactory() {
-		return (FileTreeFactory) getEFactoryInstance();
+		return (FileTreeFactory)getEFactoryInstance();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is
+	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) {
-			return;
-		}
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -523,13 +387,6 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		containerEClass = createEClass(CONTAINER);
 		createEReference(containerEClass, CONTAINER__CHILDREN);
 
-		userEClass = createEClass(USER);
-		createEAttribute(userEClass, USER__USER_ID);
-		createEAttribute(userEClass, USER__PASSWORD);
-		createEAttribute(userEClass, USER__PIN);
-		createEAttribute(userEClass, USER__ROOT_DIR);
-		createEReference(userEClass, USER__FILE_TREE);
-
 		pathToTreeElementMapEClass = createEClass(PATH_TO_TREE_ELEMENT_MAP);
 		createEAttribute(pathToTreeElementMapEClass, PATH_TO_TREE_ELEMENT_MAP__KEY);
 		createEReference(pathToTreeElementMapEClass, PATH_TO_TREE_ELEMENT_MAP__VALUE);
@@ -547,23 +404,19 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
+	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) {
-			return;
-		}
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -583,66 +436,30 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(treeEClass, Tree.class, "Tree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTree_Elements(), this.getPathToTreeElementMap(), null, "elements", null, 0, -1, Tree.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEReference(getTree_Elements(), this.getPathToTreeElementMap(), null, "elements", null, 0, -1, Tree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(treeElementEClass, TreeElement.class, "TreeElement", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTreeElement_Path(), this.getPath(), "path", null, 0, 1, TreeElement.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTreeElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, TreeElement.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTreeElement_Parent(), this.getContainer(), this.getContainer_Children(), "parent", null, 0, 1,
-				TreeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTreeElement_AccessRights(), this.getAccessRight(), null, "accessRights", null, 0, -1,
-				TreeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTreeElement_File(), this.getJavaIoFile(), "file", null, 0, 1, TreeElement.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(treeElementEClass, TreeElement.class, "TreeElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTreeElement_Path(), this.getPath(), "path", null, 0, 1, TreeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTreeElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, TreeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTreeElement_Parent(), this.getContainer(), this.getContainer_Children(), "parent", null, 0, 1, TreeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTreeElement_AccessRights(), this.getAccessRight(), null, "accessRights", null, 0, -1, TreeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTreeElement_File(), this.getJavaIoFile(), "file", null, 0, 1, TreeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(directoryEClass, Directory.class, "Directory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(fileEClass, File.class, "File", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(containerEClass, org.hive2hive.rcp.client.model.filetree.Container.class, "Container", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getContainer_Children(), this.getTreeElement(), this.getTreeElement_Parent(), "children", null, 0,
-				-1, org.hive2hive.rcp.client.model.filetree.Container.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(containerEClass, org.hive2hive.rcp.client.model.filetree.Container.class, "Container", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getContainer_Children(), this.getTreeElement(), this.getTreeElement_Parent(), "children", null, 0, -1, org.hive2hive.rcp.client.model.filetree.Container.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUser_UserId(), ecorePackage.getEString(), "userId", null, 0, 1, User.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUser_Password(), ecorePackage.getEString(), "password", null, 0, 1, User.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUser_Pin(), ecorePackage.getEString(), "pin", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUser_RootDir(), this.getPath(), "rootDir", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUser_FileTree(), this.getTree(), null, "fileTree", null, 0, 1, User.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(pathToTreeElementMapEClass, Map.Entry.class, "PathToTreeElementMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPathToTreeElementMap_Key(), this.getPath(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPathToTreeElementMap_Value(), this.getTreeElement(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pathToTreeElementMapEClass, Map.Entry.class, "PathToTreeElementMap", !IS_ABSTRACT, !IS_INTERFACE,
-				!IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPathToTreeElementMap_Key(), this.getPath(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPathToTreeElementMap_Value(), this.getTreeElement(), null, "value", null, 1, 1, Map.Entry.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-
-		initEClass(accessRightEClass, AccessRight.class, "AccessRight", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAccessRight_ReadPermission(), ecorePackage.getEBoolean(), "readPermission", null, 0, 1,
-				AccessRight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAccessRight_WritePermission(), ecorePackage.getEBoolean(), "writePermission", null, 0, 1,
-				AccessRight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAccessRight_UserId(), ecorePackage.getEString(), "userId", null, 0, 1, AccessRight.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(accessRightEClass, AccessRight.class, "AccessRight", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAccessRight_ReadPermission(), ecorePackage.getEBoolean(), "readPermission", null, 0, 1, AccessRight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAccessRight_WritePermission(), ecorePackage.getEBoolean(), "writePermission", null, 0, 1, AccessRight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAccessRight_UserId(), ecorePackage.getEString(), "userId", null, 0, 1, AccessRight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(pathEDataType, Path.class, "Path", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
@@ -652,4 +469,4 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		createResource(eNS_URI);
 	}
 
-} // FileTreePackageImpl
+} //FileTreePackageImpl

@@ -9,7 +9,7 @@ import org.hive2hive.core.processes.framework.exceptions.InvalidProcessStateExce
 import org.hive2hive.core.processes.framework.exceptions.ProcessExecutionException;
 import org.hive2hive.core.processes.framework.interfaces.IProcessComponent;
 import org.hive2hive.core.security.UserCredentials;
-import org.hive2hive.rcp.client.model.filetree.User;
+import org.hive2hive.rcp.client.model.uimodel.User;
 import org.hive2hive.rcp.client.services.IUserService;
 import org.hive2hive.rcp.client.services.IUserService.Status;
 import org.hive2hive.rcp.client.services.internal.process.ComponentCompletionWaiter;
@@ -50,8 +50,8 @@ public class LoginProcessStep extends ServiceProcessStep {
 			ComponentCompletionWaiter waiter = new ComponentCompletionWaiter();
 			pc.attachListener(waiter);
 			waiter.await();
-			publishProcessState(Status.LOGIN_SUCCESSFUL);
 			setUserFields();
+			publishProcessState(Status.LOGIN_SUCCESSFUL);
 		} catch (NoPeerConnectionException e) {
 			publishProcessState(Status.LOGIN_FAILED);
 			logger.error("Error while trying to log in user '{}'.", userId, e);

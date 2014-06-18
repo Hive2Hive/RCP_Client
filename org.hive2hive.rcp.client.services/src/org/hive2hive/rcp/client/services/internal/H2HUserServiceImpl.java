@@ -7,7 +7,7 @@ import org.hive2hive.core.api.interfaces.IH2HNode;
 import org.hive2hive.core.api.interfaces.IUserManager;
 import org.hive2hive.core.exceptions.NoPeerConnectionException;
 import org.hive2hive.core.processes.framework.concretes.SequentialProcess;
-import org.hive2hive.rcp.client.model.filetree.User;
+import org.hive2hive.rcp.client.model.uimodel.UiModel;
 import org.hive2hive.rcp.client.services.IModelService;
 import org.hive2hive.rcp.client.services.INetworkConnectionService;
 import org.hive2hive.rcp.client.services.IUserService;
@@ -44,18 +44,19 @@ public class H2HUserServiceImpl extends H2HService implements IUserService {
 		return userManager;
 	}
 
-	private User getUser() {
+	private UiModel getModel() {
 		if (modelService == null) {
 			modelService = getService(IModelService.class);
 		}
-		return modelService.getUser();
+		return modelService.getModel();
 	}
 
 	@Override
 	public void registerAndLoginUser(String userId, String password, String pin, Path rootDirPath, IEventBroker eventBroker) {
 		SequentialProcess process = new SequentialProcess();
 		process.add(new RegisterProcessStep(userId, password, pin, eventBroker, getUserManager()));
-		process.add(new LoginProcessStep(userId, password, pin, rootDirPath, getUserManager(), eventBroker, getUser()));
+		process.add(new LoginProcessStep(userId, password, pin, rootDirPath, getUserManager(), eventBroker, getModel()
+				.getUser()));
 		runProcessAsynchronously(process);
 	}
 

@@ -216,7 +216,7 @@ public class FileDetailPart {
 	@Optional
 	private void handleFileTreeChanged(@UIEventTopic(IFileService.FILE_SERVICE_STATUS) IFileService.Status status) {
 		if (IFileService.Status.FILE_LIST_UPDATE == status && treeElement != null) {
-			Tree fileTree = modelService.getUser().getFileTree();
+			Tree fileTree = modelService.getModel().getUser().getLocalTree();
 			treeElement = fileTree.getElements().get(treeElement.getPath());
 			updateViewElements();
 		}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.hive2hive.rcp.client.model/src" modelPluginID="org.hive2hive.rcp.client.model"
+    modelName="UiModel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    usedGenPackages="FileTree.genmodel#//filetree" operationReflection="true" importOrganizing="true">
+  <foreignModel>UiModel.ecore</foreignModel>
+  <genPackages prefix="UiModel" basePackage="org.hive2hive.rcp.client.model" disposableProviderFactory="true"
+      ecorePackage="UiModel.ecore#/">
+    <genClasses ecoreClass="UiModel.ecore#//User">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UiModel.ecore#//User/networkTree"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UiModel.ecore#//User/localTree"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UiModel.ecore#//User/userId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UiModel.ecore#//User/password"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UiModel.ecore#//User/pin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UiModel.ecore#//User/rootDir"/>
+    </genClasses>
+    <genClasses ecoreClass="UiModel.ecore#//UiModel">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UiModel.ecore#//UiModel/user"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UiModel.ecore#//UiModel/network"/>
+    </genClasses>
+    <genClasses ecoreClass="UiModel.ecore#//Network"/>
+  </genPackages>
+</genmodel:GenModel>

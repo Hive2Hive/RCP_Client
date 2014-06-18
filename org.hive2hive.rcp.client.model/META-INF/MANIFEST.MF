@@ -8,9 +8,11 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.hive2hive.rcp.client.model.filetree,
- org.hive2hive.rcp.client.model.filetree.impl,
  org.hive2hive.rcp.client.model.filetree.util,
- org.hive2hive.rcp.client.model.todo
+ org.hive2hive.rcp.client.model.todo,
+ org.hive2hive.rcp.client.model.uimodel,
+ org.hive2hive.rcp.client.model.uimodel.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.hive2hive.rcp.client.model;visibility:=reexport
 Bundle-ActivationPolicy: lazy

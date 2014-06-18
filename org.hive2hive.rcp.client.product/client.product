@@ -3,14 +3,18 @@
 
 <product name="Hive2Hive - Client" uid="org.hive2hive.rcp.client.product" id="org.hive2hive.rcp.client.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" useFeatures="true" includeLaunchers="true">
 
+
    <configIni use="default">
    </configIni>
 
    <launcherArgs>
       <programArgs>-clearPersistedState</programArgs>
-      <vmArgs>-Dlogback.configurationFile=/Users/Nendor/Programmieren/eclipse/rcp/workspace/org.hive2hive.rcp.client.product/resource/logback.xml</vmArgs>
+      <vmArgs>-Dlogback.configurationFile=/Users/Nendor/git/RCP_Client/org.hive2hive.rcp.client/resources/logback.xml</vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
+
+   <windowImages/>
+
 
    <launcher name="H2H">
       <macosx icon="/org.hive2hive.rcp.client.product/icons/H2H.icns"/>
@@ -20,8 +24,10 @@
       </win>
    </launcher>
 
+
    <vm>
    </vm>
+
 
    <plugins>
    </plugins>

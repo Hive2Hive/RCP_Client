@@ -3,10 +3,14 @@
 package org.hive2hive.rcp.client.model.filetree.util;
 
 import java.nio.file.Path;
+
 import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
+
 import org.hive2hive.rcp.client.model.filetree.*;
 
 /**
@@ -102,12 +106,6 @@ public class FileTreeSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FileTreePackage.USER: {
-				User user = (User)theEObject;
-				T result = caseUser(user);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case FileTreePackage.PATH_TO_TREE_ELEMENT_MAP: {
 				@SuppressWarnings("unchecked") Map.Entry<Path, TreeElement> pathToTreeElementMap = (Map.Entry<Path, TreeElement>)theEObject;
 				T result = casePathToTreeElementMap(pathToTreeElementMap);
@@ -196,21 +194,6 @@ public class FileTreeSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseContainer(Container object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>User</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>User</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUser(User object) {
 		return null;
 	}
 

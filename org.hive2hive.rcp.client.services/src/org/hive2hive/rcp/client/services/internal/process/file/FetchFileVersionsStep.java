@@ -43,7 +43,7 @@ public class FetchFileVersionsStep extends ServiceProcessStep {
 			waiter.await();
 			List<IFileVersion> fileVersions = waiter.getResult();
 			// TODO add file versions to model
-			TreeElement treeElement = modelService.getUser().getFileTree().getElements().get(file.getPath());
+			TreeElement treeElement = modelService.getModel().getUser().getLocalTree().getElements().get(file.getPath());
 			publish(IFileService.FETCHED_FILE_VERSIONS, fileVersions);
 		} catch (NoSessionException | NoPeerConnectionException e) {
 			e.printStackTrace();
