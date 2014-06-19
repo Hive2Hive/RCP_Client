@@ -67,6 +67,7 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 			case FileTreePackage.CONTAINER: return createContainer();
 			case FileTreePackage.PATH_TO_TREE_ELEMENT_MAP: return (EObject)createPathToTreeElementMap();
 			case FileTreePackage.ACCESS_RIGHT: return createAccessRight();
+			case FileTreePackage.VERSION: return createVersion();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -164,6 +165,16 @@ public class FileTreeFactoryImpl extends EFactoryImpl implements FileTreeFactory
 	public AccessRight createAccessRight() {
 		AccessRightImpl accessRight = new AccessRightImpl();
 		return accessRight;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Version createVersion() {
+		VersionImpl version = new VersionImpl();
+		return version;
 	}
 
 	/**

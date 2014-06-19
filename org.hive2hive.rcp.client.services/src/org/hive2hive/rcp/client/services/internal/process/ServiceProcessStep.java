@@ -15,12 +15,18 @@ public abstract class ServiceProcessStep extends ProcessStep {
 		this.eventBroker = eventBroker;
 	}
 
+	/**
+	 * @Deprecated Use
+	 *             {@link #publishProcessState(org.hive2hive.rcp.client.services.IUserService.Status, String)}
+	 *             instead.
+	 */
+	@Deprecated
 	protected void publishProcessState(final IUserService.Status status) {
 		publishProcessState(status, null);
 	}
 
 	protected void publishProcessState(final IUserService.Status status, final String message) {
-		eventBroker.post(topicId, new StatusMessage<IUserService.Status>(status, message));
+		publish(topicId, new StatusMessage<IUserService.Status>(status, message));
 	}
 
 	protected void publish(String messageId, Object messageObject) {

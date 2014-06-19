@@ -2,6 +2,7 @@
  */
 package org.hive2hive.rcp.client.model.filetree.impl;
 
+import java.lang.Comparable;
 import java.nio.file.Path;
 
 import java.util.Map;
@@ -21,6 +22,7 @@ import org.hive2hive.rcp.client.model.filetree.FileTreeFactory;
 import org.hive2hive.rcp.client.model.filetree.FileTreePackage;
 import org.hive2hive.rcp.client.model.filetree.Tree;
 import org.hive2hive.rcp.client.model.filetree.TreeElement;
+import org.hive2hive.rcp.client.model.filetree.Version;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,6 +79,20 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	 * @generated
 	 */
 	private EClass accessRightEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass versionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass versionComparableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -230,6 +246,15 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTreeElement_Versions() {
+		return (EReference)treeElementEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDirectory() {
 		return directoryEClass;
 	}
@@ -329,6 +354,51 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getVersion() {
+		return versionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVersion_Index() {
+		return (EAttribute)versionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVersion_Size() {
+		return (EAttribute)versionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVersion_TimeStamp() {
+		return (EAttribute)versionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVersionComparable() {
+		return versionComparableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getPath() {
 		return pathEDataType;
 	}
@@ -379,6 +449,7 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		createEReference(treeElementEClass, TREE_ELEMENT__PARENT);
 		createEReference(treeElementEClass, TREE_ELEMENT__ACCESS_RIGHTS);
 		createEAttribute(treeElementEClass, TREE_ELEMENT__FILE);
+		createEReference(treeElementEClass, TREE_ELEMENT__VERSIONS);
 
 		directoryEClass = createEClass(DIRECTORY);
 
@@ -395,6 +466,13 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		createEAttribute(accessRightEClass, ACCESS_RIGHT__READ_PERMISSION);
 		createEAttribute(accessRightEClass, ACCESS_RIGHT__WRITE_PERMISSION);
 		createEAttribute(accessRightEClass, ACCESS_RIGHT__USER_ID);
+
+		versionEClass = createEClass(VERSION);
+		createEAttribute(versionEClass, VERSION__INDEX);
+		createEAttribute(versionEClass, VERSION__SIZE);
+		createEAttribute(versionEClass, VERSION__TIME_STAMP);
+
+		versionComparableEClass = createEClass(VERSION_COMPARABLE);
 
 		// Create data types
 		pathEDataType = createEDataType(PATH);
@@ -433,6 +511,7 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		directoryEClass.getESuperTypes().add(this.getContainer());
 		fileEClass.getESuperTypes().add(this.getTreeElement());
 		containerEClass.getESuperTypes().add(this.getTreeElement());
+		versionEClass.getESuperTypes().add(this.getVersionComparable());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(treeEClass, Tree.class, "Tree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -444,6 +523,7 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		initEReference(getTreeElement_Parent(), this.getContainer(), this.getContainer_Children(), "parent", null, 0, 1, TreeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTreeElement_AccessRights(), this.getAccessRight(), null, "accessRights", null, 0, -1, TreeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTreeElement_File(), this.getJavaIoFile(), "file", null, 0, 1, TreeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTreeElement_Versions(), this.getVersion(), null, "versions", null, 0, -1, TreeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(directoryEClass, Directory.class, "Directory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -460,6 +540,13 @@ public class FileTreePackageImpl extends EPackageImpl implements FileTreePackage
 		initEAttribute(getAccessRight_ReadPermission(), ecorePackage.getEBoolean(), "readPermission", null, 0, 1, AccessRight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAccessRight_WritePermission(), ecorePackage.getEBoolean(), "writePermission", null, 0, 1, AccessRight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAccessRight_UserId(), ecorePackage.getEString(), "userId", null, 0, 1, AccessRight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(versionEClass, Version.class, "Version", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVersion_Index(), ecorePackage.getEInt(), "index", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVersion_Size(), ecorePackage.getEBigInteger(), "size", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVersion_TimeStamp(), ecorePackage.getELong(), "timeStamp", null, 0, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(versionComparableEClass, Comparable.class, "VersionComparable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS, "java.lang.Comparable<Version>");
 
 		// Initialize data types
 		initEDataType(pathEDataType, Path.class, "Path", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

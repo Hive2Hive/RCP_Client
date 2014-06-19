@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.TreeElement#getParent <em>Parent</em>}</li>
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.TreeElement#getAccessRights <em>Access Rights</em>}</li>
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.TreeElement#getFile <em>File</em>}</li>
+ *   <li>{@link org.hive2hive.rcp.client.model.filetree.TreeElement#getVersions <em>Versions</em>}</li>
  * </ul>
  * </p>
  *
@@ -152,5 +153,21 @@ public interface TreeElement extends EObject {
 	 * @generated
 	 */
 	void setFile(File value);
+
+	/**
+	 * Returns the value of the '<em><b>Versions</b></em>' reference list.
+	 * The list contents are of type {@link org.hive2hive.rcp.client.model.filetree.Version}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Versions</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Versions</em>' reference list.
+	 * @see org.hive2hive.rcp.client.model.filetree.FileTreePackage#getTreeElement_Versions()
+	 * @model
+	 * @generated
+	 */
+	EList<Version> getVersions();
 
 } // TreeElement

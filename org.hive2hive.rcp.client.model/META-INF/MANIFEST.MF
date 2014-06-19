@@ -8,6 +8,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.hive2hive.rcp.client.model.filetree,
+ org.hive2hive.rcp.client.model.filetree.impl,
  org.hive2hive.rcp.client.model.filetree.util,
  org.hive2hive.rcp.client.model.todo,
  org.hive2hive.rcp.client.model.uimodel,

@@ -112,13 +112,22 @@ public interface FileTreePackage extends EPackage {
 	int TREE_ELEMENT__FILE = 4;
 
 	/**
+	 * The feature id for the '<em><b>Versions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE_ELEMENT__VERSIONS = 5;
+
+	/**
 	 * The number of structural features of the '<em>Tree Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TREE_ELEMENT_FEATURE_COUNT = 5;
+	int TREE_ELEMENT_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.ContainerImpl <em>Container</em>}' class.
@@ -174,6 +183,15 @@ public interface FileTreePackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTAINER__FILE = TREE_ELEMENT__FILE;
+
+	/**
+	 * The feature id for the '<em><b>Versions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER__VERSIONS = TREE_ELEMENT__VERSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -247,6 +265,15 @@ public interface FileTreePackage extends EPackage {
 	 * @ordered
 	 */
 	int TREE__FILE = CONTAINER__FILE;
+
+	/**
+	 * The feature id for the '<em><b>Versions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__VERSIONS = CONTAINER__VERSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -331,6 +358,15 @@ public interface FileTreePackage extends EPackage {
 	int DIRECTORY__FILE = CONTAINER__FILE;
 
 	/**
+	 * The feature id for the '<em><b>Versions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECTORY__VERSIONS = CONTAINER__VERSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -402,6 +438,15 @@ public interface FileTreePackage extends EPackage {
 	 * @ordered
 	 */
 	int FILE__FILE = TREE_ELEMENT__FILE;
+
+	/**
+	 * The feature id for the '<em><b>Versions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE__VERSIONS = TREE_ELEMENT__VERSIONS;
 
 	/**
 	 * The number of structural features of the '<em>File</em>' class.
@@ -496,6 +541,71 @@ public interface FileTreePackage extends EPackage {
 	int ACCESS_RIGHT_FEATURE_COUNT = 3;
 
 	/**
+	 * The meta object id for the '{@link java.lang.Comparable<Version> <em>Version Comparable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Comparable<Version>
+	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getVersionComparable()
+	 * @generated
+	 */
+	int VERSION_COMPARABLE = 8;
+
+	/**
+	 * The number of structural features of the '<em>Version Comparable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION_COMPARABLE_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.hive2hive.rcp.client.model.filetree.impl.VersionImpl <em>Version</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.hive2hive.rcp.client.model.filetree.impl.VersionImpl
+	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getVersion()
+	 * @generated
+	 */
+	int VERSION = 7;
+
+	/**
+	 * The feature id for the '<em><b>Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION__INDEX = VERSION_COMPARABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION__SIZE = VERSION_COMPARABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Time Stamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION__TIME_STAMP = VERSION_COMPARABLE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Version</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION_FEATURE_COUNT = VERSION_COMPARABLE_FEATURE_COUNT + 3;
+
+	/**
 	 * The meta object id for the '<em>Path</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -503,7 +613,7 @@ public interface FileTreePackage extends EPackage {
 	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getPath()
 	 * @generated
 	 */
-	int PATH = 7;
+	int PATH = 9;
 
 	/**
 	 * The meta object id for the '<em>Java Io File</em>' data type.
@@ -513,7 +623,7 @@ public interface FileTreePackage extends EPackage {
 	 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getJavaIoFile()
 	 * @generated
 	 */
-	int JAVA_IO_FILE = 8;
+	int JAVA_IO_FILE = 10;
 
 
 	/**
@@ -601,6 +711,17 @@ public interface FileTreePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTreeElement_File();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.hive2hive.rcp.client.model.filetree.TreeElement#getVersions <em>Versions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Versions</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.TreeElement#getVersions()
+	 * @see #getTreeElement()
+	 * @generated
+	 */
+	EReference getTreeElement_Versions();
 
 	/**
 	 * Returns the meta object for class '{@link org.hive2hive.rcp.client.model.filetree.Directory <em>Directory</em>}'.
@@ -721,6 +842,60 @@ public interface FileTreePackage extends EPackage {
 	EAttribute getAccessRight_UserId();
 
 	/**
+	 * Returns the meta object for class '{@link org.hive2hive.rcp.client.model.filetree.Version <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Version</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.Version
+	 * @generated
+	 */
+	EClass getVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.hive2hive.rcp.client.model.filetree.Version#getIndex <em>Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.Version#getIndex()
+	 * @see #getVersion()
+	 * @generated
+	 */
+	EAttribute getVersion_Index();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.hive2hive.rcp.client.model.filetree.Version#getSize <em>Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Size</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.Version#getSize()
+	 * @see #getVersion()
+	 * @generated
+	 */
+	EAttribute getVersion_Size();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.hive2hive.rcp.client.model.filetree.Version#getTimeStamp <em>Time Stamp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time Stamp</em>'.
+	 * @see org.hive2hive.rcp.client.model.filetree.Version#getTimeStamp()
+	 * @see #getVersion()
+	 * @generated
+	 */
+	EAttribute getVersion_TimeStamp();
+
+	/**
+	 * Returns the meta object for class '{@link java.lang.Comparable<Version> <em>Version Comparable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Version Comparable</em>'.
+	 * @see java.lang.Comparable<Version>
+	 * @model instanceClass="java.lang.Comparable<Version>"
+	 * @generated
+	 */
+	EClass getVersionComparable();
+
+	/**
 	 * Returns the meta object for data type '{@link java.nio.file.Path <em>Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -833,6 +1008,14 @@ public interface FileTreePackage extends EPackage {
 		EAttribute TREE_ELEMENT__FILE = eINSTANCE.getTreeElement_File();
 
 		/**
+		 * The meta object literal for the '<em><b>Versions</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TREE_ELEMENT__VERSIONS = eINSTANCE.getTreeElement_Versions();
+
+		/**
 		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.DirectoryImpl <em>Directory</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -929,6 +1112,50 @@ public interface FileTreePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ACCESS_RIGHT__USER_ID = eINSTANCE.getAccessRight_UserId();
+
+		/**
+		 * The meta object literal for the '{@link org.hive2hive.rcp.client.model.filetree.impl.VersionImpl <em>Version</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.hive2hive.rcp.client.model.filetree.impl.VersionImpl
+		 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getVersion()
+		 * @generated
+		 */
+		EClass VERSION = eINSTANCE.getVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERSION__INDEX = eINSTANCE.getVersion_Index();
+
+		/**
+		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERSION__SIZE = eINSTANCE.getVersion_Size();
+
+		/**
+		 * The meta object literal for the '<em><b>Time Stamp</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERSION__TIME_STAMP = eINSTANCE.getVersion_TimeStamp();
+
+		/**
+		 * The meta object literal for the '{@link java.lang.Comparable<Version> <em>Version Comparable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Comparable<Version>
+		 * @see org.hive2hive.rcp.client.model.filetree.impl.FileTreePackageImpl#getVersionComparable()
+		 * @generated
+		 */
+		EClass VERSION_COMPARABLE = eINSTANCE.getVersionComparable();
 
 		/**
 		 * The meta object literal for the '<em>Path</em>' data type.

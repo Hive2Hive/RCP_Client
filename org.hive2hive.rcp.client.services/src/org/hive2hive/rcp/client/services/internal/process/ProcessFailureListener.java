@@ -24,7 +24,7 @@ public class ProcessFailureListener implements IProcessComponentListener {
 
 	@Override
 	public void onSucceeded() {
-		logger.error("Process successful - nothing to be done here");
+		logger.debug("Process successful - nothing to be done here");
 	}
 
 	@Override

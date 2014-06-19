@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.hive2hive.rcp.client.model.filetree.AccessRight;
 import org.hive2hive.rcp.client.model.filetree.FileTreePackage;
 import org.hive2hive.rcp.client.model.filetree.TreeElement;
+import org.hive2hive.rcp.client.model.filetree.Version;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +39,7 @@ import org.hive2hive.rcp.client.model.filetree.TreeElement;
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.TreeElementImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.TreeElementImpl#getAccessRights <em>Access Rights</em>}</li>
  *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.TreeElementImpl#getFile <em>File</em>}</li>
+ *   <li>{@link org.hive2hive.rcp.client.model.filetree.impl.TreeElementImpl#getVersions <em>Versions</em>}</li>
  * </ul>
  * </p>
  *
@@ -113,6 +115,16 @@ public abstract class TreeElementImpl extends MinimalEObjectImpl.Container imple
 	 * @ordered
 	 */
 	protected File file = FILE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getVersions() <em>Versions</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVersions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Version> versions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -254,6 +266,18 @@ public abstract class TreeElementImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Version> getVersions() {
+		if (versions == null) {
+			versions = new EObjectResolvingEList<Version>(Version.class, this, FileTreePackage.TREE_ELEMENT__VERSIONS);
+		}
+		return versions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -311,6 +335,8 @@ public abstract class TreeElementImpl extends MinimalEObjectImpl.Container imple
 				return getAccessRights();
 			case FileTreePackage.TREE_ELEMENT__FILE:
 				return getFile();
+			case FileTreePackage.TREE_ELEMENT__VERSIONS:
+				return getVersions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -340,6 +366,10 @@ public abstract class TreeElementImpl extends MinimalEObjectImpl.Container imple
 			case FileTreePackage.TREE_ELEMENT__FILE:
 				setFile((File)newValue);
 				return;
+			case FileTreePackage.TREE_ELEMENT__VERSIONS:
+				getVersions().clear();
+				getVersions().addAll((Collection<? extends Version>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -367,6 +397,9 @@ public abstract class TreeElementImpl extends MinimalEObjectImpl.Container imple
 			case FileTreePackage.TREE_ELEMENT__FILE:
 				setFile(FILE_EDEFAULT);
 				return;
+			case FileTreePackage.TREE_ELEMENT__VERSIONS:
+				getVersions().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -389,6 +422,8 @@ public abstract class TreeElementImpl extends MinimalEObjectImpl.Container imple
 				return accessRights != null && !accessRights.isEmpty();
 			case FileTreePackage.TREE_ELEMENT__FILE:
 				return FILE_EDEFAULT == null ? file != null : !FILE_EDEFAULT.equals(file);
+			case FileTreePackage.TREE_ELEMENT__VERSIONS:
+				return versions != null && !versions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

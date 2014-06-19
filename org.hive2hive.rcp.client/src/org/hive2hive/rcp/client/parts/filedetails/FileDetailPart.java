@@ -1,5 +1,7 @@
 package org.hive2hive.rcp.client.parts.filedetails;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -32,6 +34,7 @@ import org.hive2hive.rcp.client.model.filetree.AccessRight;
 import org.hive2hive.rcp.client.model.filetree.FileTreeFactory;
 import org.hive2hive.rcp.client.model.filetree.Tree;
 import org.hive2hive.rcp.client.model.filetree.TreeElement;
+import org.hive2hive.rcp.client.model.filetree.Version;
 import org.hive2hive.rcp.client.parts.filedetails.dialog.AddUserAccessRighsDialog;
 import org.hive2hive.rcp.client.services.IFileService;
 import org.hive2hive.rcp.client.services.IModelService;
@@ -41,6 +44,7 @@ import org.slf4j.LoggerFactory;
 public class FileDetailPart {
 
 	private static final Logger logger = LoggerFactory.getLogger(FileDetailPart.class);
+	private static final SimpleDateFormat dateFormater = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 
 	private TreeElement treeElement;
 
@@ -86,6 +90,7 @@ public class FileDetailPart {
 		label.setText("Path:");
 		lblPath = new Label(parent, SWT.NONE);
 		lblPath.setText("/abc/lll");
+		lblPath.setLayoutData("growx");
 
 		label = new Label(parent, SWT.NONE);
 		label.setText("Size:");
@@ -112,7 +117,6 @@ public class FileDetailPart {
 			logger.debug("Selected element: {}", treeElement);
 			this.treeElement = treeElement;
 			updateViewElements();
-			fileService.getFileVersions(treeElement.getFile(), eventBroker);
 		}
 	}
 
@@ -120,6 +124,7 @@ public class FileDetailPart {
 		lblFileName.setText(treeElement.getName());
 		lblPath.setText(treeElement.getPath().toString());
 		updateAccessRights();
+		fileService.getFileVersions(treeElement.getFile(), eventBroker);
 	}
 
 	private void updateAccessRights() {
@@ -180,11 +185,41 @@ public class FileDetailPart {
 	private void createFileVersionTable(Composite parent) {
 		tblFileVersions = new TableViewer(parent, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 		Table table = tblFileVersions.getTable();
+		table.setLayoutData("height 80::");
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
-		// // TODO Nendor: create proper instances here
-		// tblFileVersions.setContentProvider(new ShareContentProvider());
-		// tblFileVersions.setLabelProvider(new ShareLabelProvider());
+		tblFileVersions.setContentProvider(ArrayContentProvider.getInstance());
+
+		TableViewerColumn col = new TableViewerColumn(tblFileVersions, SWT.NONE);
+		col.getColumn().setWidth(50);
+		col.getColumn().setText("Version");
+		col.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				return Integer.valueOf(((Version) element).getIndex()).toString();
+			}
+		});
+
+		col = new TableViewerColumn(tblFileVersions, SWT.NONE);
+		col.getColumn().setWidth(50);
+		col.getColumn().setText("Size");
+		col.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				return ((Version) element).getSize().toString();
+			}
+		});
+
+		col = new TableViewerColumn(tblFileVersions, SWT.NONE);
+		col.getColumn().setWidth(100);
+		col.getColumn().setText("Date");
+		col.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				return dateFormater.format(new Date(((Version) element).getTimeStamp()));
+			}
+		});
+
 	}
 
 	private Image getImageForAccessRight(boolean hasPermission) {
@@ -226,10 +261,7 @@ public class FileDetailPart {
 	@Optional
 	private void handleFileVersionFetch(@UIEventTopic(IFileService.FETCHED_FILE_VERSIONS) List<IFileVersion> fileVersions) {
 		logger.debug("Received file versions:");
-		for (IFileVersion fileVersion : fileVersions) {
-			logger.debug("File version: index={}, date={}, size={}", fileVersion.getIndex(), fileVersion.getDate(),
-					fileVersion.getSize());
-		}
+		tblFileVersions.setInput(treeElement.getVersions());
 	}
 
 }

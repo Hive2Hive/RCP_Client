@@ -105,7 +105,7 @@ public class FetchFileTreeStep extends ServiceProcessStep {
 		}
 	}
 
-	void addToParent(Tree tree, TreeElement treeElement) {
+	private void addToParent(Tree tree, TreeElement treeElement) {
 		Path parentPath = treeElement.getPath().getParent();
 		Directory parent = (Directory) tree.getElements().get(parentPath);
 		parent.getChildren().add(treeElement);

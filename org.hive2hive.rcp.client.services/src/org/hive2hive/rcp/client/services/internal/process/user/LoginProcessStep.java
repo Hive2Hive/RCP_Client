@@ -51,9 +51,9 @@ public class LoginProcessStep extends ServiceProcessStep {
 			pc.attachListener(waiter);
 			waiter.await();
 			setUserFields();
-			publishProcessState(Status.LOGIN_SUCCESSFUL);
+			publishProcessState(Status.LOGIN_SUCCESSFUL, userId);
 		} catch (NoPeerConnectionException e) {
-			publishProcessState(Status.LOGIN_FAILED);
+			publishProcessState(Status.LOGIN_FAILED, userId);
 			logger.error("Error while trying to log in user '{}'.", userId, e);
 		}
 	}
