@@ -15,11 +15,13 @@ public interface INetworkConnectionService extends IService {
 		DISCONNECTING_FAILED
 	}
 
-	void createInitialNode(IEventBroker eventBroker);
+	void initNetworkConnectionService(IEventBroker eventBroker);
 
-	void bootstrapToNetwork(String ipAddress, String port, IEventBroker eventBroker);
+	void createInitialNode();
 
-	void disconnect(IEventBroker eventBroker);
+	void bootstrapToNetwork(String ipAddress, String port);
+
+	void disconnect();
 
 	IH2HNode getCurrentNode();
 }

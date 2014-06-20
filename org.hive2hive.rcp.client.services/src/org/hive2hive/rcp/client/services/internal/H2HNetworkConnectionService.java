@@ -16,12 +16,18 @@ import org.slf4j.LoggerFactory;
 
 public class H2HNetworkConnectionService extends H2HService implements INetworkConnectionService {
 
-	private IH2HNode node = null;
-
 	private static final Logger logger = LoggerFactory.getLogger(H2HNetworkConnectionService.class);
 
+	private IH2HNode node = null;
+	private IEventBroker eventBroker;
+
 	@Override
-	public void disconnect(IEventBroker eventBroker) {
+	public void initNetworkConnectionService(IEventBroker eventBroker) {
+		this.eventBroker = eventBroker;
+	}
+
+	@Override
+	public void disconnect() {
 		logger.debug("Disconnecting");
 		eventBroker.post(INetworkConnectionService.NETWORK_CONNECTION_STATUS, Status.DISCONNECTING_FROM_NETWORK);
 		if (node.disconnect()) {
@@ -37,7 +43,7 @@ public class H2HNetworkConnectionService extends H2HService implements INetworkC
 	}
 
 	@Override
-	public void createInitialNode(IEventBroker eventBroker) {
+	public void createInitialNode() {
 		eventBroker.post(NETWORK_CONNECTION_STATUS, Status.CONNECTING_TO_NETWORK);
 		logger.debug("Creating initial network node.");
 		INetworkConfiguration initialNodeConfig = NetworkConfiguration.create("initialNodeID");
@@ -52,7 +58,7 @@ public class H2HNetworkConnectionService extends H2HService implements INetworkC
 	}
 
 	@Override
-	public void bootstrapToNetwork(String ipAddress, String port, IEventBroker eventBroker) {
+	public void bootstrapToNetwork(String ipAddress, String port) {
 		eventBroker.post(NETWORK_CONNECTION_STATUS, Status.CONNECTING_TO_NETWORK);
 		logger.debug("Connecting to node with address {}:{}", ipAddress, port);
 		INetworkConfiguration nodeConfig;

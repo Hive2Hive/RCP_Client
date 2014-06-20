@@ -6,9 +6,7 @@ import javax.inject.Inject;
 import net.miginfocom.swt.MigLayout;
 
 import org.eclipse.e4.core.di.annotations.Optional;
-import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.UIEventTopic;
-import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -43,12 +41,6 @@ public class ConnectionPart {
 
 	@Inject
 	private INetworkConnectionService networkConnectionService;
-
-	@Inject
-	private MPart part;
-
-	@Inject
-	private IEventBroker eventBroker;
 
 	@PostConstruct
 	public void createControls(final Composite parent) {
@@ -147,14 +139,13 @@ public class ConnectionPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (isConnected) {
-					networkConnectionService.disconnect(eventBroker);
+					networkConnectionService.disconnect();
 				} else {
 					if (btnCreateInitialNode.getSelection()) {
-						networkConnectionService.createInitialNode(eventBroker);
+						networkConnectionService.createInitialNode();
 					} else {
 						if (connectionDataCorrect(txtIpAddress.getText(), txtPort.getText())) {
-							networkConnectionService.bootstrapToNetwork(txtIpAddress.getText(), txtPort.getText(),
-									eventBroker);
+							networkConnectionService.bootstrapToNetwork(txtIpAddress.getText(), txtPort.getText());
 						}
 					}
 				}

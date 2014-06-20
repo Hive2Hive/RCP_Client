@@ -38,7 +38,7 @@ public class TestAdminPart {
 		btnCreateInitialNode.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				connectionService.createInitialNode(eventBroker);
+				connectionService.createInitialNode();
 			}
 		});
 

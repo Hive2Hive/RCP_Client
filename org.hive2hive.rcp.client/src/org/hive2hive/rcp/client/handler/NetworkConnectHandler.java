@@ -2,7 +2,6 @@ package org.hive2hive.rcp.client.handler;
 
 import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.widgets.Shell;
 import org.hive2hive.rcp.client.bundleresourceloader.IBundleResourceLoader;
@@ -26,18 +25,17 @@ public class NetworkConnectHandler {
 	}
 
 	@Execute
-	public void execute(Shell shell, INetworkConnectionService networkConnectionService,
-			IBundleResourceLoader resourceLoader, IEventBroker eventBroker) {
+	public void execute(Shell shell, INetworkConnectionService networkConnectionService, IBundleResourceLoader resourceLoader) {
 		logger.debug("Connecting to the network now.");
 		ConnectingToNetworkDialog dialog = new ConnectingToNetworkDialog(shell, resourceLoader);
 		if (IDialogConstants.OK_ID == dialog.open()) {
 			logger.debug("Connect was pressed");
 			logger.debug("Have to create initial node = {}", dialog.isCreateInitialNodeSelected());
 			if (dialog.isCreateInitialNodeSelected()) {
-				networkConnectionService.createInitialNode(eventBroker);
+				networkConnectionService.createInitialNode();
 			} else {
 				logger.debug("Have to connect to node with address '{}:{}'", dialog.getIpAddress(), dialog.getPort());
-				networkConnectionService.bootstrapToNetwork(dialog.getIpAddress(), dialog.getPort(), eventBroker);
+				networkConnectionService.bootstrapToNetwork(dialog.getIpAddress(), dialog.getPort());
 			}
 		} else {
 			logger.debug("Cancel was pressed");
