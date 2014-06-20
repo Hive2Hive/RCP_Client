@@ -15,10 +15,12 @@ public interface IFileService extends IService {
 		ADDED_USER_ACCESS_RIGHT
 	}
 
-	void updateFileTreeOfUser(IEventBroker eventBroker);
+	void initFileService(IEventBroker eventBroker);
 
-	void shareWithUser(String userId, File file, AccessRight accessRight, IEventBroker eventBroker);
+	void updateFileTreeOfUser();
 
-	void getFileVersions(File file, IEventBroker eventBroker);
+	void shareWithUser(String userId, File file, AccessRight accessRight);
+
+	void getFileVersions(File file);
 
 }

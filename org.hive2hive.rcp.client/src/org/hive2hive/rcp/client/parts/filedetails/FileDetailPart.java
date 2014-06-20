@@ -11,7 +11,6 @@ import javax.inject.Named;
 import net.miginfocom.swt.MigLayout;
 
 import org.eclipse.e4.core.di.annotations.Optional;
-import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -65,9 +64,6 @@ public class FileDetailPart {
 
 	@Inject
 	private IFileService fileService;
-
-	@Inject
-	private IEventBroker eventBroker;
 
 	@Inject
 	private IModelService modelService;
@@ -124,7 +120,7 @@ public class FileDetailPart {
 		lblFileName.setText(treeElement.getName());
 		lblPath.setText(treeElement.getPath().toString());
 		updateAccessRights();
-		fileService.getFileVersions(treeElement.getFile(), eventBroker);
+		fileService.getFileVersions(treeElement.getFile());
 	}
 
 	private void updateAccessRights() {
@@ -244,7 +240,7 @@ public class FileDetailPart {
 		right.setUserId(userId);
 		right.setReadPermission(true);
 		right.setWritePermission(grantWriteAccess);
-		fileService.shareWithUser(userId, treeElement.getFile(), right, eventBroker);
+		fileService.shareWithUser(userId, treeElement.getFile(), right);
 	}
 
 	@Inject

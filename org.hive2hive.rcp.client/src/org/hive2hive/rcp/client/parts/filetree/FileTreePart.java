@@ -6,7 +6,6 @@ import javax.inject.Inject;
 import net.miginfocom.swt.MigLayout;
 
 import org.eclipse.e4.core.di.annotations.Optional;
-import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -35,9 +34,6 @@ public class FileTreePart {
 	private IFileService fileService;
 
 	@Inject
-	private IEventBroker eventBroker;
-
-	@Inject
 	private ESelectionService selectionService;
 
 	@Inject
@@ -58,7 +54,7 @@ public class FileTreePart {
 		btnUpdate.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				fileService.updateFileTreeOfUser(eventBroker);
+				fileService.updateFileTreeOfUser();
 			}
 		});
 
@@ -102,7 +98,7 @@ public class FileTreePart {
 			@UIEventTopic(IUserService.USER_STATUS) IService.StatusMessage<IUserService.Status> statusMessage) {
 		if (IUserService.Status.LOGIN_SUCCESSFUL == statusMessage.getStatus()) {
 			logger.debug("User '{}' logged in successfully - request current file tree.", statusMessage.getMessage());
-			fileService.updateFileTreeOfUser(eventBroker);
+			fileService.updateFileTreeOfUser();
 		}
 	}
 

@@ -12,15 +12,10 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.hive2hive.rcp.client.services.IFileService;
-import org.hive2hive.rcp.client.services.IModelService;
 import org.hive2hive.rcp.client.services.INetworkConnectionService;
 import org.hive2hive.rcp.client.services.IUserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class TestAdminPart {
-
-	private static final Logger logger = LoggerFactory.getLogger(TestAdminPart.class);
 
 	private Button btnCreateInitialNode;
 	private Button btnLoginTestUser;
@@ -28,9 +23,6 @@ public class TestAdminPart {
 
 	@Inject
 	private IEventBroker eventBroker;
-
-	@Inject
-	private IModelService modelService;
 
 	@Inject
 	private IFileService fileService;
@@ -65,7 +57,7 @@ public class TestAdminPart {
 		btnTest.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				fileService.updateFileTreeOfUser(eventBroker);
+				fileService.updateFileTreeOfUser();
 			}
 		});
 	}

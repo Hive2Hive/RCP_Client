@@ -16,20 +16,22 @@ import org.hive2hive.rcp.client.services.internal.process.file.ShareWithUserStep
 
 public class H2HFileService extends H2HService implements IFileService {
 
-	private IFileManager getFileManager() {
-		INetworkConnectionService networkConnectionService = getService(INetworkConnectionService.class);
-		return networkConnectionService.getCurrentNode().getFileManager();
+	private IEventBroker eventBroker;
+
+	@Override
+	public void initFileService(IEventBroker eventBroker) {
+		this.eventBroker = eventBroker;
 	}
 
 	@Override
-	public void updateFileTreeOfUser(IEventBroker eventBroker) {
+	public void updateFileTreeOfUser() {
 		SequentialProcess process = new SequentialProcess();
 		process.add(new FetchFileTreeStep(getFileManager(), getService(IModelService.class), eventBroker));
 		runProcessAsynchronously(process);
 	}
 
 	@Override
-	public void shareWithUser(String userId, File file, AccessRight accessRight, IEventBroker eventBroker) {
+	public void shareWithUser(String userId, File file, AccessRight accessRight) {
 		SequentialProcess process = new SequentialProcess();
 		process.add(new ShareWithUserStep(userId, file, accessRight, getFileManager(), eventBroker));
 		process.add(new FetchFileTreeStep(getFileManager(), getService(IModelService.class), eventBroker));
@@ -40,7 +42,7 @@ public class H2HFileService extends H2HService implements IFileService {
 	}
 
 	@Override
-	public void getFileVersions(File file, IEventBroker eventBroker) {
+	public void getFileVersions(File file) {
 		SequentialProcess process = new SequentialProcess();
 		process.add(new FetchFileVersionsStep(file, getFileManager(), getService(IModelService.class), eventBroker));
 		process.attachListener(new ProcessFailureListener(
@@ -49,6 +51,11 @@ public class H2HFileService extends H2HService implements IFileService {
 						"A failure occurred while trying to fetch version informations for the file '{}'. The failure occurred for the following reason:",
 						file.getName()), eventBroker));
 		runProcessAsynchronously(process);
+	}
+
+	private IFileManager getFileManager() {
+		INetworkConnectionService networkConnectionService = getService(INetworkConnectionService.class);
+		return networkConnectionService.getCurrentNode().getFileManager();
 	}
 
 }
