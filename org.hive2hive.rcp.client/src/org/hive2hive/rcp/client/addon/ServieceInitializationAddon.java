@@ -6,6 +6,7 @@ import org.eclipse.e4.core.services.events.IEventBroker;
 import org.hive2hive.rcp.client.services.IFileService;
 import org.hive2hive.rcp.client.services.IModelService;
 import org.hive2hive.rcp.client.services.INetworkConnectionService;
+import org.hive2hive.rcp.client.services.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,10 +16,11 @@ public class ServieceInitializationAddon {
 
 	@PostConstruct
 	private void initializingServices(IModelService modelService, IFileService fileService,
-			INetworkConnectionService connectionService, IEventBroker eventBroker) {
+			INetworkConnectionService connectionService, IUserService userService, IEventBroker eventBroker) {
 		logger.error("Going to init the UiModel - eventBroker={}", eventBroker);
 		modelService.initModelService(eventBroker);
 		fileService.initFileService(eventBroker);
 		connectionService.initNetworkConnectionService(eventBroker);
+		userService.initUserService(eventBroker);
 	}
 }

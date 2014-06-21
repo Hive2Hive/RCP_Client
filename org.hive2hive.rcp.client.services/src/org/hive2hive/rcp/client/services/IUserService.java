@@ -8,7 +8,6 @@ public interface IUserService {
 
 	public final String USER_STATUS = "USER_STATUS";
 
-	// logging in logged in logging
 	enum Status {
 		REGISTERING_USER,
 		REGISTER_SUCCESSFULL,
@@ -21,28 +20,12 @@ public interface IUserService {
 		LOGOUT_FAILED
 	}
 
-	// public class StatusMessage {
-	// private final Status status;
-	// private final String message;
-	//
-	// public StatusMessage(Status status, String message) {
-	// this.status = status;
-	// this.message = message;
-	// }
-	//
-	// public Status getStatus() {
-	// return status;
-	// }
-	//
-	// public String getMessage() {
-	// return message;
-	// }
-	// }
+	void initUserService(IEventBroker eventBroker);
 
 	boolean isUserRegistered(String userId);
 
-	void test(IEventBroker eventBroker);
+	void test();
 
-	void registerAndLoginUser(String userId, String password, String pin, Path rootDirPath, IEventBroker eventBroker);
+	void registerAndLoginUser(String userId, String password, String pin, Path rootDirPath);
 
 }

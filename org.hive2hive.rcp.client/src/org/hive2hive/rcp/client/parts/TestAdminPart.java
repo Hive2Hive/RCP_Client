@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -20,9 +19,6 @@ public class TestAdminPart {
 	private Button btnCreateInitialNode;
 	private Button btnLoginTestUser;
 	private Button btnTest;
-
-	@Inject
-	private IEventBroker eventBroker;
 
 	@Inject
 	private IFileService fileService;
@@ -47,8 +43,7 @@ public class TestAdminPart {
 		btnLoginTestUser.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				userService.registerAndLoginUser("Mr. X", "password", "1234", Paths.get("/Users/Nendor/H2H/MrX"),
-						eventBroker);
+				userService.registerAndLoginUser("Mr. X", "password", "1234", Paths.get("/Users/Nendor/H2H/MrX"));
 			}
 		});
 

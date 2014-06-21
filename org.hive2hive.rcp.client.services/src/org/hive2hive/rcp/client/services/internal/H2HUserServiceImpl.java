@@ -21,9 +21,15 @@ public class H2HUserServiceImpl extends H2HService implements IUserService {
 	static final Logger logger = LoggerFactory.getLogger(H2HUserServiceImpl.class);
 
 	private IModelService modelService;
+	private IEventBroker eventBroker;
 
 	@Override
-	public void test(IEventBroker eventBroker) {
+	public void initUserService(IEventBroker eventBroker) {
+		this.eventBroker = eventBroker;
+	}
+
+	@Override
+	public void test() {
 		logger.debug("method 'test' called.");
 	}
 
@@ -35,6 +41,15 @@ public class H2HUserServiceImpl extends H2HService implements IUserService {
 			logger.error("Can't check if user is registered.", e);
 		}
 		return false;
+	}
+
+	@Override
+	public void registerAndLoginUser(String userId, String password, String pin, Path rootDirPath) {
+		SequentialProcess process = new SequentialProcess();
+		process.add(new RegisterProcessStep(userId, password, pin, eventBroker, getUserManager()));
+		process.add(new LoginProcessStep(userId, password, pin, rootDirPath, getUserManager(), eventBroker, getModel()
+				.getUser()));
+		runProcessAsynchronously(process);
 	}
 
 	private IUserManager getUserManager() {
@@ -49,15 +64,6 @@ public class H2HUserServiceImpl extends H2HService implements IUserService {
 			modelService = getService(IModelService.class);
 		}
 		return modelService.getModel();
-	}
-
-	@Override
-	public void registerAndLoginUser(String userId, String password, String pin, Path rootDirPath, IEventBroker eventBroker) {
-		SequentialProcess process = new SequentialProcess();
-		process.add(new RegisterProcessStep(userId, password, pin, eventBroker, getUserManager()));
-		process.add(new LoginProcessStep(userId, password, pin, rootDirPath, getUserManager(), eventBroker, getModel()
-				.getUser()));
-		runProcessAsynchronously(process);
 	}
 
 }

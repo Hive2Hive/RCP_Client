@@ -8,7 +8,6 @@ import javax.inject.Inject;
 
 import net.miginfocom.swt.MigLayout;
 
-import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -28,9 +27,6 @@ public class UserManagementPart {
 
 	@Inject
 	private IUserService userService;
-
-	@Inject
-	private IEventBroker eventBroker;
 
 	private Text txtUserId_login;
 	private Text txtPassword_login;
@@ -103,7 +99,7 @@ public class UserManagementPart {
 				logger.debug("Login user started.");
 				Path userDirPath = Paths.get(txtFileRoot.getText());
 				userService.registerAndLoginUser(txtUserId_login.getText(), txtPassword_login.getText(),
-						txtPin_login.getText(), userDirPath, eventBroker);
+						txtPin_login.getText(), userDirPath);
 			}
 		});
 	}
