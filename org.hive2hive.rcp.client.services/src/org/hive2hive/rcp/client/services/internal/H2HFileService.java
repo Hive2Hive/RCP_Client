@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.hive2hive.core.api.interfaces.IFileManager;
-import org.hive2hive.core.processes.framework.concretes.SequentialProcess;
+import org.hive2hive.processframework.concretes.SequentialProcess;
 import org.hive2hive.rcp.client.model.filetree.AccessRight;
 import org.hive2hive.rcp.client.services.IFileService;
 import org.hive2hive.rcp.client.services.IModelService;

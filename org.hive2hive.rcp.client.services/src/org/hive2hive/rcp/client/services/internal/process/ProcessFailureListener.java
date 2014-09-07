@@ -1,8 +1,8 @@
 package org.hive2hive.rcp.client.services.internal.process;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
-import org.hive2hive.core.processes.framework.RollbackReason;
-import org.hive2hive.core.processes.framework.interfaces.IProcessComponentListener;
+import org.hive2hive.processframework.RollbackReason;
+import org.hive2hive.processframework.interfaces.IProcessComponentListener;
 import org.hive2hive.rcp.client.services.IService;
 import org.hive2hive.rcp.client.services.ServiceFailureMessage;
 import org.slf4j.Logger;

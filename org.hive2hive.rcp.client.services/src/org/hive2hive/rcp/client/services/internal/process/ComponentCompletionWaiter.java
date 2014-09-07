@@ -2,8 +2,8 @@ package org.hive2hive.rcp.client.services.internal.process;
 
 import java.util.concurrent.CountDownLatch;
 
-import org.hive2hive.core.processes.framework.RollbackReason;
-import org.hive2hive.core.processes.framework.interfaces.IProcessComponentListener;
+import org.hive2hive.processframework.RollbackReason;
+import org.hive2hive.processframework.interfaces.IProcessComponentListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

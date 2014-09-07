@@ -6,7 +6,7 @@ import org.eclipse.e4.core.services.events.IEventBroker;
 import org.hive2hive.core.api.interfaces.IH2HNode;
 import org.hive2hive.core.api.interfaces.IUserManager;
 import org.hive2hive.core.exceptions.NoPeerConnectionException;
-import org.hive2hive.core.processes.framework.concretes.SequentialProcess;
+import org.hive2hive.processframework.concretes.SequentialProcess;
 import org.hive2hive.rcp.client.model.filetree.User;
 import org.hive2hive.rcp.client.services.IModelService;
 import org.hive2hive.rcp.client.services.INetworkConnectionService;

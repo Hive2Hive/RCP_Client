@@ -1,8 +1,8 @@
 package org.hive2hive.rcp.client.services.internal;
 
-import org.hive2hive.core.processes.framework.abstracts.Process;
-import org.hive2hive.core.processes.framework.decorators.AsyncComponent;
-import org.hive2hive.core.processes.framework.exceptions.InvalidProcessStateException;
+import org.hive2hive.processframework.abstracts.Process;
+import org.hive2hive.processframework.decorators.AsyncComponent;
+import org.hive2hive.processframework.exceptions.InvalidProcessStateException;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;

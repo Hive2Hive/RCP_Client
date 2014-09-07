@@ -1,8 +1,8 @@
 package org.hive2hive.rcp.client.services.internal.process.network;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
-import org.hive2hive.core.processes.framework.exceptions.InvalidProcessStateException;
-import org.hive2hive.core.processes.framework.exceptions.ProcessExecutionException;
+import org.hive2hive.processframework.exceptions.InvalidProcessStateException;
+import org.hive2hive.processframework.exceptions.ProcessExecutionException;
 import org.hive2hive.rcp.client.services.INetworkConnectionService;
 import org.hive2hive.rcp.client.services.internal.process.ServiceProcessStep;
 

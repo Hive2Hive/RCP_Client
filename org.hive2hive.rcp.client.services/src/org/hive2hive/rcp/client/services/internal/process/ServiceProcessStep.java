@@ -1,7 +1,7 @@
 package org.hive2hive.rcp.client.services.internal.process;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
-import org.hive2hive.core.processes.framework.abstracts.ProcessStep;
+import org.hive2hive.processframework.abstracts.ProcessStep;
 import org.hive2hive.rcp.client.services.IService.StatusMessage;
 import org.hive2hive.rcp.client.services.IUserService;
 
